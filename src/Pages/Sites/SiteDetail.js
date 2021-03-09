@@ -18,25 +18,6 @@ const SiteDetail = () => {
   const toggleEditModal = () => {
     setToggleModal(!toggleModal)
   }
-  
-  const patchSite = async () => {
-    var data = {
-      site_name: patchSiteData.site_name,
-      site_add1: patchSiteData.site_add1,
-      site_add2: patchSiteData.site_add2,
-      site_city: patchSiteData.site_city,
-      site_state: patchSiteData.site_state,
-      site_zip: patchSiteData.site_zip,
-      _id: id
-      }
-    const response = await siteService.putSite(id, data)
-    setToggleModal(false)
-    
-  }
-  useEffect(() => {
-    console.log(id)
-  }, [patchSite])
-
 
   const userContext = useContext(stateContext)
   

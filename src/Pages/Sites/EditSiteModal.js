@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
+import {stateContext} from '../../stateContext'
+import getClient from '../../Services/clientService'
 import siteService from '../../Services/siteService'
 
 const EditSiteModal = ({siteDetails, modalState}) => {
+
+  const userContext = useContext(stateContext)
 
   const [site, setSite] = useState({
     site_name: siteDetails.site_name,
@@ -10,7 +14,8 @@ const EditSiteModal = ({siteDetails, modalState}) => {
     site_city: siteDetails.site_city,
     site_state: siteDetails.site_state,
     site_zip: siteDetails.site_zip, 
-    _id: siteDetails._id
+    _id: siteDetails._id,
+    _parent_id: userContext.userSession.clientID
   })
 
   const [toggleModal, setToggleModal] = useState(true)
@@ -34,9 +39,11 @@ const EditSiteModal = ({siteDetails, modalState}) => {
     site_city: site.site_city,
     site_state: site.site_state,
     site_zip: site.site_zip, 
-    _id: site._id
+    _id: site._id,
+    _parent_id: userContext.userSession.clientID
     }
     const response = await siteService.putSite(id, site)
+    await getClient(userContext.userSession.userID)
     setToggleModal(false)
   }
 
