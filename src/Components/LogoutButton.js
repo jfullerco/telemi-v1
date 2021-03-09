@@ -39,7 +39,7 @@ console.log(userContext)
 
       <div className="navbar-end">
 
-        <Link to="/" className="navbar-item">Dashboard</Link>
+        <Link to="/dashboard" className="navbar-item">Dashboard</Link>
 
         {userContext.userSession.loggedIn != false ? (<Link to="/" onClick={logOut} className="navbar-item">
           Logout

@@ -36,7 +36,12 @@ const Dashboard = () => {
           <span>
             <Link to="/sites">
               <div className="button is-rounded">
-                Sites
+                Sites: {userContext.userSession.sites.length}
+              </div>
+            </Link>
+            <Link to="/assets">
+              <div className="button is-rounded">
+                Assets: {userContext.userSession.assets.length}
               </div>
             </Link>
           </span>
