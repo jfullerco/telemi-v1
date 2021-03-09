@@ -5,7 +5,7 @@ import {stateContext} from '../stateContext'
 import getClient from '../Services/clientService'
 import LogoutButton from '../Components/LogoutButton'
 import ClientList from './Client/ClientList'
-import AssetReport from './Reports/AssetReport'
+import AssetReport from '../Components/Reports/AssetReport'
 
 import Login from './Login'
 
@@ -15,11 +15,10 @@ const Dashboard = () => {
 
   const [toggleModal, setToggleModal] = useState(false)
 
-  const toggleEditModal = () => {
+  const toggleAssetModal = () => {
     setToggleModal(!toggleModal)
   }
   
-  const userID = localStorage.userID
   console.log(userContext)
 
   return (  
@@ -37,9 +36,9 @@ const Dashboard = () => {
       <div className="block">
         <ClientList />
         {toggleModal === true ? <AssetReport /> : ""}
-          <div className="button is-rounded" onClick={toggleModal}>
+          <button className="button is-rounded" onClick={toggleAssetModal}>
              Asset Report 
-          </div>
+          </button>
       </div>
       <div className="block">
         <p />
@@ -47,12 +46,12 @@ const Dashboard = () => {
           <span>
             <Link to="/sites">
               <div className="button is-rounded">
-                Sites: {userContext.userSession.sites.length}
+                Sites: 
               </div>
             </Link>
             <Link to="/assets">
               <div className="button is-rounded">
-                Assets: {userContext.userSession.assets.length}
+                Assets: 
               </div>
             </Link>
           </span>

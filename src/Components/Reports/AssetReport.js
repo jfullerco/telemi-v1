@@ -1,11 +1,11 @@
 import React, {useState, useContext} from 'react'
-import {stateContext} from '../../../stateContext'
+import {stateContext} from '../../stateContext'
 
 const AssetReport = () => {
   const userContext = useContext(stateContext)
   const {userSession: {sites}} = userContext
   
-  const [toggleModal, setToggleModal] = useState(false)
+  const [toggleModal, setToggleModal] = useState(true)
 
   const toggleModalClose = () => {
     setToggleModal(false)
@@ -32,8 +32,34 @@ const AssetReport = () => {
               </tr>
             </thead>
             <tbody>
-              <tr key={asset._id}>
+              <tr>
                 <td>{site.site_name}</td> 
+              </tr>
+              <tr>
+                <table className="table is-striped is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>
+                        Asset ID
+                      </th>
+                      <th>
+                        Asset Vendor
+                      </th>
+                      <th>
+                        Asset Type
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {assets != !assets ? assets.map(asset => (
+                    <tr>
+                      <td>{asset.asset_ID}</td> 
+                      <td>{asset.asset_Vendor}</td> 
+                      <td>{asset.asset_Type}</td>
+                    </tr>
+                    )) : (<tr><td>No Assets Added</td></tr>)}
+                  </tbody>
+                </table>
               </tr>
             </tbody>
           </table>
