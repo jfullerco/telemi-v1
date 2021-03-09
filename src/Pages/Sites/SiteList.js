@@ -9,45 +9,42 @@ const SiteList = () => {
     console.log(userContext.userSession.sites.length)
   return (
     <>
-    <div className="block"> 
-        <section className="hero is-info">
-        <div className="hero-body">
-          <p className="title">Sites</p>
-        <div className="subtitle"></div>
+        <div className="block"> 
+          <section className="hero is-info">
+            <div className="hero-body">
+              <p className="title">Sites</p>
+            <div className="subtitle"></div>
+            </div>
+          </section>
         </div>
-        </section>
-        </div>
-            
-    <div className="block">
-    
-    <div className="block">
-
-      <div className="button is-rounded is-small">
-        <Link to="/addSite">Add Site</Link>
-      </div>
+              
+        <div className="block">
       
-    </div>
-    
-    {sites != !sites ? sites.map(site => (
-       <div className="block" key={site._id}>
-       <span>
-        <Link to={`/sites/${site._id}`}>
-        <div className="button is-rounded">
-            {site.site_name}
+        <div className="block">
+          <div className="button is-rounded is-small">
+            <Link to="/addSite">Add Site</Link>
+          </div>
         </div>
-        </Link>
-       </span>
-       </div>
-      )
-    ) : (
-      <span>
-        <div className="button is-rounded is-danger is-loading">
-            No sites found
+      
+        {sites != !sites ? sites.map(site => (
+        <div className="block" key={site._id}>
+          <span>
+            <Link to={`/sites/${site._id}`}>
+              <div className="button is-rounded">
+                  {site.site_name}
+              </div>
+            </Link>
+          </span>
         </div>
-      </span>
-    )}
-    
-    </div>
+        )
+        ) : (
+        <span>
+          <div className="button is-rounded is-danger">
+              No sites have been added
+          </div>
+        </span>
+        )}
+        </div>
     </>
   )
 }
