@@ -43,10 +43,10 @@ export const StateProvider = (props) => {
         })
       };
 
-      const setLoggedIn = () => {
+      const setLoggedIn = (loginState) => {
         dispatch({
           type: "LOGGED_IN",
-          payload: true
+          payload: loginState
         })
       };
 
@@ -78,6 +78,13 @@ export const StateProvider = (props) => {
         })
       };
 
+      const setAssets = (assets) => {
+        dispatch({
+          type: "SET_ASSETS",
+          payload: assets
+        })
+      };
+
     
     return (
       <Provider value={{ 
@@ -92,6 +99,7 @@ export const StateProvider = (props) => {
           setUserLevel,
           setClientID,
           setSites,
+          setAssets,
           userSession
       }}>
         {props.children}

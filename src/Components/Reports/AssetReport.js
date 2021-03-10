@@ -4,7 +4,7 @@ import {stateContext} from '../../stateContext'
 const AssetReport = () => {
   const userContext = useContext(stateContext)
   const {userSession: {sites}} = userContext
-  
+  const {userSession: {assets}} = userContext
   const [toggleModal, setToggleModal] = useState(true)
 
   const toggleModalClose = () => {
@@ -33,7 +33,7 @@ const AssetReport = () => {
             </thead>
             <tbody>
               <tr>
-                <td>{site.site_name}</td> 
+                <td key={site._id}>{site.site_name}</td> 
               </tr>
               <tr>
                 <table className="table is-striped is-fullwidth">
@@ -51,8 +51,8 @@ const AssetReport = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {assets != !assets ? assets.map(asset => (
-                    <tr>
+                    {site.site_assets != undefined ? site.site_assets.map(asset => (
+                    <tr key={asset._id}>{console.log(asset)}
                       <td>{asset.asset_ID}</td> 
                       <td>{asset.asset_Vendor}</td> 
                       <td>{asset.asset_Type}</td>

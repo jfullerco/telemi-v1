@@ -1,13 +1,14 @@
 import React, {useState, useContext} from 'react'
-import {Link, Redirect} from 'react-router-dom'
+import {Link, Redirect, useHistory} from 'react-router-dom'
 import {stateContext} from '../stateContext'
 
 const LogoutButton = () => {
-
+  const history = useHistory()
   const userContext = useContext(stateContext)
   const [isActive, setIsActive] = useState(false)
   const logOut = () => {
     userContext.setLoggedIn(false)
+    history.push("/")
   }
 console.log(userContext)
   return (
@@ -41,9 +42,9 @@ console.log(userContext)
 
         <Link to="/dashboard" className="navbar-item">Dashboard</Link>
 
-        {userContext.userSession.loggedIn != false ? (<Link to="/" onClick={logOut} className="navbar-item">
+        {userContext.userSession.loggedIn === true ? (<div onClick={logOut} className="navbar-item">
           Logout
-        </Link>)
+        </div>)
         :
         (<Link to="/login" className="navbar-item" >Login</Link>)}
 

@@ -41,7 +41,7 @@ const AddSite = () => {
   }
 
 const newSite = () => {
-  setClient(initialSiteState)
+  setSite(initialSiteState)
   setSubmitted(false)
 }
 

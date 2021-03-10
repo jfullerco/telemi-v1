@@ -29,9 +29,10 @@ export default function App() {
             <Route exact path="/"  component={Hello} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/login" component={Login} />
-            <Route exact path="/sites" component={SiteList} />
+            <Route path="/sites" component={SiteList} />
             <Route path="/sites/:id" component={SiteDetail} />
             <Route path="/addSite" component={AddSite} />
+            
 
           </Switch>
         </div>  

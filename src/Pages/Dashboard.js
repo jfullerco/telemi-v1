@@ -5,6 +5,7 @@ import {stateContext} from '../stateContext'
 import getClient from '../Services/clientService'
 import LogoutButton from '../Components/LogoutButton'
 import ClientList from './Client/ClientList'
+import SiteList from './Sites/SiteList'
 import AssetReport from '../Components/Reports/AssetReport'
 
 import Login from './Login'
@@ -42,20 +43,7 @@ const Dashboard = () => {
       </div>
       <div className="block">
         <p />
-        <Switch>
-          <span>
-            <Link to="/sites">
-              <div className="button is-rounded">
-                Sites: 
-              </div>
-            </Link>
-            <Link to="/assets">
-              <div className="button is-rounded">
-                Assets: 
-              </div>
-            </Link>
-          </span>
-        </Switch>
+        
         </div>
       </>
 
