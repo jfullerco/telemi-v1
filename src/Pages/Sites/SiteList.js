@@ -7,7 +7,7 @@ import SiteListNav from '../../Components/Elements/SiteListNav'
 const SiteList = () => {
   
   const userContext = useContext(stateContext)
-  const {sessionData: {sites}} = userContext
+  const {userSession: {sites}} = userContext
     console.log(userContext.userSession.sites.length)
   return (
     <>
@@ -26,7 +26,7 @@ const SiteList = () => {
           <SiteListNav />
         </div>
       
-        {sites != !sites ? sites.map(site => (
+        {sites != undefined ? sites.map(site => (
         <div className="block" key={site._id}>
           <span>
             <Link to={`/sites/${site._id}`}>

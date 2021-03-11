@@ -24,13 +24,13 @@ export const StateProvider = (props) => {
       loggedIn: false,
       clientID: "",
       clients: "",
-      inFocusClient: "",
-      sites: {},
-      inFocusSite: "",
+      sites: "",
       assets: {},
-      siteAssets: {},
-      tickets: {},
-      inFocusTicket: "",
+      orders: {},
+      tickets: {},      
+      siteAssets: "",
+      siteOrders: {},
+      siteTickets: {},
       dataLoading: false,
 
     }
@@ -107,6 +107,7 @@ export const StateProvider = (props) => {
           setClientID,
           setSites,
           setSiteAssets,
+          setSiteOrders,
           userSession
       }}>
         {props.children}

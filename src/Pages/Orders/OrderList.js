@@ -1,20 +1,9 @@
-import React, {useState, useEffect} from 'react'
-import siteService from '../../Services/siteService'
+import React, {useState, useContext} from 'react'
+import {stateContext} from '../../stateContext'
 
 const OrderList = ({id}) => {
-  console.log(id)
-  const [siteOrders, setSiteOrders] = useState([])
-
-  useEffect(() => {
-    getOrders(id)
-  }, [])
-
-  const getAssets = async (id) => {
-    const {data: {site_orders}} = await siteService.getSite(id)
-    setSiteOrders(site_orders)
-console.log()
-  }
-  console.log(siteOrders)
+  const userContext = useContext(stateContext)
+  const {userSession: {siteOrders}} = userContext
   return (
     <table className="table is-striped is-fullwidth">
       <thead>
@@ -36,7 +25,7 @@ console.log()
         <tbody>
         
         {siteOrders != !siteOrders ? siteOrders.map(order => (
-          <tr key={order._id}>
+          <tr key={order._id} className="content is-small">
             <td>{order.orderID}</td>
             <td>{order.orderVendor}</td>
             <td>{order.orderType}</td>

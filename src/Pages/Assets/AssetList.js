@@ -1,19 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import siteService from '../../Services/siteService'
+import React, {useState, useContext} from 'react'
+
+import {stateContext} from '../../stateContext'
 
 const AssetList = ({id}) => {
-  console.log(id)
-  const [siteAssets, setSiteAssets] = useState([])
-
-  useEffect(() => {
-    getAssets(id)
-  }, [])
-
-  const getAssets = async (id) => {
-    const {data: {site_assets}} = await siteService.getSite(id)
-    setSiteAssets(site_assets)
-console.log()
-  }
+  const userContext = useContext(stateContext)
+  const {userSession: {siteAssets}} = userContext
   console.log(siteAssets)
   return (
     <table className="table is-striped is-fullwidth">
@@ -35,8 +26,8 @@ console.log()
         </thead>
         <tbody>
         
-        {siteAssets != !siteAssets ? siteAssets.map(asset => (
-          <tr key={asset._id}>
+        {siteAssets != undefined ? siteAssets.map(asset => (
+          <tr key={asset._id} className="content is-small">
             <td>{asset.asset_ID}</td>
             <td>{asset.asset_Vendor}</td>
             <td>{asset.asset_Type}</td>

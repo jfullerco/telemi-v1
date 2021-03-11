@@ -28,14 +28,7 @@ const ClientList = () => {
   const getSession = async () => {
     const {data} = await getClient(clientID)
     console.log(data)
-    userContext.setSessionData({
-      client_name: data.client_name,
-      sites: data.sites,
-      _id: data._id
-    })
     userContext.setSites(data.sites)
-    userContext.setAssets(data.assets)
-    
     setLoadingData(false)
   }
   

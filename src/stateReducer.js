@@ -10,15 +10,15 @@ export default (state, action) => {
         ...state,
         loggedIn: action.payload
       };
-    case "SET_CLIENTS":
-      return {
-        ...state,
-        clients: action.payload
-      };
     case "FOCUS_CLIENT_ID":
       return {
         ...state,
         clientID: action.payload
+      };
+    case "SET_CLIENTS":
+      return {
+        ...state,
+        clients: action.payload
       };
     case "SET_USER_LEVEL":
       return {
@@ -39,6 +39,11 @@ export default (state, action) => {
       return {
         ...state,
         siteOrders: action.payload
-      };    
+      };  
+    case "SET_SITE_TICKETS":
+      return {
+        ...state,
+        siteTickets: action.payload
+      };     
   };
 }

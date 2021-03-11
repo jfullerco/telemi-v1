@@ -14,6 +14,10 @@ const SiteDetail = () => {
   
   const {id} = useParams()
   const userContext = useContext(stateContext)
+  const [dataLoading, setDataLoading] = useState(true)
+  const {userSession: {sites}} = userContext
+  const siteDetails = sites ? sites.find((site) => site._id === id) : ""
+
   useEffect(() => {
     getSite(id)
   }, [])
@@ -22,6 +26,7 @@ const SiteDetail = () => {
     const {data} = await siteService.getSite(id)
     userContext.setSiteAssets(data.site_assets)
     userContext.setSiteOrders(data.site_orders)
+    setDataLoading(false)
     console.log(userContext.userSession)
   }
 
@@ -31,12 +36,6 @@ const SiteDetail = () => {
     setToggleModal(!toggleModal)
   }
 
-  
-  
-  const {sessionData: {sites}} = userContext
-  
-  const siteDetails = sites.find((site) => site._id === id) 
-  
   console.log(siteDetails)
   
   
@@ -50,6 +49,13 @@ const SiteDetail = () => {
           </div>
         </section>
         </div>
+        
+        <div className="block">
+          <div className="button is-rounded is-small" onClick={toggleEditModal}>edit</div>
+          <DeleteSiteButton id={id} />
+          {toggleModal === true ? <EditSiteModal siteDetails={siteDetails} /> : ""}
+        </div>
+        
         <div className="block is-full-width">
           {siteDetails ? (
             <>
@@ -67,24 +73,30 @@ const SiteDetail = () => {
                    {siteDetails.site_add1}
                    {siteDetails.site_add2}<br />
                    {siteDetails.site_city} {siteDetails.site_state}, {siteDetails.site_zip} 
-                  <div className="button is-rounded is-small" onClick={toggleEditModal}>edit</div>
-
-                  <DeleteSiteButton id={id} />
-                  
-                    {toggleModal === true ? <EditSiteModal siteDetails={siteDetails} /> : ""}
-
                   </td>
                   </tr>
                 </tbody>
               </table>
-            <AssetList id={id} />
-            <OrderList id={id} />
+
+            {dataLoading != true ? (
+              <>
+              <div className="button is-rounded is-outlined">
+                Assets
+              </div>
+                <AssetList id={id} />
+              
+                <OrderList id={id} />
+              </>
+              ) : (
+                <div>Gathering Data...</div>
+              )}
+
           </>
           ) : (
             <span>
-            <div className="button is-rounded is-danger"> 
-              Site details not available
-            </div> 
+              <div className="button is-rounded is-danger"> 
+                Site details not entered
+              </div> 
             </span>
             
             )
