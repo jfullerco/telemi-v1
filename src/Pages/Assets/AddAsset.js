@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react'
 import {stateContext} from '../../stateContext'
 import siteServices from '../../Services/siteService'
 
-const AddAsset = () => {
+const AddAsset = ({id}) => {
   const userContext = useContext(stateContext)
   const initialAssetState = {
     id: null,
@@ -22,21 +22,24 @@ const AddAsset = () => {
 
   const handleInputChange = event => {
     const { name, value } = event.target
-    setSite({...asset, [name]: value})
+    setAsset({...asset, [name]: value})
   }
 
   const saveAsset = async () => {
     var data = {
       asset_ID: asset.asset_ID,
       asset_Vendor: asset.asset_Vendor,
-      site_add2: site.site_add2,
-      site_city: site.site_city,
-      site_state: site.site_state,
-      site_zip: site.site_zip,
+      asset_Hostname: asset.asset_Hostname,
+      asset_Bandwidth: asset.asset_Bandwidth,
+      asset_Handoff: asset.asset_Handoff,
+      asset_voice_Handoff: asset.asset_voice_Handoff,
+      asset_Details: asset.asset_Details,
+      asset_Type: asset.asset_Type,
+      asset_Status: asset.asset_Status,
       _parent_id: id
       }
       
-      await siteServices.postSite(id, data)
+      await siteServices.addAsset(id, data)
     
       setSubmitted(true)
       console.log()
@@ -49,98 +52,75 @@ const newSite = () => {
 }
 
   return (
-    <div className="block is-ancestor">
-      {submitted ? (
-        <div>
-          <h3>Site Added</h3>
-          <button onClick={newSite}>Add Another</button>
-        </div>
-      ) : (
-        <div className="column is-three-fifths">
+    <div className={toggleModal != true ? "modal" : "modal is-active"}>
+                    <div className="modal-background"></div>
+                      <div className="modal-content">
+                        <div className="card">
+                        <div className="card-header"><div className="card-header-title">Update Site Details</div></div>
+                          <div className="card-content">
 
-          <label className="label">Site Name</label>
-          <div className="block">
-          <input
-            type="text"
-            id="site_name"
-            value={site.site_name}
-            onChange={handleInputChange}
-            name="site_name"
-            className="input is-rounded"
-          />
-        </div>
+                            <div className="label">Site Name</div>
+                            <input 
+                              className="input is-small is-rounded" 
+                              type="text"
+                              name="site_name"
+                              value={site.site_name}
+                              onChange={handleChange}
+                              
+                              />
+                              <div className="label">Address 1</div>
+                              <input 
+                              className="input is-small is-rounded" 
+                              type="text"
+                              name="site_add1"
+                              value={site.site_add1}
+                              onChange={handleChange}
+                              
+                              />
+                              <div className="label">Address 2</div>
+                              <input 
+                              className="input is-small is-rounded" 
+                              type="text"
+                              name="site_add2"
+                              value={site.site_add2}
+                              onChange={handleChange}
+                              
+                              />
+                              <div className="label">City</div>
+                              <input 
+                              className="input is-small is-rounded" 
+                              type="text"
+                              name="site_city"
+                              value={site.site_city}
+                              onChange={handleChange}
+                              
+                              />
+                              <div className="label">State</div>
+                              <input 
+                              className="input is-small is-rounded" 
+                              type="text"
+                              name="site_state"
+                              value={site.site_state}
+                              onChange={handleChange}
+                              
+                              />
+                              <div className="label">Zip</div>
+                              <input 
+                              className="input is-small is-rounded" 
+                              type="text"
+                              name="site_zip"
+                              value={site.site_zip}
+                              onChange={handleChange}
+                              
+                              />
+                              <div className="button is-info is-small is-rounded" onClick={addAsset}>Save</div>
 
-        <label className="label">Address 1</label>
-          <div className="block">
-          <input
-            type="text"
-            id="site_add1"
-            value={site.site_add1}
-            onChange={handleInputChange}
-            name="site_add1"
-            className="input is-rounded"
-          />
-        </div>
-
-        <label className="label">Address 2</label>
-          <div className="block">
-          <input
-            type="text"
-            id="site_add2"
-            value={site.site_add2}
-            onChange={handleInputChange}
-            name="site_add2"
-            className="input is-rounded"
-          />
-        </div>
-
-        <label className="label">City</label>
-          <div className="block">
-          <input
-            type="text"
-            id="site_city"
-            value={site.site_city}
-            onChange={handleInputChange}
-            name="site_city"
-            className="input is-rounded"
-          />
-        </div>
-
-        <label className="label">State</label>
-          <div className="block">
-          <input
-            type="text"
-            id="site_state"
-            value={site.site_state}
-            onChange={handleInputChange}
-            name="site_state"
-            className="input is-rounded"
-          />
-        </div>
-
-        <label className="label">Zip</label>
-          <div className="block">
-          <input
-            type="text"
-            id="site_zip"
-            value={site.site_zip}
-            onChange={handleInputChange}
-            name="site_zip"
-            className="input is-rounded"
-          />
-        </div>
-
-        <div className="block">  
-        <div className="control">  
-        <button
-         onClick={saveSite}
-         className="button is-rounded is-primary is-fullwidth">Add</button>
-        </div>
-        </div>
-        </div>
-      )}
-  </div>
+                          </div>
+                        </div>
+                      </div>
+                    <button className="modal-close is-large" aria-label="close" onClick={toggleModalClose}></button>
+                  </div>
   )
 }
 
-export default AddSite
+export default AddAsset

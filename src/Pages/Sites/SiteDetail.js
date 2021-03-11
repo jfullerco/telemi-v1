@@ -54,6 +54,7 @@ const SiteDetail = () => {
           <div className="button is-rounded is-small" onClick={toggleEditModal}>edit</div>
           <DeleteSiteButton id={id} />
           {toggleModal === true ? <EditSiteModal siteDetails={siteDetails} /> : ""}
+          
         </div>
         
         <div className="block is-full-width">

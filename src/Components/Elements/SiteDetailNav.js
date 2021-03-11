@@ -6,11 +6,11 @@ const SiteDetailNav = () => {
     <div className="columns">
       <div className="column is-10"></div>
       <div className="column">
-        <button className="button is-small is-rounded">
-          <Link to="/addSite">Add Site</Link>
-        </button>
+        <input className="dropdown is-small is-rounded">
+          <li></li>
+        </input>
       </div>
     </div>
   )
 }
-export default SiteListNav
+export default SiteDetailNav
