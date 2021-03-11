@@ -7,11 +7,23 @@ import siteService from '../../Services/siteService'
 import LogoutButton from '../../Components/LogoutButton'
 import DeleteSiteButton from '../../Components/DeleteSiteButton'
 import AssetList from '../Assets/AssetList'
+import OrderList from '../Orders/OrderList'
 import EditSiteModal from './EditSiteModal'
 
 const SiteDetail = () => {
   
   const {id} = useParams()
+  const userContext = useContext(stateContext)
+  useEffect(() => {
+    getSite(id)
+  }, [])
+
+  const getSite = async (id) => {
+    const {data} = await siteService.getSite(id)
+    userContext.setSiteAssets(data.site_assets)
+    userContext.setSiteOrders(data.site_orders)
+    console.log(userContext.userSession)
+  }
 
   const [toggleModal, setToggleModal] = useState(false)
 
@@ -19,7 +31,7 @@ const SiteDetail = () => {
     setToggleModal(!toggleModal)
   }
 
-  const userContext = useContext(stateContext)
+  
   
   const {sessionData: {sites}} = userContext
   
@@ -66,6 +78,7 @@ const SiteDetail = () => {
                 </tbody>
               </table>
             <AssetList id={id} />
+            <OrderList id={id} />
           </>
           ) : (
             <span>

@@ -35,6 +35,7 @@ const ClientList = () => {
     })
     userContext.setSites(data.sites)
     userContext.setAssets(data.assets)
+    
     setLoadingData(false)
   }
   

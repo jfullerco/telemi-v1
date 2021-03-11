@@ -28,7 +28,7 @@ export const StateProvider = (props) => {
       sites: {},
       inFocusSite: "",
       assets: {},
-      inFocusAsset: "",
+      siteAssets: {},
       tickets: {},
       inFocusTicket: "",
       dataLoading: false,
@@ -78,10 +78,17 @@ export const StateProvider = (props) => {
         })
       };
 
-      const setAssets = (assets) => {
+      const setSiteAssets = (assets) => {
         dispatch({
-          type: "SET_ASSETS",
+          type: "SET_SITE_ASSETS",
           payload: assets
+        })
+      };
+
+      const setSiteOrders = (orders) => {
+        dispatch({
+          type: "SET_SITE_ORDERS",
+          payload: orders
         })
       };
 
@@ -99,7 +106,7 @@ export const StateProvider = (props) => {
           setUserLevel,
           setClientID,
           setSites,
-          setAssets,
+          setSiteAssets,
           userSession
       }}>
         {props.children}

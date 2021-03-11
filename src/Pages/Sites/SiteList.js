@@ -31,14 +31,9 @@ const SiteList = () => {
           <span>
             <Link to={`/sites/${site._id}`}>
               <div className="button is-rounded">
-                <div className="columns"> 
-                  <div className="column is-one-quarter"> 
+                
                     {site.site_name} 
-                  </div>
-                  <div className="columns is-three-quarters">
-                  
-                  </div>
-                </div>
+      
               </div>
             </Link>
           </span>
