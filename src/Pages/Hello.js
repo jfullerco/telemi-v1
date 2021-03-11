@@ -11,7 +11,7 @@ const Hello = () => {
             <div className="subtitle">Managing it shouldn't be!</div>
           </div>
         </section>
-        
+        <BillingImporter />
     </div>
   )
 }
