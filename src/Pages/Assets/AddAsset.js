@@ -20,6 +20,12 @@ const AddAsset = ({id}) => {
   const [asset, setAsset] = useState(initialAssetState)
   const [submitted, setSubmitted] = useState(false)
 
+  const [toggleModal, setToggleModal] = useState(true)
+
+  const toggleModalClose = () => {
+    setToggleModal(false)
+  }
+
   const handleInputChange = event => {
     const { name, value } = event.target
     setAsset({...asset, [name]: value})
@@ -56,19 +62,19 @@ const newSite = () => {
                     <div className="modal-background"></div>
                       <div className="modal-content">
                         <div className="card">
-                        <div className="card-header"><div className="card-header-title">Update Site Details</div></div>
+                        <div className="card-header"><div className="card-header-title">Add Asset</div></div>
                           <div className="card-content">
 
-                            <div className="label">Site Name</div>
+                            <div className="label">Asset ID</div>
                             <input 
                               className="input is-small is-rounded" 
                               type="text"
-                              name="site_name"
-                              value={site.site_name}
+                              name="asset_ID"
+                              value={asset.asset_ID}
                               onChange={handleChange}
                               
                               />
-                              <div className="label">Address 1</div>
+                              <div className="label">Vendor</div>
                               <input 
                               className="input is-small is-rounded" 
                               type="text"
@@ -77,39 +83,39 @@ const newSite = () => {
                               onChange={handleChange}
                               
                               />
-                              <div className="label">Address 2</div>
+                              <div className="label">Hostname</div>
                               <input 
                               className="input is-small is-rounded" 
                               type="text"
-                              name="site_add2"
-                              value={site.site_add2}
+                              name="asset_Hostname"
+                              value={asset.asset_Hostname}
                               onChange={handleChange}
                               
                               />
-                              <div className="label">City</div>
+                              <div className="label">Bandwidth</div>
                               <input 
                               className="input is-small is-rounded" 
                               type="text"
-                              name="site_city"
-                              value={site.site_city}
+                              name="asset_Bandwidth"
+                              value={asset.asset_Bandwidth}
                               onChange={handleChange}
                               
                               />
-                              <div className="label">State</div>
+                              <div className="label">Handoff</div>
                               <input 
                               className="input is-small is-rounded" 
                               type="text"
-                              name="site_state"
-                              value={site.site_state}
+                              name="asset_Handoff"
+                              value={asset.asset_Handoff}
                               onChange={handleChange}
                               
                               />
-                              <div className="label">Zip</div>
+                              <div className="label">Voice Handoff</div>
                               <input 
                               className="input is-small is-rounded" 
                               type="text"
-                              name="site_zip"
-                              value={site.site_zip}
+                              name="asset_voice_Handoff"
+                              value={asset.asset_voice_Handoff}
                               onChange={handleChange}
                               
                               />
