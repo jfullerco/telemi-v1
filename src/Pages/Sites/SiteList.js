@@ -2,6 +2,8 @@ import React, {useState, useEffect, useContext} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import {stateContext} from '../../stateContext'
 
+import SiteListNav from '../../Components/SiteListNav'
+
 const SiteList = () => {
   
   const userContext = useContext(stateContext)
@@ -21,9 +23,7 @@ const SiteList = () => {
         <div className="block">
       
         <div className="block">
-          <div className="button is-rounded is-small">
-            <Link to="/addSite">Add Site</Link>
-          </div>
+          <SiteListNav />
         </div>
       
         {sites != !sites ? sites.map(site => (
@@ -31,7 +31,14 @@ const SiteList = () => {
           <span>
             <Link to={`/sites/${site._id}`}>
               <div className="button is-rounded">
-                  {site.site_name}
+                <div className="columns"> 
+                  <div className="column is-one-quarter"> 
+                    {site.site_name} 
+                  </div>
+                  <div className="columns is-three-quarters">
+                  
+                  </div>
+                </div>
               </div>
             </Link>
           </span>

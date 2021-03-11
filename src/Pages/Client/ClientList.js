@@ -22,6 +22,7 @@ const ClientList = () => {
   
   useEffect(() => {
     getSession(clientID)
+    setClientID(clientID)
   }, [])  
   
   const getSession = async () => {
