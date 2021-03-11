@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import {stateContext} from '../../stateContext'
 
-import SiteListNav from '../../Components/SiteListNav'
+import SiteListNav from '../../Components/Elements/SiteListNav'
 
 const SiteList = () => {
   
