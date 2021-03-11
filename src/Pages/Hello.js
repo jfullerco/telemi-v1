@@ -1,7 +1,5 @@
 import React from 'react'
 
-import BillingImporter from './Accounts/BillingImporter'
-
 const Hello = () => {
   return (
     <div>
@@ -11,7 +9,7 @@ const Hello = () => {
             <div className="subtitle">Managing it shouldn't be!</div>
           </div>
         </section>
-        <BillingImporter />
+        
     </div>
   )
 }
