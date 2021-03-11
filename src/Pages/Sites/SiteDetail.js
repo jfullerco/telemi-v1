@@ -80,9 +80,7 @@ const SiteDetail = () => {
 
             {dataLoading != true ? (
               <>
-              <div className="button is-rounded is-outlined">
-                Assets
-              </div>
+              
                 <AssetList id={id} />
               
                 <OrderList id={id} />

@@ -17,18 +17,18 @@ const AddAsset = () => {
     _parent_id: ""
   }
 
-  const [site, setSite] = useState(initialSiteState)
+  const [asset, setAsset] = useState(initialAssetState)
   const [submitted, setSubmitted] = useState(false)
 
   const handleInputChange = event => {
     const { name, value } = event.target
-    setSite({...site, [name]: value})
+    setSite({...asset, [name]: value})
   }
 
-  const saveSite = async () => {
+  const saveAsset = async () => {
     var data = {
-      site_name: site.site_name,
-      site_add1: site.site_add1,
+      asset_ID: asset.asset_ID,
+      asset_Vendor: asset.asset_Vendor,
       site_add2: site.site_add2,
       site_city: site.site_city,
       site_state: site.site_state,

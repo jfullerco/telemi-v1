@@ -11,6 +11,9 @@ const AssetList = ({id}) => {
       <thead>
         <tr>
           <th>
+          Assets:
+          </th>
+          <th>
           Service ID
           </th>
           <th>
@@ -28,6 +31,7 @@ const AssetList = ({id}) => {
         
         {siteAssets != undefined ? siteAssets.map(asset => (
           <tr key={asset._id} className="content is-small">
+            <td></td>
             <td>{asset.asset_ID}</td>
             <td>{asset.asset_Vendor}</td>
             <td>{asset.asset_Type}</td>

@@ -9,6 +9,9 @@ const OrderList = ({id}) => {
       <thead>
         <tr>
           <th>
+          Orders:
+          </th>
+          <th>
           Order No.
           </th>
           <th>
@@ -26,6 +29,7 @@ const OrderList = ({id}) => {
         
         {siteOrders != !siteOrders ? siteOrders.map(order => (
           <tr key={order._id} className="content is-small">
+            <td></td>
             <td>{order.orderID}</td>
             <td>{order.orderVendor}</td>
             <td>{order.orderType}</td>
