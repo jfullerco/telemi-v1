@@ -78,8 +78,8 @@ const newSite = () => {
                               <input 
                               className="input is-small is-rounded" 
                               type="text"
-                              name="site_add1"
-                              value={site.site_add1}
+                              name="asset_vendor"
+                              value={asset.asset_Vendor}
                               onChange={handleChange}
                               
                               />
