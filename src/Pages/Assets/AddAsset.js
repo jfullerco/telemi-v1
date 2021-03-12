@@ -26,7 +26,7 @@ const AddAsset = ({id}) => {
     setToggleModal(false)
   }
 
-  const handleInputChange = event => {
+  const handleChange = event => {
     const { name, value } = event.target
     setAsset({...asset, [name]: value})
   }
@@ -45,7 +45,7 @@ const AddAsset = ({id}) => {
       _parent_id: id
       }
       
-      await siteServices.addAsset(id, data)
+      await siteServices.postAsset(id, data)
     
       setSubmitted(true)
       console.log()
@@ -119,7 +119,45 @@ const newSite = () => {
                               onChange={handleChange}
                               
                               />
-                              <div className="button is-info is-small is-rounded" onClick={addAsset}>Save</div>
+                              <div className="label">Details</div>
+                              <input 
+                              className="textarea is-small is-rounded" 
+                              type="text"
+                              name="asset_Details"
+                              value={asset.asset_Details}
+                              onChange={handleChange}
+                              
+                              />
+                              <div className="label">Type</div>
+                              <select 
+                              className="select is-small is-rounded" 
+                              type="select"
+                              name="asset_Type"
+                              value={asset.asset_Type}
+                              onChange={handleChange}
+                              >
+                                <option>DIA</option>
+                                <option>SIP</option>
+                                <option>MPLS</option>
+                                <option>Switched Ethernet</option>
+                                <option>Legacy PRI</option>
+                                <option>SDWAN</option>
+                                <option>Managed Security</option>
+                              </select>
+                              <div className="label">Status</div>
+                              <select 
+                              className="select is-small is-rounded" 
+                              type="text"
+                              name="asset_Status"
+                              value={asset.asset_Status}
+                              onChange={handleChange}
+                              >
+                              <option>Active</option>
+                              <option>Disconnect</option>
+                              <option>In Flight</option>
+                              </select>
+                              
+                              <div className="button is-info is-small is-rounded" onClick={saveAsset}>Save</div>
 
                           </div>
                         </div>

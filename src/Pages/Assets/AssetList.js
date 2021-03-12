@@ -31,17 +31,21 @@ const AssetList = ({id}) => {
           <th>
           Status
           </th>
+          <th>
+          <div className="button is-rounded is-small" onClick={toggleAddAssetModal}>➕</div>
+          </th>
         </tr>
         </thead>
         <tbody>
         
         {siteAssets != undefined ? siteAssets.map(asset => (
           <tr key={asset._id} className="content is-small">
-            <td><div className="button is-rounded is-small" onClick={toggleAddAssetModal}>➕</div></td>
+            <td></td>
             <td>{asset.asset_ID}</td>
             <td>{asset.asset_Vendor}</td>
             <td>{asset.asset_Type}</td>
             <td>{asset.asset_Status}</td>
+            <td></td>
           </tr>
         )) : (
           <tr><td>Assets loading</td></tr>

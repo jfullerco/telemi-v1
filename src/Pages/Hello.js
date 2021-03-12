@@ -2,8 +2,6 @@ import React from 'react'
 
 const Hello = () => {
 
-  
-
   return (
     <div>
       <section className="hero is-info">

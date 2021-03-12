@@ -25,4 +25,10 @@ const delSite = async (id) => {
 
 }
 
-export default {getSite, postSite, putSite, delSite}
+const postAsset = async (id, data) => {
+
+  return await http.post(`/rest/sites/${id}/site_assets`, data)
+
+}
+
+export default {getSite, postSite, putSite, delSite, postAsset}
