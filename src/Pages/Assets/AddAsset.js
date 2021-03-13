@@ -78,7 +78,7 @@ const newSite = () => {
                               <input 
                               className="input is-small is-rounded" 
                               type="text"
-                              name="asset_vendor"
+                              name="asset_Vendor"
                               value={asset.asset_Vendor}
                               onChange={handleChange}
                               
@@ -129,34 +129,35 @@ const newSite = () => {
                               
                               />
                               <div className="label">Type</div>
-                              <select 
-                              className="select is-small is-rounded" 
-                              type="select"
-                              name="asset_Type"
-                              value={asset.asset_Type}
-                              onChange={handleChange}
-                              >
-                                <option>DIA</option>
-                                <option>SIP</option>
-                                <option>MPLS</option>
-                                <option>Switched Ethernet</option>
-                                <option>Legacy PRI</option>
-                                <option>SDWAN</option>
-                                <option>Managed Security</option>
-                              </select>
+                              <div className="select is-small is-rounded"> 
+                                <select
+                                type="select"
+                                name="asset_Type"
+                                value={asset.asset_Type}
+                                onChange={handleChange}
+                                >
+                                  <option>DIA</option>
+                                  <option>SIP</option>
+                                  <option>MPLS</option>
+                                  <option>Switched Ethernet</option>
+                                  <option>Legacy PRI</option>
+                                  <option>SDWAN</option>
+                                  <option>Managed Security</option>
+                                </select>
+                              </div>
                               <div className="label">Status</div>
-                              <select 
-                              className="select is-small is-rounded" 
-                              type="text"
-                              name="asset_Status"
-                              value={asset.asset_Status}
-                              onChange={handleChange}
-                              >
-                              <option>Active</option>
-                              <option>Disconnect</option>
-                              <option>In Flight</option>
-                              </select>
-                              
+                              <div className="select is-small is-rounded"> 
+                                <select 
+                                type="text"
+                                name="asset_Status"
+                                value={asset.asset_Status}
+                                onChange={handleChange}
+                                >
+                                <option>Active</option>
+                                <option>Disconnect</option>
+                                <option>In Flight</option>
+                                </select>
+                              </div>
                               <div className="button is-info is-small is-rounded" onClick={saveAsset}>Save</div>
 
                           </div>

@@ -4,9 +4,10 @@ import {stateContext} from '../../stateContext'
 const AssetReport = () => {
   const userContext = useContext(stateContext)
   const {userSession: {sites}} = userContext
-  const {userSession: {assets}} = userContext
+  
   const [toggleModal, setToggleModal] = useState(true)
-
+  const {site_assets} = sites
+  const assets = site_assets
   const toggleModalClose = () => {
     setToggleModal(false)
   }
