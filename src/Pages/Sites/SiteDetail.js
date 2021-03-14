@@ -24,8 +24,7 @@ const SiteDetail = () => {
 
   const getSite = async (id) => {
     const {data} = await siteService.getSite(id)
-    userContext.setSiteAssets(data.site_assets)
-    userContext.setSiteOrders(data.site_orders)
+    
     setDataLoading(false)
     console.log(userContext.userSession)
   }

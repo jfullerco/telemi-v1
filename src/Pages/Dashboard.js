@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Route, Link, Switch, Redirect} from 'react-router-dom'
+
 import {stateContext} from '../stateContext'
 
 import getClient from '../Services/clientService'
@@ -19,6 +20,10 @@ const Dashboard = () => {
   const toggleAssetModal = () => {
     setToggleModal(!toggleModal)
   }
+
+  const handleChange = (e) => {
+    console.log(e.target.value)
+  }
   
   console.log(userContext)
 
@@ -34,17 +39,22 @@ const Dashboard = () => {
           </div>
         </section>
       </div>
+      
       <div className="block">
+        
         <ClientList />
-        {toggleModal === true ? <AssetReport /> : ""}
+        
+          {toggleModal === true ? <AssetReport /> : ""}
           <button className="button is-rounded" onClick={toggleAssetModal}>
              Asset Report 
           </button>
+
       </div>
+
       <div className="block">
         <p />
         
-        </div>
+      </div>
       </>
 
       ) : (

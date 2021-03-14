@@ -25,9 +25,9 @@ const delSite = async (id) => {
 
 }
 
-const postAsset = async (id, data) => {
+const postAsset = async (clientID, data) => {
 
-  return await http.post(`/rest/sites/${id}/site_assets`, data)
+  return await http.post(`/rest/clients/${clientID}/assets`, data)
 
 }
 

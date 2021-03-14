@@ -1,11 +1,14 @@
 import React, {useState, useContext} from 'react'
+import {useParams} from 'react-router-dom'
 import AddAsset from './AddAsset'
 import {stateContext} from '../../stateContext'
 
-const AssetList = ({id}) => {
+const AssetList = () => {
+  const id = useParams()
   const userContext = useContext(stateContext)
-  const {userSession: {siteAssets}} = userContext
-
+  const {userSession: {assets}} = userContext
+  
+  const siteAssets = assets ? assets.find((asset, id) => asset.asset_siteID[id]._id === id) : ""
   const [toggleModal, setToggleModal] = useState(false)
 
   const toggleAddAssetModal = () => {
@@ -38,7 +41,7 @@ const AssetList = ({id}) => {
         </thead>
         <tbody>
         
-        {siteAssets != undefined ? siteAssets.map(asset => (
+        {siteAssets != !siteAssets ? siteAssets.map(asset => (
           <tr key={asset._id} className="content is-small">
             <td></td>
             <td>{asset.asset_ID}</td>

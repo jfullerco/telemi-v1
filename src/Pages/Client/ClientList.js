@@ -23,12 +23,14 @@ const ClientList = () => {
   useEffect(() => {
     getSession(clientID)
     setClientID(clientID)
+    userContext.setClientID(clientID)
   }, [])  
   
   const getSession = async () => {
     const {data} = await getClient(clientID)
     console.log(data)
     userContext.setSites(data.sites)
+    userContext.setAssets(data.assets)
     setLoadingData(false)
   }
   

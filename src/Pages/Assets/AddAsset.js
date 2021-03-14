@@ -14,12 +14,13 @@ const AddAsset = ({id}) => {
     asset_Details: "",
     asset_Type: "",
     asset_Status: "",
-    _parent_id: ""
+    _parent_id: "",
+    asset_siteID: ""
   }
 
   const [asset, setAsset] = useState(initialAssetState)
   const [submitted, setSubmitted] = useState(false)
-
+  const clientID = userContext.userSession.clientID
   const [toggleModal, setToggleModal] = useState(true)
 
   const toggleModalClose = () => {
@@ -42,20 +43,16 @@ const AddAsset = ({id}) => {
       asset_Details: asset.asset_Details,
       asset_Type: asset.asset_Type,
       asset_Status: asset.asset_Status,
-      _parent_id: id
+      _parent_id: clientID,
+      asset_siteID: id
       }
       
-      await siteServices.postAsset(id, data)
+      await siteServices.postAsset(clientID, data)
     
       setSubmitted(true)
       console.log()
     
   }
-
-const newSite = () => {
-  setClient(initialSiteState)
-  setSubmitted(false)
-}
 
   return (
     <div className={toggleModal != true ? "modal" : "modal is-active"}>

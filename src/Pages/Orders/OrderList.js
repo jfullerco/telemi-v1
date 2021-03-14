@@ -27,7 +27,7 @@ const OrderList = ({id}) => {
         </thead>
         <tbody>
         
-        {siteOrders != !siteOrders ? siteOrders.map(order => (
+        {siteOrders != undefined ? siteOrders.map(order => (
           <tr key={order._id} className="content is-small">
             <td></td>
             <td>{order.orderID}</td>

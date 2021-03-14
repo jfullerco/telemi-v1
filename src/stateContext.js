@@ -25,12 +25,9 @@ export const StateProvider = (props) => {
       clientID: "",
       clients: "",
       sites: "",
-      assets: {},
-      orders: {},
-      tickets: {},      
-      siteAssets: "",
-      siteOrders: {},
-      siteTickets: {},
+      assets: "",
+      orders: "",
+      tickets: "",      
       dataLoading: false,
 
     }
@@ -78,9 +75,9 @@ export const StateProvider = (props) => {
         })
       };
 
-      const setSiteAssets = (assets) => {
+      const setAssets = (assets) => {
         dispatch({
-          type: "SET_SITE_ASSETS",
+          type: "SET_ASSETS",
           payload: assets
         })
       };
@@ -106,7 +103,7 @@ export const StateProvider = (props) => {
           setUserLevel,
           setClientID,
           setSites,
-          setSiteAssets,
+          setAssets,
           setSiteOrders,
           userSession
       }}>

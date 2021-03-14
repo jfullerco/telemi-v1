@@ -30,10 +30,10 @@ export default (state, action) => {
         ...state,
         sites: action.payload
       };
-    case "SET_SITE_ASSETS":
+    case "SET_ASSETS":
       return {
         ...state,
-        siteAssets: action.payload
+        assets: action.payload
       };    
     case "SET_SITE_ORDERS":
       return {
