@@ -7,8 +7,10 @@ const AssetList = () => {
   const id = useParams()
   const userContext = useContext(stateContext)
   const {userSession: {assets}} = userContext
+  console.log(assets)
+
+  const siteAssets = assets ? assets.map(((asset) => asset.asset_siteID).map((el) => el._id === id)) : ""
   
-  const siteAssets = assets ? assets.find((asset, id) => asset.asset_siteID[id]._id === id) : ""
   const [toggleModal, setToggleModal] = useState(false)
 
   const toggleAddAssetModal = () => {
