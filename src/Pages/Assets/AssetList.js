@@ -10,7 +10,7 @@ const AssetList = () => {
   console.log(assets)
 
   const siteAssets = assets.filter((el) => 
-    el.asset_siteID.find((val) => val._id === id)
+    el.asset_siteID != !el.asset_siteID && el.asset_siteID.includes((val) => val._id === id)
   )
   
   const [toggleModal, setToggleModal] = useState(false)
