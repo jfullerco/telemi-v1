@@ -63,7 +63,7 @@ const newSite = () => {
             value={site.site_name}
             onChange={handleInputChange}
             name="site_name"
-            className="input is-rounded"
+            className="input is-rounded is-small"
           />
         </div>
 
@@ -75,7 +75,7 @@ const newSite = () => {
             value={site.site_add1}
             onChange={handleInputChange}
             name="site_add1"
-            className="input is-rounded"
+            className="input is-rounded is-small"
           />
         </div>
 
@@ -87,7 +87,7 @@ const newSite = () => {
             value={site.site_add2}
             onChange={handleInputChange}
             name="site_add2"
-            className="input is-rounded"
+            className="input is-rounded is-small"
           />
         </div>
 
@@ -99,7 +99,7 @@ const newSite = () => {
             value={site.site_city}
             onChange={handleInputChange}
             name="site_city"
-            className="input is-rounded"
+            className="input is-rounded is-small"
           />
         </div>
 
@@ -111,7 +111,7 @@ const newSite = () => {
             value={site.site_state}
             onChange={handleInputChange}
             name="site_state"
-            className="input is-rounded"
+            className="input is-rounded is-small"
           />
         </div>
 
@@ -123,7 +123,7 @@ const newSite = () => {
             value={site.site_zip}
             onChange={handleInputChange}
             name="site_zip"
-            className="input is-rounded"
+            className="input is-rounded is-small"
           />
         </div>
 
@@ -131,7 +131,7 @@ const newSite = () => {
         <div className="control">  
         <button
          onClick={saveSite}
-         className="button is-rounded is-primary is-fullwidth">Add</button>
+         className="button is-rounded is-info is-small is-fullwidth">Add</button>
         </div>
         </div>
         </div>
