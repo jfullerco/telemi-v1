@@ -15,7 +15,7 @@ console.log(userContext)
     <div className="navbar" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
 
-      <div className="navbar-item">TELEMI</div>
+      <div className="navbar-item"><Link to="/" className="has-text-black">TELEMI</Link></div>
     
     <a
           onClick={() => {

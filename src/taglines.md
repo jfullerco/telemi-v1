@@ -1,0 +1,1 @@
+A single source of truth for all sites, vendors and services.
