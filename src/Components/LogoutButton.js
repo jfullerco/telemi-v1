@@ -39,19 +39,24 @@ console.log(userContext)
       >
 
       <div className="navbar-end">
-
-        <Link to="/dashboard" className="navbar-item">Dashboard</Link>
-
-        {userContext.userSession.loggedIn === true ? (<div onClick={logOut} className="navbar-item">
-          Logout
-        </div>)
-        :
-        (<Link to="/login" className="navbar-item" >Login</Link>)}
+        {userContext.userSession.loggedIn === true ? (
+          <>
+          <Link to={`/dashboard/${userContext.userSession.userID}`} className="navbar-item">
+            Dashboard
+          </Link>
+          <div onClick={logOut} className="navbar-item">
+            Logout
+          </div>
+          </>
+        ) : (
+          <Link to="/login" className="navbar-item" >
+            Login
+          </Link>
+        )}
 
       </div>
     </div>
-    
-    </div>
+  </div>
     
   )
 }

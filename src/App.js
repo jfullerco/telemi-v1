@@ -20,10 +20,10 @@ export default function App() {
   return (
     <StateProvider>
       <Router>
-      <div className="container is-fullhd"> 
+      <div className="container is-max-desktop"> 
       <div className="column">
       <LogoutButton />
-        
+       
           <Switch>
             
             <Route exact path="/"  component={Hello} />
@@ -35,6 +35,7 @@ export default function App() {
             
 
           </Switch>
+        
         </div>  
 
       </div>

@@ -83,7 +83,7 @@ const SiteDetail = () => {
               
                 <AssetList id={id} />
               
-                <OrderList id={id} />
+                
               </>
               ) : (
                 <div>Gathering Data...</div>
