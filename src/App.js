@@ -20,14 +20,14 @@ export default function App() {
   return (
     <StateProvider>
       <Router>
-      <div className="container"> 
-      <div className="column is-three-fifths is-offset-one-fifth">
+      <div className="container is-fullhd"> 
+      <div className="column">
       <LogoutButton />
         
           <Switch>
             
             <Route exact path="/"  component={Hello} />
-            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/dashboard/:u" component={Dashboard} />
             <Route path="/login" component={Login} />
             <Route exact path="/sites" component={SiteList} />
             <Route path="/sites/:id" component={SiteDetail} />

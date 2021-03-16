@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react'
-import {Route, Link, Switch, Redirect} from 'react-router-dom'
+import {Route, Link, Switch, Redirect, useParams} from 'react-router-dom'
 
 import {stateContext} from '../stateContext'
 
@@ -14,7 +14,7 @@ import Login from './Login'
 const Dashboard = () => {
   
   const userContext = useContext(stateContext)
-
+  const {u} = useParams()
   const [toggleModal, setToggleModal] = useState(false)
 
   const toggleAssetModal = () => {

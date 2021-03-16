@@ -25,7 +25,7 @@ export default function Login() {
             localStorage.setItem('userID', login._id),
             userContext.setUser(login._id),
             userContext.setClients(login.clients),
-            history.push("/dashboard")
+            history.push(`/dashboard/${login._id}`)
              
           ) : (
             setLoginErrors("Incorrect username or password")
@@ -56,7 +56,7 @@ export default function Login() {
       </div>
 
       <div className="columns is-mobile is-centered">    
-      <div className="column is-half-widescreen">
+      <div className="column is-one-third-widescreen">
       <div className="block">    
         <div className="field">
           <div className="control">
