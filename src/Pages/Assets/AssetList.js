@@ -4,12 +4,14 @@ import AddAsset from './AddAsset'
 import {stateContext} from '../../stateContext'
 
 const AssetList = () => {
-  const id = useParams()
+  const {id} = useParams()
   const userContext = useContext(stateContext)
   const {userSession: {assets}} = userContext
   console.log(assets)
 
-  const siteAssets = assets ? assets.map(((asset) => asset.asset_siteID).map((el) => el._id === id)) : ""
+  const siteAssets = assets.filter((el) => 
+    el.asset_siteID.find((val) => val._id === id)
+  )
   
   const [toggleModal, setToggleModal] = useState(false)
 
