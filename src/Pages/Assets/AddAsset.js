@@ -1,8 +1,10 @@
 import React, {useState, useContext} from 'react'
+import {useHistory} from 'react-router-dom'
 import {stateContext} from '../../stateContext'
 import siteServices from '../../Services/siteService'
 
 const AddAsset = ({id}) => {
+  const history = useHistory()
   const userContext = useContext(stateContext)
   const initialAssetState = {
     id: null,
@@ -48,9 +50,7 @@ const AddAsset = ({id}) => {
       }
       
       await siteServices.postAsset(clientID, data)
-    
-      setSubmitted(true)
-      console.log()
+      history.push(`/sites/${id}`)
     
   }
 

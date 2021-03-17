@@ -6,6 +6,12 @@ import {stateContext} from '../../stateContext'
 const AssetList = () => {
   const {id} = useParams()
   const userContext = useContext(stateContext)
+  const statusColors = {
+    "Active": "is-rounded is-small is-primary",
+    "Disconnected": "is-rounded is-small is-primary",
+    "In Flight": "is-rounded is-small is-primary is-light",
+    undefined: ""
+  }
   const {userSession: {assets}} = userContext
   console.log(assets)
 
@@ -20,47 +26,35 @@ const AssetList = () => {
   }
   console.log(siteAssets)
   return (
-    <table className="table is-striped is-fullwidth">
-      <thead>
-        <tr>
-          <th>
-          Assets:
-          </th>
-          <th>
-          Service ID
-          </th>
-          <th>
-          Vendor
-          </th>
-          <th>
-          Type
-          </th>
-          <th>
-          Status
-          </th>
-          <th>
-          <div className="button is-rounded is-small" onClick={toggleAddAssetModal}>➕</div>
-          </th>
-        </tr>
-        </thead>
-        <tbody>
+    <div>
+      <div className="button is-rounded is-small" onClick={toggleAddAssetModal}>➕</div>
         
         {siteAssets != !siteAssets ? siteAssets.map(asset => (
-          <tr key={asset._id} className="content is-small">
-            <td></td>
-            <td>{asset.asset_ID}</td>
-            <td>{asset.asset_Vendor}</td>
-            <td>{asset.asset_Type}</td>
-            <td>{asset.asset_Status}</td>
-            <td></td>
-          </tr>
+          <>
+          
+          <button 
+            key={asset._id} 
+            className={`${
+              asset.asset_Status === "Active" ? "button is-rounded is-small is-primary" : 
+              asset.asset_Status === "Disconnected" ? "button is-rounded is-small is-primary" : 
+              asset.asset_Status === "In Flight" ? "button is-rounded is-small is-primary is-light" : 
+              "button is-rounded is-small is-info"
+            }`}>
+
+            <div className="columns">
+            <div className="column">{asset.asset_ID}</div>
+            <div className="column">{asset.asset_Vendor}</div>
+            <div className="column">{asset.asset_Type}</div>
+            </div>
+          </button>  
+          </> 
         )) : (
           <tr><td>Assets loading</td></tr>
+        
         )}
         {toggleModal === true ? <AddAsset id={id} /> : ""}
-        </tbody>
       
-    </table>
+    </div>
   )
 }
 export default AssetList
