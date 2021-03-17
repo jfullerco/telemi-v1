@@ -7,7 +7,7 @@ const Hello = () => {
     <div>
       <section className="hero is-info">
           <div className="hero-body">
-            <p className="title"><span className="has-text-weight-bold">Telecom is hard... </span></p>
+            <p className="title"><span className="tile has-text-weight-bold">Telecom is hard... </span></p>
             <div className="subtitle">
               <div className="columns">
                 <div className="column">

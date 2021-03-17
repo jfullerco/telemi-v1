@@ -7,10 +7,6 @@ export const stateContext = createContext({})
 export const StateProvider = (props) => {
     
     const {Provider} = stateContext
-    
-    const [userData, setUserData] = useState({
-      
-    })
 
     const [sessionData, setSessionData] = useState({
       client_name: "",
@@ -24,10 +20,15 @@ export const StateProvider = (props) => {
       loggedIn: false,
       clientID: "",
       clients: "",
+      currClient: "",
       sites: "",
+      currSite: "",
       assets: "",
+      currAsset: "",
       orders: "",
-      tickets: "",      
+      currOrder: "",
+      tickets: "",
+      currTicket: "",      
       dataLoading: false,
 
     }
@@ -95,8 +96,6 @@ export const StateProvider = (props) => {
           
           sessionData, 
           setSessionData,
-          userData,
-          setUserData,
           setUser,
           setLoggedIn,
           setClients,

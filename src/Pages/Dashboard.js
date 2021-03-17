@@ -25,11 +25,11 @@ const Dashboard = () => {
     console.log(e.target.value)
   }
   
-  console.log(userContext)
+  console.log(localStorage)
 
   return (  
     <>  
-      {(userContext.userSession.loggedIn === true) ? (  
+      {(userContext.userSession.loggedIn === true || localStorage.userID != null ) ? (  
       <> 
        <div className="block"> 
         <section className="hero is-info">

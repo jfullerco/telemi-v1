@@ -1,8 +1,10 @@
-import React, {useContext} from 'react'
-import {stateContext} from '../stateContext'
+import React from 'react'
+import {useHistory} from 'react-router-dom'
 
 const CheckLogin = () => {
-  const userContext = useContext(stateContext)
-  
+  const history = useHistory()
+  const loggedIn = localStorage.userID != null
+
+  return !loggedIn ? history.push('/login') : history.push(`/dashboard/${localStorage.userID}`)
 }
 export default CheckLogin

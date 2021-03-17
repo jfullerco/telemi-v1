@@ -52,6 +52,7 @@ const ClientList = () => {
   }
 
   return (
+    <>
     <div className="field has-addons has-addons-centered">
     <div className="control is-expanded">
       <div className="select is-rounded is-fullwidth" onChange={handleChange}>
@@ -79,6 +80,7 @@ const ClientList = () => {
         </div>
     
     </div>
+    </>
   )
 }
 export default ClientList
