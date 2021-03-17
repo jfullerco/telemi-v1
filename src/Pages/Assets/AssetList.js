@@ -26,34 +26,35 @@ const AssetList = () => {
   }
   console.log(siteAssets)
   return (
-    <div>
+    <div className="block">
       <div className="button is-rounded is-small" onClick={toggleAddAssetModal}>➕</div>
-        
+      <div className="block">  
         {siteAssets != !siteAssets ? siteAssets.map(asset => (
-          <>
           
-          <button 
+          
+          <div
             key={asset._id} 
             className={`${
-              asset.asset_Status === "Active" ? "button is-rounded is-small is-primary" : 
+              asset.asset_Status === "Active" ? "button is-rounded is-small is-primary is-fullwidth" : 
               asset.asset_Status === "Disconnected" ? "button is-rounded is-small is-primary" : 
               asset.asset_Status === "In Flight" ? "button is-rounded is-small is-primary is-light" : 
               "button is-rounded is-small is-info"
             }`}>
-
-            <div className="columns">
-            <div className="column">{asset.asset_ID}</div>
-            <div className="column">{asset.asset_Vendor}</div>
-            <div className="column">{asset.asset_Type}</div>
+            
+            <div className="columns is-mobile">
+            <div className="column ">{asset.asset_ID}</div>
+            <div className="column ">{asset.asset_Vendor}</div>
+            <div className="column ">{asset.asset_Type}</div>
             </div>
-          </button>  
-          </> 
+            
+          </div>  
+          
         )) : (
           <tr><td>Assets loading</td></tr>
         
         )}
         {toggleModal === true ? <AddAsset id={id} /> : ""}
-      
+      </div> 
     </div>
   )
 }
