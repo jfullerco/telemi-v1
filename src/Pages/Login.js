@@ -25,7 +25,7 @@ export default function Login() {
             localStorage.setItem('userID', login._id),
             userContext.setUser(login._id),
             userContext.setClients(login.clients),
-            history.push(`/dashboard/${login._id}`)
+            history.push(`/dashboard/${login._id}&${login.clients[0]._id}`)
              
           ) : (
             setLoginErrors("Incorrect username or password")

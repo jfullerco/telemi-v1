@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
-import {Link, Switch, useHistory} from 'react-router-dom'
-import loginService from '../../Services/loginService'
+import {Link, Switch, useHistory, useParams} from 'react-router-dom'
+import {initialData} from '../../Services/refreshData'
 import getClient from '../../Services/clientService'
 
 import {stateContext} from '../../stateContext'
@@ -8,14 +8,12 @@ import {stateContext} from '../../stateContext'
 const ClientList = () => {
 
   const history = useHistory()
-
+  const {c} = useParams()
   const userContext = useContext(stateContext)
-
-  const {userSession: {clients}} = userContext
-
-  const initialClient = userContext.userSession.clients[0]._id  
+console.log(c)
+  const {userSession: {clients}} = userContext 
   
-  const [clientID, setClientID] = useState(initialClient)
+  const [clientID, setClientID] = useState(c)
 
   const [clientChanged, setClientChanged] = useState(false)
 

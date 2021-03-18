@@ -5,7 +5,7 @@ import {stateContext} from '../stateContext'
 import loginService from './loginService'
 import getClient from './clientService'
 
-export default refreshData = () => {
+const refreshData = () => {
   const u = useParams()
   const userContext = useContext(stateContext)
 
@@ -16,4 +16,6 @@ export default refreshData = () => {
     userContext.setSites(data.sites)
     userContext.setAssets(data.assets)
   }
+  return {initialData}
 }
+export default refreshData
