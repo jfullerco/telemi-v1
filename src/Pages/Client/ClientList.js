@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Link, Switch, useHistory} from 'react-router-dom'
+import loginService from '../../Services/loginService'
 import getClient from '../../Services/clientService'
 
 import {stateContext} from '../../stateContext'
@@ -12,7 +13,7 @@ const ClientList = () => {
 
   const {userSession: {clients}} = userContext
 
-  const initialClient = userContext.userSession.clients[0]._id
+  const initialClient = userContext.userSession.clients[0]._id  
   
   const [clientID, setClientID] = useState(initialClient)
 

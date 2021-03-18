@@ -21,7 +21,7 @@ export default function Login() {
         login.telemiUser == user && login.telemiPass == pass ? 
           (
             userContext.setLoggedIn(true),
-            localStorage.setItem('clientID', login.clients[0]._id),
+            localStorage.setItem('initialClientID', login.clients[0]._id),
             localStorage.setItem('userID', login._id),
             userContext.setUser(login._id),
             userContext.setClients(login.clients),

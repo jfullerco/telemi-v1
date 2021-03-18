@@ -53,7 +53,12 @@ const Dashboard = () => {
 
       <div className="block">
         <p />
-        
+        <div className="tabs is-centered">
+        <div className="tile is-info">1</div>
+        <div className="tile is-info">2</div>
+        <div className="tile is-info">3</div>
+        <div className="tile is-info">4</div>
+        </div>
       </div>
       </>
 
