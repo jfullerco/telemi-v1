@@ -12,24 +12,28 @@ const ClientList = () => {
   const user = u
   const userContext = useContext(stateContext)
 
-  const {userSession: {clients}} = userContext 
   
+  
+  const [clientID, setClientID] = useState(localStorage.initialClientID)
+
   
 
   const [clientChanged, setClientChanged] = useState(false)
 
   const [loadingData, setLoadingData] = useState(false)
+  const [clients, setClients] = useState("")
   
   
   useEffect(() => {
     setLoadingData(true)
-    userContext.getSession(u)
-    console.log(userContext)
-    setLoadingData(false)
+    userContext.getSession(user)
+    setClients(userContext.userSession.clients)
+    console.log(userContext.userSession)
   }, [])  
 
 
   const getSession = async () => {
+    
     const {data} = await getClient(clientID)
     console.log(data)
     userContext.setSites(data.sites)
@@ -59,12 +63,12 @@ const ClientList = () => {
     <div className="control is-expanded">
       <div className="select is-rounded is-fullwidth" onChange={handleChange}>
         <select>
-          {loadingData != true ? clients.map(client => (
+          {clients != "" ? clients.map(client => (
             <option value={client._id} key={client._id}>
               {client.client_name}
             </option>
           )) : (
-            "Loading data..."
+            <option>Loading data...</option>
           )}
         </select>
       </div>
