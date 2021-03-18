@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Link, Switch, useHistory, useParams} from 'react-router-dom'
-import {initialData} from '../../Services/refreshData'
+import refreshData from '../../Services/refreshData'
 import getClient from '../../Services/clientService'
 
 import {stateContext} from '../../stateContext'
@@ -8,21 +8,24 @@ import {stateContext} from '../../stateContext'
 const ClientList = () => {
 
   const history = useHistory()
-  const {c} = useParams()
+  const {u} = useParams()
+  const user = u
   const userContext = useContext(stateContext)
-console.log(c)
+
   const {userSession: {clients}} = userContext 
   
-  const [clientID, setClientID] = useState(c)
+  
 
   const [clientChanged, setClientChanged] = useState(false)
 
   const [loadingData, setLoadingData] = useState(false)
   
+  
   useEffect(() => {
-    getSession(clientID)
-    setClientID(clientID)
-    userContext.setClientID(clientID)
+    setLoadingData(true)
+    userContext.getSession(u)
+    console.log(userContext)
+    setLoadingData(false)
   }, [])  
 
 
@@ -56,12 +59,12 @@ console.log(c)
     <div className="control is-expanded">
       <div className="select is-rounded is-fullwidth" onChange={handleChange}>
         <select>
-          {clients != undefined ? clients.map(client => (
+          {loadingData != true ? clients.map(client => (
             <option value={client._id} key={client._id}>
               {client.client_name}
             </option>
           )) : (
-            "No Clients Assigned"
+            "Loading data..."
           )}
         </select>
       </div>

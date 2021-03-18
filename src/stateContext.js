@@ -1,5 +1,7 @@
 import React, {useState, createContext, useReducer} from 'react'
 import stateReducer from './stateReducer'
+import loginService from './Services/loginService'
+import getClient from './Services/clientService'
 
 
 export const stateContext = createContext({})
@@ -7,12 +9,6 @@ export const stateContext = createContext({})
 export const StateProvider = (props) => {
     
     const {Provider} = stateContext
-
-    const [sessionData, setSessionData] = useState({
-      client_name: "",
-      sites: [],
-      _id: ""
-    }) 
 
     const initialState = {
       userID: "",
@@ -90,14 +86,22 @@ export const StateProvider = (props) => {
         })
       };
 
+    const getSession = async (u) => {
+      const {data: [login]} = await loginService(u)
+      console.log(data)
+      setClients(login.clients)
+      const {data} = await getClient(clientID)
+      console.log(data)
+      setSites(data.sites)
+      setAssets(data.assets)
+    }
+
     
     return (
       <Provider value={{ 
-          
-          sessionData, 
-          setSessionData,
           setUser,
           setLoggedIn,
+          getSession,
           setClients,
           setUserLevel,
           setClientID,
