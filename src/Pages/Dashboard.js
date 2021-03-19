@@ -16,6 +16,10 @@ const Dashboard = () => {
   const userContext = useContext(stateContext)
   const {u} = useParams()
   const [toggleModal, setToggleModal] = useState(false)
+  
+  useEffect(() => {
+    userContext.getSession(u)
+  },[])
 
   const toggleAssetModal = () => {
     setToggleModal(!toggleModal)

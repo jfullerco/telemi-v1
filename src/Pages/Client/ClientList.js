@@ -11,31 +11,23 @@ const ClientList = () => {
   const {u} = useParams()
   const user = u
   const userContext = useContext(stateContext)
-
-  
+  const {userSession: {clients}} = userContext
   
   const [clientID, setClientID] = useState(localStorage.initialClientID)
-
-  
 
   const [clientChanged, setClientChanged] = useState(false)
 
   const [loadingData, setLoadingData] = useState(false)
-  const [clients, setClients] = useState("")
-  
   
   useEffect(() => {
-    setLoadingData(true)
+    setLoadingData(false)
     userContext.getSession(user)
-    setClients(userContext.userSession.clients)
-    console.log(userContext.userSession)
+    userContext.setClients(userContext.userSession.clients)
+    setLoadingData(false)
   }, [])  
 
-
   const getSession = async () => {
-    
     const {data} = await getClient(clientID)
-    console.log(data)
     userContext.setSites(data.sites)
     userContext.setAssets(data.assets)
     setLoadingData(false)
@@ -63,7 +55,7 @@ const ClientList = () => {
     <div className="control is-expanded">
       <div className="select is-rounded is-fullwidth" onChange={handleChange}>
         <select>
-          {clients != "" ? clients.map(client => (
+          {(clients != "") ? clients.map(client => (
             <option value={client._id} key={client._id}>
               {client.client_name}
             </option>

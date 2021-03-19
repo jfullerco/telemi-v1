@@ -41,6 +41,10 @@ export default function Login() {
     setLoginAttempt({...loginAttempt, [name]: value})
   }
 
+  const handleKeypress = event => {
+    event.key === "Enter" ? handleSubmit(loginAttempt) : ""
+  }
+
   const handleSaveMe = event => {
     setSaveMe(!saveMe)
   }
@@ -66,6 +70,7 @@ export default function Login() {
                 name="user"
                 value={loginAttempt.user}
                 onChange={handleInputChange}
+                onKeyPress={handleKeypress}
                 className="input is-rounded"
               />
           </div>
@@ -78,6 +83,7 @@ export default function Login() {
               name="pass"
               value={loginAttempt.pass}
               onChange={handleInputChange}
+              onKeyPress={handleKeypress}
               className="input is-rounded"
             />
           </div>
@@ -96,6 +102,7 @@ export default function Login() {
             className="button is-info is-rounded is-fullwidth"
             type="submit"
             onClick={()=>handleSubmit(loginAttempt)}
+            
           >Login</button>
         </div>
       </div>
