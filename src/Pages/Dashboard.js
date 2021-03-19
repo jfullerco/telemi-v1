@@ -45,24 +45,47 @@ const Dashboard = () => {
       </div>
       
       <div className="block">
-        
         <ClientList />
-        
-          {toggleModal === true ? <AssetReport /> : ""}
-          <button className="button is-rounded" onClick={toggleAssetModal}>
-             Asset Report 
-          </button>
-
       </div>
 
       <div className="block">
-        <p />
-        <div className="tabs is-centered">
-        <div className="tile is-info">1</div>
-        <div className="tile is-info">2</div>
-        <div className="tile is-info">3</div>
-        <div className="tile is-info">4</div>
+        <div className="tile is-ancestor has-text-centered">
+        
+        <div className="tile is-parent ">
+        <article className="tile is-child notification is-primary ">
+        <p className="title">Sites</p>
+        <p className="subtitle">{userContext.userSession.sites.length}</p>
+        </article>
         </div>
+        <div className="tile is-parent">
+        <article className="tile is-child notification is-primary">
+        <p className="title">
+        Assets
+        </p>
+        <p className="subtitle">
+        {userContext.userSession.assets.length}
+        </p>
+        </article>
+        </div>
+        <div className="tile is-parent">
+        <article className="tile is-child notification is-primary ">
+        <p className="title">Orders</p>
+        <p className="subtitle is-small">...</p>
+        </article>
+        </div>
+        <div className="tile is-parent">
+        <article className="tile is-child notification is-primary ">
+        <p className="title">Tickets</p>
+        <p className="subtitle is-small">...</p>
+        </article>
+        </div>
+        </div>
+      </div>
+      <div className="block">
+        {toggleModal === true ? <AssetReport /> : ""}
+          <button className="button is-rounded" onClick={toggleAssetModal}>
+             Asset Report 
+          </button>
       </div>
       </>
 
