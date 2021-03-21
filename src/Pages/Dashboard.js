@@ -50,13 +50,15 @@ const Dashboard = () => {
 
       <div className="block">
         <div className="tile is-ancestor has-text-centered">
-        
+        <Link to="/sites">
         <div className="tile is-parent ">
         <article className="tile is-child notification is-primary ">
         <p className="title">Sites</p>
         <p className="subtitle">{userContext.userSession.sites.length}</p>
         </article>
         </div>
+        </Link>
+        <Link to="/assets">
         <div className="tile is-parent">
         <article className="tile is-child notification is-primary">
         <p className="title">
@@ -67,6 +69,7 @@ const Dashboard = () => {
         </p>
         </article>
         </div>
+        </Link>
         <div className="tile is-parent">
         <article className="tile is-child notification is-primary ">
         <p className="title">Orders</p>
