@@ -44,6 +44,11 @@ export default (state, action) => {
       return {
         ...state,
         siteTickets: action.payload
+      };
+    case "CURR_CLIENT":
+      return {
+        ...state,
+        currClient: action.payload
       };     
   };
 }

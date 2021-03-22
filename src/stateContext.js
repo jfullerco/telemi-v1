@@ -85,6 +85,13 @@ export const StateProvider = (props) => {
         })
       };
 
+      const setCurrClient = (clientID) => {
+        dispatch({
+          type: "CURR_CLIENT",
+          payload: clientID
+        })
+      }
+
     const getSession = async (user) => {
       const login = await getClients(user)
       console.log(login)
@@ -107,6 +114,7 @@ export const StateProvider = (props) => {
           setSites,
           setAssets,
           setSiteOrders,
+          setCurrClient,
           userSession
       }}>
         {props.children}

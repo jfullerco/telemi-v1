@@ -43,6 +43,7 @@ const ClientList = () => {
   
   useEffect(() => {
       getSession(clientID)
+      userContext.setCurrClient(clientID)
   }, [clientChanged])
 
   const handleSubmit = () => {

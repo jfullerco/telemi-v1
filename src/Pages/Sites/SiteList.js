@@ -12,7 +12,7 @@ const SiteList = () => {
   return (
     <>
         <div className="block"> 
-          <section className="hero is-info">
+          <section className="hero is-primary is-small">
             <div className="hero-body">
               <p className="title">Sites</p>
             <div className="subtitle"></div>
@@ -26,7 +26,7 @@ const SiteList = () => {
           <SiteListNav />
         </div>
       
-        {sites != undefined ? sites.map(site => (
+        {(sites != "") ? sites.map(site => (
         <div className="block" key={site._id}>
           <span>
             <Link to={`/sites/${site._id}`}>
