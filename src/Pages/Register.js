@@ -7,7 +7,7 @@ const Register = () => {
   const userContext = useContext(stateContext)
   const emailRef = useRef()
   const passwordRef = useRef()
-  const confirmPasswordRef = useRef
+  const confirmPasswordRef = useRef()
 
   return (
     <div className="modal is-active">
