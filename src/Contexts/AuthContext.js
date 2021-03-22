@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import {auth} from '../firebase'
 
 const AuthContext = React.createContext()
@@ -11,12 +11,19 @@ export function AuthProvider() {
 
   const [currentUser, setCurrentUser] = useState()
 
-  function Register(email, password) {
+  function RegisterUser(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
   }
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      setCurrentUser(user)
+    })
+    return unsubscribe
+  },[])
 
   const value = {
-    currentUser
+    currentUser,
+    RegisterUser
   }
 
   return (

@@ -1,13 +1,22 @@
 import React, {useContext, useRef} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 
+
 import {stateContext} from '../stateContext'
+import {useAuth, AuthProvider} from '../Contexts/AuthContext'
 
 const Register = () => {
   const userContext = useContext(stateContext)
   const emailRef = useRef()
   const passwordRef = useRef()
   const confirmPasswordRef = useRef()
+  const {RegisterUser} = useAuth()
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    RegisterUser(emailRef.current.value, passwordRef.current.value)
+    
+  }
 
   return (
     <div className="modal is-active">
