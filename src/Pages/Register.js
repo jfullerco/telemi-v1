@@ -3,7 +3,7 @@ import {Link, useHistory} from 'react-router-dom'
 
 
 import {stateContext} from '../stateContext'
-import {useAuth, AuthProvider} from '../Contexts/AuthContext'
+import {useAuth} from '../Contexts/AuthContext'
 
 const Register = () => {
   const userContext = useContext(stateContext)
@@ -19,6 +19,7 @@ const Register = () => {
   }
 
   return (
+    
     <div className="modal is-active">
     <div className="modal-background"></div>
     <div className="modal-card">
@@ -39,6 +40,7 @@ const Register = () => {
       </div>
     </div>
     </div>
+    
   )
 }
 
