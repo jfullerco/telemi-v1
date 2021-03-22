@@ -10,7 +10,7 @@ import SiteDetail from './Pages/Sites/SiteDetail'
 import AddSite from './Pages/Sites/AddSite'
 import Register from './Pages/Register'
 import LogoutButton from './Components/LogoutButton'
-
+import {AuthProvider} from './Contexts/AuthContext'
 import "./style.css"
 
 export default function App() {
@@ -19,11 +19,12 @@ export default function App() {
   
   return (
     <StateProvider>
+    <AuthProvider>
       <Router>
       <div className="container is-max-desktop"> 
       <div className="column">
       <LogoutButton />
-       
+       <Register />
           <Switch>
             
             <Route exact path="/"  component={Hello} />
@@ -37,9 +38,10 @@ export default function App() {
           </Switch>
         
         </div>  
-<Register />
+
       </div>
     </Router>
+    </AuthProvider>
     </StateProvider>
   );
 }

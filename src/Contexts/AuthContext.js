@@ -11,7 +11,7 @@ export function AuthProvider() {
 
   const [currentUser, setCurrentUser] = useState()
 
-  function RegisterUser(email, password) {
+  function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
   }
   useEffect(() => {
@@ -23,7 +23,7 @@ export function AuthProvider() {
 
   const value = {
     currentUser,
-    RegisterUser
+    signup
   }
 
   return (

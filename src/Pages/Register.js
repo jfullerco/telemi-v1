@@ -10,7 +10,7 @@ const Register = () => {
   const emailRef = useRef()
   const passwordRef = useRef()
   const confirmPasswordRef = useRef()
-  const {RegisterUser} = useAuth()
+  const {signup} = useAuth()
 
   function handleSubmit(e) {
     e.preventDefault()
