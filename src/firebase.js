@@ -2,14 +2,14 @@ import * as firebase from 'firebase/app'
 import 'firebase/auth'
 
 const app = firebase.initializeApp({
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyCLcH3HfDZU-0Qa8k90hHYhQZZRyOAy8j4",
+  authDomain: "tiems-24d17.firebaseapp.com",
+  databaseURL: "https://tiems-24d17-default-rtdb.firebaseio.com",
+  projectId: "tiems-24d17",
+  storageBucket: "tiems-24d17.appspot.com",
+  messagingSenderId: "371736927443",
+  appId: "1:371736927443:web:9d80c3abc38e399db3c826",
+  measurementId: "G-1R2QK5MPPK"
 })
 
 export const auth = app.auth()
