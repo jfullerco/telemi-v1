@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import Register from './Register'
+import FirebaseTest from '../Testing/FirebaseTest'
 
 const Hello = () => {
   const [modalState, setModalState] = useState(false)
@@ -8,6 +9,7 @@ const Hello = () => {
   }
   return (
     <div>
+    <FirebaseTest />
       <section className="hero is-info">
           <div className="hero-body">
             <div className="columns">
