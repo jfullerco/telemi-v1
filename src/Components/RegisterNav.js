@@ -9,7 +9,7 @@ const RegisterNav = () => {
       <div className="pb-2">
       <input className="input is-rounded is-focused" placeholder="password"/>
       </div>
-      <button className="button is-small is-rounded">create your free account</button>
+      
     </div>
   )
 }

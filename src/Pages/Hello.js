@@ -1,23 +1,33 @@
-import React from 'react'
-import RegisterNav from '../Components/RegisterNav'
+import React, {useState} from 'react'
+import Register from './Register'
 
 const Hello = () => {
-
+  const [modalState, setModalState] = useState(false)
+  const handleModalState = () => {
+    setModalState(!modalState)
+  }
   return (
     <div>
       <section className="hero is-info">
           <div className="hero-body">
-            <div className="title"><span className="tile has-text-weight-bold">Telecom is hard... </span></div>
-            <div className="subtitle">
-              <div className="columns">
+            <div className="columns">
                 <div className="column">
-                Managing it shouldn't be!
-                </div>
-                <div className="tile is-vertical"><RegisterNav /></div>
-              </div> 
+                  <div className="title has-text-weight-bold"> Telecom is hard... </div>
+                    <div className="subtitle">
+                      Managing it shouldn't be!
+                    </div></div>
+                    <div className="level">
+                      <div className="column level-right">
+                        <button className="button is-small is-rounded" onClick={handleModalState}>
+                          create your free account
+                        </button>
+                      </div>
+                    </div>
+               
             </div>
           </div>
         </section>
+        {modalState === true ? <Register modalState={modalState} /> : ""}
         <div className="columns is-centered ">
           <div className="column">
             <div className="tile is-parent is-7 is-vertical">

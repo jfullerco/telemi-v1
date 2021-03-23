@@ -8,7 +8,7 @@ import Login from './Pages/Login'
 import SiteList from './Pages/Sites/SiteList'
 import SiteDetail from './Pages/Sites/SiteDetail'
 import AddSite from './Pages/Sites/AddSite'
-import Register from './Pages/Register'
+
 import LogoutButton from './Components/LogoutButton'
 import {AuthProvider} from './Contexts/AuthContext'
 import "./style.css"
@@ -24,7 +24,7 @@ export default function App() {
       <div className="container is-max-desktop"> 
       <div className="column">
       <LogoutButton />
-       <Register />
+       
           <Switch>
             
             <Route exact path="/"  component={Hello} />
