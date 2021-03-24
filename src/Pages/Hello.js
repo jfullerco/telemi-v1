@@ -24,8 +24,9 @@ const Hello = () => {
                     <div className="level">
                       <div className="column level-right">
                         <button className="button is-small is-rounded" onClick={handleModalState}>
-                          create your free account<FirebaseTest />
+                          create your free account
                         </button>
+                        <FirebaseTest />
                       </div>
                     </div>
                
