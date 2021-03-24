@@ -9,7 +9,7 @@ const Hello = () => {
   }
   return (
     <div>
-    <FirebaseTest />
+    
       <section className="hero is-info">
           <div className="hero-body">
             <div className="columns">
@@ -21,7 +21,7 @@ const Hello = () => {
                     <div className="level">
                       <div className="column level-right">
                         <button className="button is-small is-rounded" onClick={handleModalState}>
-                          create your free account
+                          create your free account<FirebaseTest />
                         </button>
                       </div>
                     </div>

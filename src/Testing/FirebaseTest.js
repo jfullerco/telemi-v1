@@ -1,10 +1,12 @@
-import React from 'react'
-import db from '../firebase'
+import React from "react"
+import {db} from '../firebase'
 
-const FirebaseTest = () => {
-  console.log(db.collections("Companies"))
-}
+function FirebaseTest() {
+  const data = db.collection("Companies").get()
+  console.log(data)
+
 return (
-  <div></div>
+  <div>a</div>
 )
+}
 export default FirebaseTest
