@@ -1,21 +1,22 @@
 import React, {useEffect, useState} from "react"
 import {db} from '../firebase'
+import {useAuth} from '../Contexts/AuthContext'
 
 const FirebaseTest = () => {
-  const [comp, setComp] = useState([])
+  const [user, setUser] = useState([])
+  const {currentUser} = useAuth()
   useEffect(() => {
       const fetchData = async () => {
-      const data = await db.collection("Companies").get();
-      setComp(data.docs.map(doc => doc.data()))
+      const data = await db.collection("Users").get()
+      setUser(data.docs.map(doc => doc.data.UserEmail == currentUser.data.email))
     }
     fetchData()
-  })
+  },[])
   
 
 return (
-  <div>{comp.map(c => (
-    <>{c.Name}</>
-  ))}</div>
+  <div>
+  </div>
 )
 }
 export default FirebaseTest
