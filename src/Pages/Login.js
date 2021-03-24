@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 
 
 export default function Login() {
-  
+
   const emailRef = useRef()
   const passwordRef = useRef()
   const [loading, setLoading] = useState(false)
@@ -37,7 +37,9 @@ export default function Login() {
             Login
           </button>
           
-          <div className="content is-small">Create account <Link to="/register">Register</Link></div>
+          <div className="content is-small">
+            Create account 
+          <Link to="/register">Register</Link></div>
         
         </div>
         <button className="modal-close is-large" aria-label="close" onClick={handleModalClose}></button>  
