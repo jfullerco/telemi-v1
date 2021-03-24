@@ -1,14 +1,33 @@
 import React, {useState, useEffect, useContext, useRef} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useHistory, Link} from 'react-router-dom'
+import {useAuth} from '../Contexts/AuthContext'
 
 
 export default function Login() {
 
   const emailRef = useRef()
   const passwordRef = useRef()
+  const {login} = useAuth()
+  const history = useHistory()
   const [loading, setLoading] = useState(false)
   const [modalState, setModalState] = useState(true)
+  const [loginError, setLoginError] = useState('')
 
+  async function handleSubmit(e) {
+    e.preventDefault()
+    if (emailRef.current.value && passwordRef.current.value === null) {
+      return setLoginError('Both email and password required')
+    }
+    try {
+      setLoginError('')
+      setLoading(true)
+      await login(emailRef.current.value, passwordRef.current.value)
+      history.push("/")
+    } catch {
+      setLoginError('Failed to login')
+    }
+    setLoading(false)
+  }
 
   const handleModalClose = () => {
     setModalState(false)
@@ -27,7 +46,7 @@ export default function Login() {
             <input className="input" type="password" ref={passwordRef}/>
           </form>
         <div className="block">
-          <div className="notification is-danger is-hidden">{signupError}</div>
+          <div className="notification is-danger is-hidden">{loginError}</div>
         </div>
         <div className="modal-card-foot">
           

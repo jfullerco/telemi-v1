@@ -15,7 +15,7 @@ const Register = (props) => {
   const [loading, setLoading] = useState(false)
   const [modalState, setModalState] = useState(true)
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     if (passwordRef.current.value !== confirmPasswordRef.current.value) {
       return setSignupError('Passwords do not match')
@@ -23,7 +23,7 @@ const Register = (props) => {
     try {
       setSignupError('')
       setLoading(true)
-    signup(emailRef.current.value, passwordRef.current.value)
+      await signup(emailRef.current.value, passwordRef.current.value)
     } catch {
       setSignupError('Failed to create an account')
     }
