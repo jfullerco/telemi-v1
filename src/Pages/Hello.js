@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import Register from './Register'
+import {useAuth} from '../Contexts/AuthContext'
 import FirebaseTest from '../Testing/FirebaseTest'
 
 const Hello = () => {
@@ -7,6 +8,8 @@ const Hello = () => {
   const handleModalState = () => {
     setModalState(!modalState)
   }
+  const currentUser = useAuth()
+  console.log(currentUser)
   return (
     <div>
     
