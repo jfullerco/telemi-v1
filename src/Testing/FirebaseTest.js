@@ -6,14 +6,19 @@ const FirebaseTest = () => {
   const [user, setUser] = useState([])
   const {currentUser} = useAuth()
   useEffect(() => {
-      const fetchData = async () => {
-      const data = await db.collection("Users").get()
-      setUser(data.docs.map(doc => doc.data.UserEmail == currentUser.data.email))
-    }
+    
     fetchData()
+    
   },[])
   
+  const fetchData = async () => {
+    console.log(currentUser)
+      const userRef = await db.collection("Users").where("UserEmail", "==", currentUser).get()
+      const queryUser = userRef.docs.map(doc => doc.data())
+      console.log(queryUser)
+  }
 
+console.log(user)
 return (
   <div>
   </div>
