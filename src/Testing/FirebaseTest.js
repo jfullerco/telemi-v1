@@ -16,7 +16,7 @@ const FirebaseTest = () => {
       const userRef = await db.collection("Users").where("UserEmail", "==", currentUser).get()
       const queryUser = userRef.docs.map(doc => doc.data())
       const companiesRef = await db.collection("Companies").get()
-      const companies = companiesRef.docs.map(doc => doc.data())
+      const companies = companiesRef.docs.map(doc.id => doc.data())
       companies.map(c => console.log(c.id))
       console.log(companies)
     
