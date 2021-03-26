@@ -15,7 +15,10 @@ const FirebaseTest = () => {
     
       const userRef = await db.collection("Users").where("UserEmail", "==", currentUser).get()
       const queryUser = userRef.docs.map(doc => doc.data())
-      !queryUser.exists ? console.log("No user") : console.log(queryUser)
+      const companiesRef = await db.collection("Companies").get()
+      const companies = companiesRef.docs.map(doc => doc.data())
+      companies.map(c => console.log(c.id))
+      console.log(companies)
     
   }
 
