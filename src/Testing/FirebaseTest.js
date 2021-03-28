@@ -18,10 +18,10 @@ const FirebaseTest = () => {
   const fetchUsers = async () => {
     
       const userRef = await db.collection("Companies").where("Users", "array-contains", "jonathan@jfuller.co").get()
-      const queryUser = await userRef.docs.map(doc => doc.data())
+      const queryUser = await userRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
       
 
-      console.log(queryUser)
+      console.log(queryUser[0])
   }
 
   const FetchCompanies = (user) => {
