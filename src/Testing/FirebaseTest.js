@@ -17,27 +17,28 @@ const FirebaseTest = () => {
   
   const fetchUsers = async () => {
     
-      const userRef = await db.collection("Users").where("UserEmail", "==", "jonathan@jfuller.co").get()
-      const queryUser = userRef.docs.map(doc => doc.data())
-      const [{UserEmail}] = queryUser
-      setUser(UserEmail)
+      const userRef = await db.collection("Companies").where("Users", "array-contains", "jonathan@jfuller.co").get()
+      const queryUser = await userRef.docs.map(doc => doc.data())
+      
+
+      console.log(queryUser)
   }
 
   const FetchCompanies = (user) => {
-    const companiesRef = db.collection("Companies").where("Users", "array-contains", "jonathan@jfuller.co")
+    const companiesRef = db.collection("Companies").where("UsersAllowed", "array-contains", "jonathan@jfuller.co")
       
       const [companies] = useCollectionData(companiesRef, {idField: "id"})
 
       console.log(companies)
       return (
-        <>{companies && companies.map(company => (<>{company.Name}</>))}</>
+        <></>
       )
   }
 console.log(currentUser)
 
 return (
   <div>
-  <FetchCompanies />
+  
   </div>
 )
 }

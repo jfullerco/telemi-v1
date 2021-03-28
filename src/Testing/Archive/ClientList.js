@@ -8,7 +8,8 @@ import {stateContext} from '../../stateContext'
 const ClientList = () => {
 
   const history = useHistory()
-
+  const {u} = useParams()
+  const user = u
   const userContext = useContext(stateContext)
   const {userSession: {clients}} = userContext
   
