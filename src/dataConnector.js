@@ -8,9 +8,8 @@ const dataConnect = () => {
   const currentUser = useAuth()
   const userContext = useContext(stateContext)
   
-  const companiesRef = (currentUser) => {
-    const fetchUsers = db.collection("Companies").where("Users", "array-contains", currentUser).get()
-    userContext.setClients()
-  }
+  const companiesRef = db.collection("Companies").where("Users", "array-contains", currentUser).get()
+  
 }
+
 export {companiesRef}

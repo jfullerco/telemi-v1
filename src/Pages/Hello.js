@@ -43,7 +43,7 @@ const Hello = () => {
               
               <div className="content is-size-6-fullhd is-size-6-widescreen has-text-black">
                 Managing your sites and services across 100's of different vendor portals is not a solution for today's business. 
-                <FirebaseTest />
+                
               </div>
               </p>
               

@@ -1,11 +1,12 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Route, Link, Switch, Redirect, useParams} from 'react-router-dom'
 
-import {stateContext} from '../stateContext'
+import { stateContext } from '../stateContext'
+import { useAuth } from '../Contexts/AuthContext'
 
 import getClient from '../Services/clientService'
 import LogoutButton from '../Components/LogoutButton'
-import ClientList from './Client/ClientList'
+import CompanyList from './Companies/CompanyList'
 import SiteList from './Sites/SiteList'
 import AssetReport from '../Components/Reports/AssetReport'
 
@@ -14,7 +15,7 @@ import Login from './Login'
 const Dashboard = () => {
   
   const userContext = useContext(stateContext)
-  const {u} = useParams()
+  
   const [toggleModal, setToggleModal] = useState(false)
   
   useEffect(() => {
