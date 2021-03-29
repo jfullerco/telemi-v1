@@ -10,23 +10,28 @@ export const StateProvider = (props) => {
     const {Provider} = stateContext
 
     const initialState = {
-
+      userID: "",
       userLevel: "",
       loggedIn: false,
-      currentCompany: "",
-      currentSite: "",
-      currentService: "",
-      currentTicket: "",
-      currentOrder: "",
-      currentAccount: "",     
+      clientID: "",
+      clients: "",
+      currClient: "",
+      sites: "",
+      currSite: "",
+      assets: "",
+      currAsset: "",
+      orders: "",
+      currOrder: "",
+      tickets: "",
+      currTicket: "",      
       dataLoading: false,
 
     }
     const [userSession, dispatch] = useReducer(stateReducer, initialState)
 
-      const setCurrentCompany = (id) => {
+      const setUser = (id) => {
         dispatch({
-          type: "SET_CURRENT_COMPANY",
+          type: "SET_USER",
           payload: id
         })
       };
@@ -117,4 +122,3 @@ export const StateProvider = (props) => {
     )
   
 }
-

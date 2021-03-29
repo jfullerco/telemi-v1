@@ -1,54 +1,39 @@
 export default (state, action) => {
   switch (action.type) {
-    case "SET_USER":
+    case "SET_CURRENT_COMPANY":
       return {
         ...state,
-        userID: action.payload
+        currentCompany: action.payload
       }
     case "LOGGED_IN":
       return {
         ...state,
         loggedIn: action.payload
       };
-    case "FOCUS_CLIENT_ID":
+    case "SET_CURRENT_SITE":
       return {
         ...state,
-        clientID: action.payload
+        currentSite: action.payload
       };
-    case "SET_CLIENTS":
+    case "SET_CURRENT_SERVICE":
       return {
         ...state,
-        clients: action.payload
+        currentService: action.payload
       };
-    case "SET_USER_LEVEL":
+    case "SET_CURRENT_TICKET": 
       return {
         ...state,
-        userLevel: action.payload
+        currentTicket: action.payload
       };
-    case "SET_SITES": 
+    case "SET_CURRENT_ORDER":
       return {
         ...state,
-        sites: action.payload
-      };
-    case "SET_ASSETS":
-      return {
-        ...state,
-        assets: action.payload
+        currentOrder: action.payload
       };    
-    case "SET_SITE_ORDERS":
+    case "SET_CURRENT_ACCOUNT":
       return {
         ...state,
-        siteOrders: action.payload
+        currentAccount: action.payload
       };  
-    case "SET_SITE_TICKETS":
-      return {
-        ...state,
-        siteTickets: action.payload
-      };
-    case "CURR_CLIENT":
-      return {
-        ...state,
-        currClient: action.payload
-      };     
   };
 }

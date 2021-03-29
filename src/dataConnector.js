@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react'
 import {db} from './firebase'
-import {useAuth} from '../Contexts/AuthContext'
+import {useAuth} from './Contexts/AuthContext'
 import {stateContext} from './stateContext'
 
 const dataConnect = () => {
