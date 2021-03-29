@@ -2,15 +2,10 @@ import React, {useState, useEffect, useContext} from 'react'
 import {Route, Link, Switch, Redirect, useParams} from 'react-router-dom'
 
 import { stateContext } from '../stateContext'
-import { useAuth } from '../Contexts/AuthContext'
+import {useAuth} from '../Contexts/AuthContext'
 
-import getClient from '../Services/clientService'
 import LogoutButton from '../Components/LogoutButton'
 import CompanyList from './Companies/CompanyList'
-import SiteList from './Sites/SiteList'
-import AssetReport from '../Components/Reports/AssetReport'
-
-import Login from './Login'
 
 const Dashboard = () => {
   
@@ -18,10 +13,6 @@ const Dashboard = () => {
   
   const [toggleModal, setToggleModal] = useState(false)
   
-  useEffect(() => {
-    userContext.getSession(u)
-  },[])
-
   const toggleAssetModal = () => {
     setToggleModal(!toggleModal)
   }
@@ -30,11 +21,8 @@ const Dashboard = () => {
     console.log(e.target.value)
   }
   
-  console.log(localStorage)
-
   return (  
-    <>  
-      {(userContext.userSession.loggedIn === true || localStorage.userID != null ) ? (  
+       
       <> 
        <div className="block"> 
         <section className="hero is-info">
@@ -46,7 +34,7 @@ const Dashboard = () => {
       </div>
       
       <div className="block">
-        <ClientList />
+        <CompanyList />
       </div>
 
       <div className="block">
@@ -55,7 +43,7 @@ const Dashboard = () => {
         <div className="tile is-parent ">
         <article className="tile is-child notification is-primary ">
         <p className="title">Sites</p>
-        <p className="subtitle">{userContext.userSession.sites.length}</p>
+        <p className="subtitle"></p>
         </article>
         </div>
         
@@ -66,7 +54,7 @@ const Dashboard = () => {
         Assets
         </p>
         <p className="subtitle">
-        {userContext.userSession.assets.length}
+        
         </p>
         </article>
         </div>
@@ -97,16 +85,8 @@ const Dashboard = () => {
              Admin Options 
           </button>
       </div>
-      <div className="block">
-        <SiteList />
-      </div>
-      </>
 
-      ) : (
-        
-        <Redirect to="/login" />
-        
-      )}
+      
   </>
   )
 }

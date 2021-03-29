@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { useAuth } from '../Contexts/AuthContext'
+import {useAuth} from '../../Contexts/AuthContext'
 
 import {stateContext} from '../../stateContext'
 
-import { companiesRef } from '../dataConnector'
+import { companiesRef } from '../../dataConnector'
 
 const CompanyList = () => {
 
