@@ -22,6 +22,7 @@ const CompanyList = () => {
   
   const handleChange = (e) => {
     setCompany(e.target.value)
+    userContext.setCurrentCompany(e.target.value)
   }
 
   const fetchCompanies = async() => {
@@ -34,7 +35,7 @@ const CompanyList = () => {
   }
 
   const handleSubmit = () => {
-    history.push("/sites")
+    history.push("/companyProfile")
   }
 console.log(company)
   return (

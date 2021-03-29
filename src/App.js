@@ -4,6 +4,7 @@ import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 import {StateProvider, stateContext} from './stateContext'
 import Hello from './Pages/Hello'
 import Dashboard from './Pages/Dashboard'
+import CompanyProfile from './Pages/Companies/CompanyProfile'
 import Login from './Pages/Login'
 import SiteList from './Pages/Sites/SiteList'
 import SiteDetail from './Pages/Sites/SiteDetail'
@@ -33,6 +34,7 @@ export default function App() {
             <Route exact path="/sites" component={SiteList} />
             <Route path="/sites/:id" component={SiteDetail} />
             <Route path="/addSite" component={AddSite} />
+            <Route path="/companyProfile" component={CompanyProfile} />
             
 
           </Switch>

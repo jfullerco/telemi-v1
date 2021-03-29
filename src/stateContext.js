@@ -24,24 +24,10 @@ export const StateProvider = (props) => {
     }
     const [userSession, dispatch] = useReducer(stateReducer, initialState)
 
-      const setCurrentCompany = (id) => {
-        dispatch({
-          type: "SET_CURRENT_COMPANY",
-          payload: id
-        })
-      };
-
       const setLoggedIn = (loginState) => {
         dispatch({
           type: "LOGGED_IN",
           payload: loginState
-        })
-      };
-
-      const setClients = (clients) => {
-        dispatch({
-          type: "SET_CLIENTS",
-          payload: clients
         })
       };
 
@@ -52,64 +38,59 @@ export const StateProvider = (props) => {
         })
       };
 
-      const setClientID = (id) => {
+      const setCurrentCompany = (id) => {
         dispatch({
-          type: "FOCUS_CLIENT_ID",
+          type: "SET_CURRENT_COMPANY",
           payload: id
         })
       };
 
-      const setSites = (sites) => {
+      const setCurrentSite = (id) => {
         dispatch({
-          type: "SET_SITES",
-          payload: sites
+          type: "SET_CURRENT_SITE",
+          payload: id
         })
       };
 
-      const setAssets = (assets) => {
+      const setCurrentService = (id) => {
         dispatch({
-          type: "SET_ASSETS",
-          payload: assets
+          type: "SET_CURRENT_SERVICE",
+          payload: id
         })
       };
 
-      const setSiteOrders = (orders) => {
+      const setCurrentTicket = (id) => {
         dispatch({
-          type: "SET_SITE_ORDERS",
-          payload: orders
+          type: "SET_CURRENT_TICKET",
+          payload: id
         })
       };
 
-      const setCurrClient = (clientID) => {
+      const setCurrentOrder = (id) => {
         dispatch({
-          type: "CURR_CLIENT",
-          payload: clientID
+          type: "SET_CURRENT_ORDER",
+          payload: id
         })
-      }
+      };
 
-    const getSession = async (user) => {
-      const login = await getClients(user)
-      console.log(login)
-      setClients(login.data.clients)
-      const {data} = await getClient(login.data.clients[0]._id)
-      console.log(data)
-      setSites(data.sites)
-      setAssets(data.assets)
-    }
+      const setCurrentAccount = (id) => {
+        dispatch({
+          type: "SET_CURRENT_ACCOUNT",
+          payload: id
+        })
+      };
 
     
     return (
       <Provider value={{ 
-          setUser,
+          
           setLoggedIn,
-          getSession,
-          setClients,
-          setUserLevel,
-          setClientID,
-          setSites,
-          setAssets,
-          setSiteOrders,
-          setCurrClient,
+          setCurrentCompany,
+          setCurrentSite,
+          setCurrentService,
+          setCurrentTicket,
+          setCurrentOrder,
+          setCurrentAccount,
           userSession
       }}>
         {props.children}
