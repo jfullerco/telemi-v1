@@ -13,9 +13,14 @@ const SiteList = () => {
   const currentCompany = userContext
 
   const [toggleModal, setToggleModal] = useState(false)
+  const [toggleDetailModal, setToggleDetailModal] = useState(false)
   
   const toggleAddLocationModal = () => {
     setToggleModal(!toggleModal)
+  }
+
+  const toggleDetailModal = () => {
+    setToggleDetailModal(!toggleModal)
   }
 
   const [userLocations, setUserLocations] = useState("")
@@ -58,7 +63,7 @@ const SiteList = () => {
         {(userLocations != "") ? userLocations.map(location => (
         <div className="block" key={location.id}>
           <span>
-            <Link to={`/locations/${location.id}`}>
+            <button onClick={toggleDetailModal}>
               <div className="button is-rounded">
                 
                     {location.Name} 

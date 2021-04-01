@@ -7,7 +7,7 @@ import { db } from '../../firebase'
 import SiteListNav from '../../Components/Elements/SiteListNav'
 import AddLocation from './AddLocation'
 
-const SiteList = () => {
+const LocationDetail = () => {
   
   const userContext = useContext(stateContext)
   const currentLocation = userContext
@@ -18,31 +18,31 @@ const SiteList = () => {
     setToggleModal(!toggleModal)
   }
 
-  const [userLocations, setUserLocations] = useState("")
+  const [userLocation, setUserLocation] = useState("")
   
   useEffect(() => {
     
-    fetchLocations()
+    fetchLocation()
   
   }, [])
 
-  const fetchLocations = async() => {
+  const fetchLocation = async() => {
    
-    const locationsRef = await db.collection("Locations").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
+    const locationRef = await db.collection("Locations").doc(userContext.userSession.currentLocation).get()
 
-    const locations = locationsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
-    setUserLocations(locations)
+    const location = locationRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    setUserLocation(location)
 
   }
 
-  console.log(userLocations)
+  console.log(userLocation)
 
   return (
     <>
         <div className="block"> 
           <section className="hero is-info is-small">
             <div className="hero-body">
-              <p className="title">Locations</p>
+              <p className="title">Location Details</p>
             <div className="subtitle"></div>
             </div>
           </section>
@@ -55,13 +55,14 @@ const SiteList = () => {
           <SiteListNav /> <button onClick={toggleAddLocationModal}>Add Location</button>
         </div>
       
-        {(userLocations != "") ? userLocations.map(location => (
+        {(userLocation != "") ? userLocation.map(location => (
         <div className="block" key={location.id}>
           <span>
             <Link to={`/locations/${location.id}`}>
               <div className="button is-rounded">
                 
-                    {location.Name} 
+                    {location.Name} <br />
+                    {location.Address1}
       
               </div>
             </Link>
@@ -71,7 +72,7 @@ const SiteList = () => {
         ) : (
         <span>
           <div className="button is-rounded is-danger">
-              No sites have been added
+              No Location Details Found
           </div>
         </span>
         )}
@@ -79,4 +80,4 @@ const SiteList = () => {
     </>
   )
 }
-export default SiteList
+export default LocationDetail
