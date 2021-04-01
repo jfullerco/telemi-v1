@@ -39,6 +39,7 @@ export const StateProvider = (props) => {
       };
 
       const setCurrentCompany = (id) => {
+        console.log(id)
         dispatch({
           type: "SET_CURRENT_COMPANY",
           payload: id

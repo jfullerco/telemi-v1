@@ -31,9 +31,9 @@ export default function App() {
             <Route exact path="/"  component={Dashboard} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/login" component={Login} />
-            <Route exact path="/sites" component={SiteList} />
-            <Route path="/sites/:id" component={SiteDetail} />
-            <Route path="/addSite" component={AddSite} />
+            <Route exact path="/locations" component={SiteList} />
+            <Route path="/locations/:id" component={SiteDetail} />
+            <Route path="/addLocation" component={AddSite} />
             <Route path="/companyProfile" component={CompanyProfile} />
             
 

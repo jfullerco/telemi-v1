@@ -2,19 +2,40 @@ import React, {useState, useEffect, useContext} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import {stateContext} from '../../stateContext'
 
+import { db } from '../../firebase'
+
 import SiteListNav from '../../Components/Elements/SiteListNav'
 
 const SiteList = () => {
   
   const userContext = useContext(stateContext)
-  const {userSession: {sites}} = userContext
-    console.log(userContext.userSession.sites.length)
+  const currentCompany = userContext
+
+  const [userLocations, setUserLocations] = useState("")
+  
+  useEffect(() => {
+    
+    fetchLocations()
+  
+  }, [])
+
+  const fetchLocations = async() => {
+   
+    const locationsRef = await db.collection("Locations").where("CompanyID", "==", userContext.userSession.currentCompany).get()
+
+    const locations = locationsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    setUserLocations(locations)
+
+  }
+
+  console.log(userLocations)
+
   return (
     <>
         <div className="block"> 
-          <section className="hero is-primary is-small">
+          <section className="hero is-info is-small">
             <div className="hero-body">
-              <p className="title">Sites</p>
+              <p className="title">Locations</p>
             <div className="subtitle"></div>
             </div>
           </section>
@@ -26,13 +47,13 @@ const SiteList = () => {
           <SiteListNav />
         </div>
       
-        {(sites != "") ? sites.map(site => (
-        <div className="block" key={site._id}>
+        {(userLocations != "") ? userLocations.map(location => (
+        <div className="block" key={location.id}>
           <span>
-            <Link to={`/sites/${site._id}`}>
+            <Link to={`/locations/${location.id}`}>
               <div className="button is-rounded">
                 
-                    {site.site_name} 
+                    {location.Name} 
       
               </div>
             </Link>

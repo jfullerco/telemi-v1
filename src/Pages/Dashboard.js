@@ -42,7 +42,7 @@ const Dashboard = () => {
         
         <div className="tile is-parent ">
         <article className="tile is-child notification is-primary ">
-        <p className="title">Sites</p>
+        <p className="title"><Link to="/locations">Locations</Link></p>
         <p className="subtitle"></p>
         </article>
         </div>

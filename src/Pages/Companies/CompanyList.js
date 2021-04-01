@@ -13,15 +13,18 @@ const CompanyList = () => {
   const {currentUser} = useAuth()
   const userContext = useContext(stateContext)
   
-  const [company, setCompany] = useState("")
-  const [userCompanies, setUserCompanies] = useState("")
+  const [loading, setLoading] = useState(true)
+  const [userCompanies, setUserCompanies] = useState([])
   
   useEffect(() => {
     fetchCompanies()
+    
+    console.log()
+    userContext.setCurrentCompany()
   }, [])  
   
   const handleChange = (e) => {
-    setCompany(e.target.value)
+    
     userContext.setCurrentCompany(e.target.value)
   }
 
@@ -29,22 +32,28 @@ const CompanyList = () => {
    
     const companiesRef = await db.collection("Companies").where("Users", "array-contains", "jonathan@jfuller.co").get()
 
+    const initialCompanyRef = await db.collection("Companies").where("Users", "array-contains", "jonathan@jfuller.co").limit(1).get()
+
+    const initialCompanyID = initialCompanyRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    userContext.setCurrentCompany(initialCompanyID[0].id)
+
     const companies = companiesRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
     setUserCompanies(companies)
-    
+    setLoading(false)
+
   }
 
   const handleSubmit = () => {
     history.push("/companyProfile")
   }
-console.log(company)
+  
   return (
     <>
     <div className="field has-addons has-addons-centered">
     <div className="control is-expanded">
       <div className="select is-rounded is-fullwidth" onChange={handleChange}>
         <select>
-          {(userCompanies != "") ? userCompanies.map(company => (
+          {(userCompanies != "" && loading != true) ? userCompanies.map(company => (
             <option value={company.id} key={company.id}>
               {company.Name}
               {console.log()}
