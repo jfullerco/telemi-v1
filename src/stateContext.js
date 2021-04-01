@@ -15,7 +15,7 @@ export const StateProvider = (props) => {
       loggedIn: false,
       currentCompanyID: "",
       currentCompany: "",
-      currentSite: "",
+      currentLocation: "",
       currentService: "",
       currentTicket: "",
       currentOrder: "",
@@ -55,9 +55,9 @@ export const StateProvider = (props) => {
         })
       };
 
-      const setCurrentSite = (id) => {
+      const setCurrentLocation = (id) => {
         dispatch({
-          type: "SET_CURRENT_SITE",
+          type: "SET_CURRENT_Location",
           payload: id
         })
       };
@@ -97,7 +97,7 @@ export const StateProvider = (props) => {
           setLoggedIn,
           setCurrentCompanyID,
           setCurrentCompany,
-          setCurrentSite,
+          setCurrentLocation,
           setCurrentService,
           setCurrentTicket,
           setCurrentOrder,

@@ -15,10 +15,10 @@ export default (state, action) => {
         ...state,
         loggedIn: action.payload
       };
-    case "SET_CURRENT_SITE":
+    case "SET_CURRENT_LOCATION":
       return {
         ...state,
-        currentSite: action.payload
+        currentLocation: action.payload
       };
     case "SET_CURRENT_SERVICE":
       return {

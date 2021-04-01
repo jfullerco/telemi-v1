@@ -8,7 +8,7 @@ import CompanyProfile from './Pages/Companies/CompanyProfile'
 import Login from './Pages/Login'
 import SiteList from './Pages/Sites/SiteList'
 import SiteDetail from './Pages/Sites/SiteDetail'
-import AddSite from './Pages/Sites/AddSite'
+
 
 import LogoutButton from './Components/LogoutButton'
 import {AuthProvider} from './Contexts/AuthContext'
@@ -33,7 +33,7 @@ export default function App() {
             <Route path="/login" component={Login} />
             <Route exact path="/locations" component={SiteList} />
             <Route path="/locations/:id" component={SiteDetail} />
-            <Route path="/addLocation" component={AddSite} />
+            
             <Route path="/companyProfile" component={CompanyProfile} />
             
 

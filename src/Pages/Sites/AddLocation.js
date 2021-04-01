@@ -35,7 +35,7 @@ const AddLocation = () => {
     }  
     console.log(data)
     const res = await db.collection("Locations").doc().set(data)
-    setTriggerClose()
+    autoClose()
   }
 
   const handleModalClose = () => {
@@ -45,19 +45,13 @@ const AddLocation = () => {
   const autoClose = () => {
     setTimeout(() => {setModalState(false)}, 1000)
   }
-
-  useEffect(() => {
-
-    autoClose()
-    
-  }, [success])
   
 
   return (
     <div className={modalState === true ? "modal is-active" : "modal"}>
       <div className="modal-background"></div>
       <div className="modal-card">
-        <div className="modal-card-head">Login</div>
+        <div className="modal-card-head">Add Location</div>
         <div className="modal-card-body">
           <form>
             <label>Location Name</label>
@@ -77,7 +71,7 @@ const AddLocation = () => {
           </form>
         <div className="block">
           <div className="notification is-danger is-hidden">{addLocationError}</div>
-          <div className="notification is-success">{success === true ? "Location Added" : ""}</div>
+         {success === true ?  <div className="notification is-success">Location Added</div> : ""}
         </div>
         <div className="modal-card-foot">
           
