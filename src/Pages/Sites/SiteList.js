@@ -6,6 +6,7 @@ import { db } from '../../firebase'
 
 import SiteListNav from '../../Components/Elements/SiteListNav'
 import AddLocation from './AddLocation'
+import LocationDetail from './LocationDetail'
 
 const SiteList = () => {
   
