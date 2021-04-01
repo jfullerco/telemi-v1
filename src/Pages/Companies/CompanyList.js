@@ -35,7 +35,9 @@ const CompanyList = () => {
     const initialCompanyRef = await db.collection("Companies").where("Users", "array-contains", "jonathan@jfuller.co").limit(1).get()
 
     const initialCompanyID = initialCompanyRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
-    userContext.setCurrentCompany(initialCompanyID[0].id)
+    userContext.setCurrentCompanyID(initialCompanyID[0].id)
+    userContext.setCurrentCompany(initialCompanyID[0].Name)
+
 
     const companies = companiesRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
     setUserCompanies(companies)

@@ -21,7 +21,7 @@ const SiteList = () => {
 
   const fetchLocations = async() => {
    
-    const locationsRef = await db.collection("Locations").where("CompanyID", "==", userContext.userSession.currentCompany).get()
+    const locationsRef = await db.collection("Locations").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
 
     const locations = locationsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
     setUserLocations(locations)

@@ -13,6 +13,7 @@ export const StateProvider = (props) => {
 
       userLevel: "",
       loggedIn: false,
+      currentCompanyID: "",
       currentCompany: "",
       currentSite: "",
       currentService: "",
@@ -38,11 +39,19 @@ export const StateProvider = (props) => {
         })
       };
 
-      const setCurrentCompany = (id) => {
-        console.log(id)
+      const setCurrentCompanyID = (id) => {
+        
+        dispatch({
+          type: "SET_CURRENT_COMPANYID",
+          payload: id
+        })
+      };
+
+      const setCurrentCompany = (name) => {
+        
         dispatch({
           type: "SET_CURRENT_COMPANY",
-          payload: id
+          payload: name
         })
       };
 
@@ -86,6 +95,7 @@ export const StateProvider = (props) => {
       <Provider value={{ 
           
           setLoggedIn,
+          setCurrentCompanyID,
           setCurrentCompany,
           setCurrentSite,
           setCurrentService,

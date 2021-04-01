@@ -9,13 +9,23 @@ const AddLocation = () => {
   const userContext = useContext(stateContext)
 
   const [modalState, setModalState] = useState(true)
+  const [addLocationError, setAddLocationError] = useState("")
   const [fields, setFields] = useRef({
     Address1: "",
     Address2: "",
     City: "",
-    CompanyID: userContext.userSession.currentCompany,
-    CompanyName: 
+    CompanyID: userContext.userSession.currentCompanyID,
+    CompanyName: userContext.userSession.currentCompany,
+    Name: "",
+    Phone: "",
+    State: "",
+    Zip: ""
   })
+
+  const handleSubmit = (fields) => {
+
+  }
+
   return (
     <div className={modalState === true ? "modal is-active" : "modal"}>
       <div className="modal-background"></div>
@@ -23,20 +33,20 @@ const AddLocation = () => {
         <div className="modal-card-head">Login</div>
         <div className="modal-card-body">
           <form>
-            <label>Email</label>
-            <input className="input" type="email" ref={emailRef} />
-            <label>Password</label>
-            <input className="input" type="password" ref={passwordRef}/>
+            <label>Location Name</label>
+            <input className="input" type="text" ref={fields.Name} />
+            <label>Address 1</label>
+            <input className="input" type="text" ref={fields.Address1}/>
           </form>
         <div className="block">
-          <div className="notification is-danger is-hidden">{loginError}</div>
+          <div className="notification is-danger is-hidden">{addLocationError}</div>
         </div>
         <div className="modal-card-foot">
           
-          <button className={loading !== true ? "button level-item" : "button is-loading"} 
-          type="submit" disabled={loading} onClick={handleSubmit}
+          <button className="button level-item"
+          type="submit" onClick={handleSubmit}
           >
-            Login
+            Add Location
           </button>
           
           <div className="content is-small">

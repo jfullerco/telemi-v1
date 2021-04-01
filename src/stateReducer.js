@@ -1,10 +1,15 @@
 export default (state, action) => {
   switch (action.type) {
+    case "SET_CURRENT_COMPANYID":
+      return {
+        ...state,
+        currentCompanyID: action.payload
+      }
     case "SET_CURRENT_COMPANY":
       return {
         ...state,
         currentCompany: action.payload
-      }
+      }  
     case "LOGGED_IN":
       return {
         ...state,
