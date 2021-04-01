@@ -19,7 +19,7 @@ const SiteList = () => {
     setToggleModal(!toggleModal)
   }
 
-  const toggleDetailModal = () => {
+  const handleToggleDetailModal = () => {
     setToggleDetailModal(!toggleModal)
   }
 
@@ -63,13 +63,13 @@ const SiteList = () => {
         {(userLocations != "") ? userLocations.map(location => (
         <div className="block" key={location.id}>
           <span>
-            <button onClick={toggleDetailModal}>
-              <div className="button is-rounded">
+            
+              <div className="button is-rounded" onClick={handleToggleDetailModal}>
                 
                     {location.Name} 
       
               </div>
-            </Link>
+            {toggleDetailModal != false ? <LocationDetail /> : ""}
           </span>
         </div>
         )

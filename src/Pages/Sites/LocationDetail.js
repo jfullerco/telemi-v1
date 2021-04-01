@@ -63,6 +63,8 @@ const LocationDetail = () => {
                 
                     {location.Name} <br />
                     {location.Address1}
+                    {location.City}
+                    {location.State}
       
               </div>
             </Link>
