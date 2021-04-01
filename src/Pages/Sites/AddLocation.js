@@ -7,24 +7,51 @@ import {stateContext} from '../../stateContext'
 const AddLocation = () => {
 
   const userContext = useContext(stateContext)
-
+  
   const [modalState, setModalState] = useState(true)
   const [addLocationError, setAddLocationError] = useState("")
-  const [fields, setFields] = useRef({
-    Address1: "",
-    Address2: "",
-    City: "",
-    CompanyID: userContext.userSession.currentCompanyID,
-    CompanyName: userContext.userSession.currentCompany,
-    Name: "",
-    Phone: "",
-    State: "",
-    Zip: ""
-  })
+  const [success, setSuccess] = useState(false)
+  const [triggerClose, setTriggerClose] = useState()
+  
+  const locationName = useRef("")
+  const locationAddress1 = useRef("")
+  const locationAddress2 = useRef("")
+  const locationCity = useRef("")
+  const locationPhone = useRef("")
+  const locationState = useRef("")
+  const locationZip = useRef("")
 
-  const handleSubmit = (fields) => {
-
+  const handleSubmit = async(e) => {
+    const data = {
+      Name: locationName.current.value,
+      Address1: locationAddress1.current.value,
+      Address2: locationAddress2.current.value,
+      City: locationCity.current.value,
+      CompanyID: userContext.userSession.currentCompanyID,
+      CompanyName: userContext.userSession.currentCompany,
+      Phone: locationPhone.current.value,
+      State: locationState.current.value,
+      Zip: locationZip.current.value
+    }  
+    console.log(data)
+    const res = await db.collection("Locations").doc().set(data)
+    setTriggerClose()
   }
+
+  const handleModalClose = () => {
+    setModalState(false)
+  }
+
+  const autoClose = () => {
+    setTimeout(() => {setModalState(false)}, 1000)
+  }
+
+  useEffect(() => {
+
+    autoClose()
+    
+  }, [success])
+  
 
   return (
     <div className={modalState === true ? "modal is-active" : "modal"}>
@@ -34,12 +61,23 @@ const AddLocation = () => {
         <div className="modal-card-body">
           <form>
             <label>Location Name</label>
-            <input className="input" type="text" ref={fields.Name} />
+            <input className="input" type="text" ref={locationName} />
             <label>Address 1</label>
-            <input className="input" type="text" ref={fields.Address1}/>
+            <input className="input" type="text" ref={locationAddress1} />
+            <label>Address 2</label>
+            <input className="input" type="text" ref={locationAddress2} />
+            <label>City</label>
+            <input className="input" type="text" ref={locationCity} />
+            <label>State</label>
+            <input className="input" type="text" ref={locationState} />
+            <label>Zip</label>
+            <input className="input" type="text" ref={locationZip} />
+            <label>Phone</label>
+            <input className="input" type="text" ref={locationPhone} />
           </form>
         <div className="block">
           <div className="notification is-danger is-hidden">{addLocationError}</div>
+          <div className="notification is-success">{success === true ? "Location Added" : ""}</div>
         </div>
         <div className="modal-card-foot">
           
@@ -48,10 +86,6 @@ const AddLocation = () => {
           >
             Add Location
           </button>
-          
-          <div className="content is-small">
-            Create account 
-          <Link to="/register">Register</Link></div>
         
         </div>
         <button className="modal-close is-large" aria-label="close" onClick={handleModalClose}></button>  

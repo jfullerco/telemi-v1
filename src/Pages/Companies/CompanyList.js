@@ -25,7 +25,7 @@ const CompanyList = () => {
   
   const handleChange = (e) => {
     
-    userContext.setCurrentCompany(e.target.value)
+    userContext.setCurrentCompanyID(e.target.value)
   }
 
   const fetchCompanies = async() => {

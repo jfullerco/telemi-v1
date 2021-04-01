@@ -5,11 +5,18 @@ import {stateContext} from '../../stateContext'
 import { db } from '../../firebase'
 
 import SiteListNav from '../../Components/Elements/SiteListNav'
+import AddLocation from './AddLocation'
 
 const SiteList = () => {
   
   const userContext = useContext(stateContext)
   const currentCompany = userContext
+
+  const [toggleModal, setToggleModal] = useState(false)
+  
+  const toggleAddLocationModal = () => {
+    setToggleModal(!toggleModal)
+  }
 
   const [userLocations, setUserLocations] = useState("")
   
@@ -44,7 +51,8 @@ const SiteList = () => {
         <div className="block">
       
         <div className="block">
-          <SiteListNav />
+          {toggleModal === true ? <AddLocation /> : ""}
+          <SiteListNav /> <button onClick={toggleAddLocationModal}>Add Location</button>
         </div>
       
         {(userLocations != "") ? userLocations.map(location => (
