@@ -39,7 +39,7 @@ console.log(userContext)
       >
 
       <div className="navbar-end">
-        {userContext.userSession.loggedIn === true ? (
+        {userContext.userSession ? (
           <>
           <Link to={`/dashboard/${userContext.userSession.userID}`} className="navbar-item">
             Dashboard

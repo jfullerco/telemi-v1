@@ -34,7 +34,7 @@ const LocationDetail = () => {
   const [userLocation, setUserLocation] = useState("")
   
   useEffect(() => {
-    
+    console.log(userContext.userSession)
     fetchLocation()
   
   }, [])
@@ -42,11 +42,16 @@ const LocationDetail = () => {
   const fetchLocation = async() => {
    
     const locationRef = await db.collection("Locations").doc(userContext.userSession.currentLocation).get()
-
-    const location = locationRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
-    setUserLocation(location)
-
+    
+    const data = await locationRef.data()
+    const id = await locationRef.id
+    setUserLocation(data)
+    
   }
+
+  const handleSubmit = () => {}
+
+  const handleModalClose = () => {}
 
   console.log(userLocation)
 

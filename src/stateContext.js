@@ -57,7 +57,7 @@ export const StateProvider = (props) => {
 
       const setCurrentLocation = (id) => {
         dispatch({
-          type: "SET_CURRENT_Location",
+          type: "SET_CURRENT_LOCATION",
           payload: id
         })
       };
