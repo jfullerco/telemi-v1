@@ -12,6 +12,7 @@ import SiteDetail from './Pages/Sites/SiteDetail'
 
 import LogoutButton from './Components/LogoutButton'
 import {AuthProvider} from './Contexts/AuthContext'
+import DevTools from './Testing/DevTools'
 import "./style.css"
 
 export default function App() {
@@ -40,7 +41,7 @@ export default function App() {
           </Switch>
         
         </div>  
-
+        <DevTools />
       </div>
     </Router>
     </AuthProvider>

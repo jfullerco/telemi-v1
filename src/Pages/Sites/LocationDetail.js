@@ -12,7 +12,7 @@ const LocationDetail = () => {
   const userContext = useContext(stateContext)
   const currentLocation = userContext
 
-  const [modalState, setModalState] = useState(true)
+  const [panelState, setPanelState] = useState(true)
   const [addLocationError, setAddLocationError] = useState("")
   const [success, setSuccess] = useState(false)
   const [triggerClose, setTriggerClose] = useState()
@@ -25,7 +25,7 @@ const LocationDetail = () => {
   const locationState = useRef("")
   const locationZip = useRef("")
 
-  const [toggleModal, setToggleModal] = useState(false)
+  const [togglePanel, setTogglePanel] = useState(false)
   
   const toggleAddLocationModal = () => {
     setToggleModal(!toggleModal)
@@ -56,7 +56,7 @@ const LocationDetail = () => {
   console.log(userLocation)
 
   return (
-    <div className={modalState === true ? "modal is-active" : "modal"}>
+    <div className={panelState === true ? "panel is-visible" : "panel is-hidden"}>
       <div className="modal-background"></div>
       <div className="modal-card">
         <div className="modal-card-head">Add Location</div>
