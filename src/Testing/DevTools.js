@@ -15,7 +15,7 @@ const DevTools = () => {
 
   return (
     <div className="notification is-info">
-      <p className="title is-4">contextView</p>
+      <p className="title is-4">conView</p>
       <div className="box">
 
         <p className="sub-title">
@@ -24,6 +24,10 @@ const DevTools = () => {
 
         <p className="sub-title">
           currentCompany: <code>{currentCompany}</code>
+        </p>
+
+        <p className="sub-title">
+          currentLocation: <code>{currentLocation}</code>
         </p>
         
       </div>

@@ -22,7 +22,7 @@ const SiteList = () => {
 
   const handleToggleDetailModal = (id) => {
     userContext.setCurrentLocation(id)
-    setToggleDetailModal(!toggleModal)
+    setToggleDetailModal(!toggleDetailModal)
   }
 
   const [userLocations, setUserLocations] = useState("")
