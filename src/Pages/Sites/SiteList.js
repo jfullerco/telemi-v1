@@ -63,10 +63,10 @@ const SiteList = () => {
         </div>
       
         {(userLocations != "") ? userLocations.map(location => (
-        <div className="block">
+        <div className="block" key={location.id}>
           <span>
             
-              <div className="button is-rounded" onClick={(id) => handleToggleDetailModal(location.id)} key={location.id}>
+              <div className="button is-rounded" onClick={(id) => handleToggleDetailModal(location.id)} >
                 
                   <div value={location.id}> {location.Name} </div>
       
