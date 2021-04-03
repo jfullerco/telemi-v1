@@ -7,9 +7,6 @@ import Dashboard from './Pages/Dashboard'
 import CompanyProfile from './Pages/Companies/CompanyProfile'
 import Login from './Pages/Login'
 import LocationList from './Pages/Locations/LocationList'
-
-
-
 import LogoutButton from './Components/LogoutButton'
 import {AuthProvider} from './Contexts/AuthContext'
 import DevTools from './Testing/DevTools'
