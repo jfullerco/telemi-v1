@@ -7,6 +7,7 @@ import Dashboard from './Pages/Dashboard'
 import CompanyProfile from './Pages/Companies/CompanyProfile'
 import Login from './Pages/Login'
 import LocationList from './Pages/Locations/LocationList'
+import ServiceList from './Pages/Services/ServiceList'
 import LogoutButton from './Components/LogoutButton'
 import {AuthProvider} from './Contexts/AuthContext'
 import DevTools from './Testing/DevTools'
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/login" component={Login} />
             <Route exact path="/locations" component={LocationList} />
+            <Route exact path="/services" component={ServiceList} />
             <Route path="/companyProfile" component={CompanyProfile} />
             
 
