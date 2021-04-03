@@ -6,8 +6,8 @@ import Hello from './Pages/Hello'
 import Dashboard from './Pages/Dashboard'
 import CompanyProfile from './Pages/Companies/CompanyProfile'
 import Login from './Pages/Login'
-import SiteList from './Pages/Sites/SiteList'
-import SiteDetail from './Pages/Sites/SiteDetail'
+import LocationList from './Pages/Locations/LocationList'
+
 
 
 import LogoutButton from './Components/LogoutButton'
@@ -32,9 +32,7 @@ export default function App() {
             <Route exact path="/"  component={Dashboard} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/login" component={Login} />
-            <Route exact path="/locations" component={SiteList} />
-            <Route path="/locations/:id" component={SiteDetail} />
-            
+            <Route exact path="/locations" component={LocationList} />
             <Route path="/companyProfile" component={CompanyProfile} />
             
 
