@@ -42,8 +42,6 @@ const SiteList = () => {
 
   }
 
-  console.log(userLocations)
-
   return (
     <>
         <div className="block"> 

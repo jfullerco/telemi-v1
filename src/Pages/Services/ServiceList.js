@@ -16,11 +16,21 @@ const ServiceList = () => {
     const services = servicesRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
     setActiveServices(services)
   }
-  
+
   return (
-    <div>
-    
-    </div>
+    <>
+
+      <div className="block"> 
+          <section className="hero is-info is-small">
+            <div className="hero-body">
+              <p className="title">Services</p>
+            <div className="subtitle"></div>
+            </div>
+          </section>
+        </div>
+
+        
+    </>
   )
 }
 export default ServiceList
