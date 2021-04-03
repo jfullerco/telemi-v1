@@ -16,10 +16,6 @@ const Dashboard = () => {
   const toggleAssetModal = () => {
     setToggleModal(!toggleModal)
   }
-
-  const handleChange = (e) => {
-    console.log(e.target.value)
-  }
   
   return (  
        

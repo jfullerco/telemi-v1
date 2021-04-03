@@ -31,7 +31,7 @@ const LocationDetail = () => {
   const [activeLocation, setActiveLocation] = useState("")
   
   useEffect(() => {
-    console.log(userContext.userSession)
+    
     fetchLocation()
   
   }, [])

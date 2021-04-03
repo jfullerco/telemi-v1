@@ -29,6 +29,10 @@ const DevTools = () => {
         <p className="sub-title">
           currentLocation: <code>{currentLocation}</code>
         </p>
+
+        <p className="sub-title">
+          currentService: <code>{currentService}</code>
+        </p>
         
       </div>
       
