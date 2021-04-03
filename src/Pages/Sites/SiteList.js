@@ -59,7 +59,11 @@ const SiteList = () => {
       
         <div className="block">
           {toggleModal === true ? <AddLocation /> : ""}
-          <SiteListNav /> <button onClick={toggleAddLocationModal}>Add Location</button>
+          <div className="button-group">
+            <button className="button is-rounded is-small" onClick={toggleAddLocationModal}>
+              Add Location
+            </button>
+          </div>
         </div>
       
         {(userLocations != "") ? userLocations.map(location => (
