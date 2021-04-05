@@ -22,7 +22,7 @@ const SiteList = () => {
 
   const handleToggleDetailModal = (id) => {
     
-    userContext.setCurrentLocation(id)
+    userContext.setCurrentLocationID(id)
     setToggleDetailModal(!toggleDetailModal)
   }
 

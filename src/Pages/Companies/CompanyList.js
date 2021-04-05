@@ -15,6 +15,10 @@ const CompanyList = () => {
   
   const [loading, setLoading] = useState(true)
   const [userCompanies, setUserCompanies] = useState([])
+  const [selectedCompany, setSelectedCompany] = useState({
+    id: "",
+    Name: ""
+  })
   
   useEffect(() => {
     fetchCompanies()
@@ -25,6 +29,7 @@ const CompanyList = () => {
   
   const handleChange = (e) => {
     
+    console.log(e.target.value)
     userContext.setCurrentCompanyID(e.target.value)
   }
 
@@ -53,12 +58,12 @@ const CompanyList = () => {
     <>
     <div className="field has-addons has-addons-centered">
     <div className="control is-expanded">
-      <div className="select is-rounded is-fullwidth" onChange={handleChange}>
+      <div className="select is-rounded is-fullwidth" onChange={(e) => handleChange(e)}>
         <select>
           {(userCompanies != "" && loading != true) ? userCompanies.map(company => (
-            <option value={company.id} key={company.id}>
+            <option value={company.id} key={company.id} >
               {company.Name}
-              {console.log()}
+              {console.log(company)}
             </option>
           )) : (
             <option>Loading data...</option>

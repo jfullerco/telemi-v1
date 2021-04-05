@@ -6,7 +6,8 @@ const DevTools = () => {
   const {
     currentCompanyID,
     currentCompany,
-    currentLocation,
+    currentLocationID,
+    currentLocationName,
     currentService,
     currentTicket,
     currentOrder,
@@ -27,11 +28,11 @@ const DevTools = () => {
         </p>
 
         <p className="sub-title">
-          currentLocation: <code>{currentLocation}</code>
+          currentLocationID: <code>{currentLocationID}</code>
         </p>
 
         <p className="sub-title">
-          currentService: <code>{currentService}</code>
+          currentLocationName: <code>{currentLocationName}</code>
         </p>
         
       </div>

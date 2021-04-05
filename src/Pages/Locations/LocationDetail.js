@@ -5,15 +5,13 @@ import {stateContext} from '../../stateContext'
 import { db } from '../../firebase'
 
 import SiteListNav from '../../Components/Elements/SiteListNav'
-import AddLocation from './AddLocation'
+import AddService from '../Services/AddService'
 
 const LocationDetail = () => {
   
   const userContext = useContext(stateContext)
-  const currentLocation = userContext
-
-  const [modalState, setModalState] = useState(true)
-  const [modalAddServiceState, setModalAddServiceState] = (false)
+  const currentLocationID = userContext
+  const history = useHistory()
   
   const [success, setSuccess] = useState(false)
 
@@ -24,11 +22,13 @@ const LocationDetail = () => {
   const locationPhone = useRef("")
   const locationState = useRef("")
   const locationZip = useRef("")
-  
-  const toggleAddLocationModal = () => {
-    setToggleModal(!toggleModal)
+
+  const [modalState, setModalState] = useState(true)
+  const [addServiceModalState, setAddServiceModalState] = useState(false)
+
+  const toggleAddServiceModal = () => {
+    setAddServiceModalState(!addServiceModalState)
   }
-  
 
   const [activeLocation, setActiveLocation] = useState("")
   
@@ -40,7 +40,7 @@ const LocationDetail = () => {
 
   const fetchLocation = async() => {
    
-    const locationRef = await db.collection("Locations").doc(userContext.userSession.currentLocation).get()
+    const locationRef = await db.collection("Locations").doc(userContext.userSession.currentLocationID).get()
     
     const data = await locationRef.data()
     const id = await locationRef.id
@@ -94,10 +94,11 @@ const LocationDetail = () => {
             Save Changes
           </button>
 
-          <button>
-
+          {addServiceModalState != false ? <AddService /> : ""}
+          <button onClick={toggleAddServiceModal}>
+            Add Service
           </button>
-          {toggleAddServiceModal === true ? <AddService /> : ""}
+          
         </div>
 
         {/* Close Modal */}

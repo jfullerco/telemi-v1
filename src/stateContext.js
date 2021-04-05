@@ -15,7 +15,8 @@ export const StateProvider = (props) => {
       loggedIn: false,
       currentCompanyID: "",
       currentCompany: "",
-      currentLocation: "",
+      currentLocationID: "",
+      currentLocationName: "",
       currentService: "",
       currentTicket: "",
       currentOrder: "",
@@ -40,7 +41,6 @@ export const StateProvider = (props) => {
       };
 
       const setCurrentCompanyID = (id) => {
-        
         dispatch({
           type: "SET_CURRENT_COMPANYID",
           payload: id
@@ -55,10 +55,17 @@ export const StateProvider = (props) => {
         })
       };
 
-      const setCurrentLocation = (id) => {
+      const setCurrentLocationID = (id) => {
         dispatch({
-          type: "SET_CURRENT_LOCATION",
+          type: "SET_CURRENT_LOCATIONID",
           payload: id
+        })
+      };
+
+      const setCurrentLocationName = (name) => {
+        dispatch({
+          type: "SET_CURRENT_LOCATION_NAME",
+          payload: name
         })
       };
 
@@ -97,7 +104,8 @@ export const StateProvider = (props) => {
           setLoggedIn,
           setCurrentCompanyID,
           setCurrentCompany,
-          setCurrentLocation,
+          setCurrentLocationID,
+          setCurrentLocationName,
           setCurrentService,
           setCurrentTicket,
           setCurrentOrder,

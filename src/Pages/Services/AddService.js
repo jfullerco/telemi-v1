@@ -45,7 +45,7 @@ const AddService = () => {
       CompanyID: userContext.userSession.currentCompanyID,
       CompanyName: userContext.userSession.currentCompany,
       Details: {
-        Bandwidth: serviceDetails.detailBandwidth.current.value
+        Bandwidth: serviceDetails.current.detailBandwidth
       },
       MRC: serviceMRC.current.value,
       
@@ -83,10 +83,10 @@ const AddService = () => {
             <input className="input" type="text" ref={serviceMRC} />
             <label>Details</label>
             <input className="input" type="text" ref={serviceDetails.detailBandwidth} />
-            
+            {console.log(serviceDetails)}
           </form>
         <div className="block">
-          <div className="notification is-danger is-hidden">{addLocationError}</div>
+          <div className="notification is-danger is-hidden">{addServiceError}</div>
          {success === true ?  <div className="notification is-success">Service Added</div> : ""}
         </div>
         <div className="modal-card-foot">
