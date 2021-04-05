@@ -6,7 +6,6 @@ import { db } from '../../firebase'
 
 import SiteListNav from '../../Components/Elements/SiteListNav'
 import AddLocation from './AddLocation'
-import AddService from '../Services/AddService'
 
 const LocationDetail = () => {
   
@@ -15,7 +14,7 @@ const LocationDetail = () => {
 
   const [modalState, setModalState] = useState(true)
   const [modalAddServiceState, setModalAddServiceState] = (false)
-  const [addLocationError, setLocationError] = useState("")
+  
   const [success, setSuccess] = useState(false)
 
   const locationName = useRef("")
@@ -29,10 +28,7 @@ const LocationDetail = () => {
   const toggleAddLocationModal = () => {
     setToggleModal(!toggleModal)
   }
-
-  const toggleAddService = () => {
-    setModalAddServiceState(!modalAddServiceState)
-  }
+  
 
   const [activeLocation, setActiveLocation] = useState("")
   
@@ -86,8 +82,7 @@ const LocationDetail = () => {
 
         {/* Error Status Block */}
         <div className="block">
-          <div className="notification is-danger is-hidden">{addLocationError}</div>
-         {success === true ?  <div className="notification is-success">Location Added</div> : ""}
+          <div className="notification is-danger is-hidden"></div>
         </div>
 
         {/* Footer Buttons */}
@@ -99,10 +94,10 @@ const LocationDetail = () => {
             Save Changes
           </button>
 
-          <button onClick={toggleAddServiceModal}>
-            Add Service
+          <button>
+
           </button>
-          {modalAddServiceState === true ? <AddService /> : ""}
+          {toggleAddServiceModal === true ? <AddService /> : ""}
         </div>
 
         {/* Close Modal */}
