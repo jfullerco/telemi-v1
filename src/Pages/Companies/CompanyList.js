@@ -28,9 +28,12 @@ const CompanyList = () => {
   }, [])  
   
   const handleChange = (e) => {
+    const id = e.target.value
+    const name = e.target.options[e.target.selectedIndex].text
     
-    console.log(e.target.value)
-    userContext.setCurrentCompanyID(e.target.value)
+    userContext.setCurrentCompanyID(id)
+    userContext.setCurrentCompany(name)
+
   }
 
   const fetchCompanies = async() => {
@@ -58,10 +61,10 @@ const CompanyList = () => {
     <>
     <div className="field has-addons has-addons-centered">
     <div className="control is-expanded">
-      <div className="select is-rounded is-fullwidth" onChange={(e) => handleChange(e)}>
-        <select>
+      <div className="select is-rounded is-fullwidth">
+        <select onChange={handleChange}>
           {(userCompanies != "" && loading != true) ? userCompanies.map(company => (
-            <option value={company.id} key={company.id} >
+            <option key={company.id} value={company.id} name={company.Name}>
               {company.Name}
               {console.log(company)}
             </option>

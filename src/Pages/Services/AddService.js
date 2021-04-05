@@ -45,7 +45,7 @@ const AddService = () => {
       CompanyID: userContext.userSession.currentCompanyID,
       CompanyName: userContext.userSession.currentCompany,
       Details: {
-        Bandwidth: serviceDetails.current.detailBandwidth
+        Bandwidth: serviceDetails.current.detailsBandwidth
       },
       MRC: serviceMRC.current.value,
       
@@ -82,7 +82,7 @@ const AddService = () => {
             <label>Monthly Cost</label>
             <input className="input" type="text" ref={serviceMRC} />
             <label>Details</label>
-            <input className="input" type="text" ref={serviceDetails.detailBandwidth} />
+            <input className="input" type="text" ref={serviceDetails.detailsBandwidth} />
             {console.log(serviceDetails)}
           </form>
         <div className="block">
