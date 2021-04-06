@@ -6,7 +6,7 @@ import {useAuth} from '../Contexts/AuthContext'
 
 import LogoutButton from '../Components/LogoutButton'
 import CompanyList from './Companies/CompanyList'
-import RecentLocations from './Dashboard/Components/RecentLocations'
+import TotalLocations from './Dashboard/Components/TotalLocations'
 
 const Dashboard = () => {
   
@@ -21,7 +21,7 @@ const Dashboard = () => {
   return (  
        
       <> 
-       <div className="block"> 
+       <div className="block" id="dashboardHero"> 
         <section className="hero is-info">
           <div className="hero-body">
             <p className="title">Dashboard</p>
@@ -30,7 +30,7 @@ const Dashboard = () => {
         </section>
       </div>
       
-      <div className="block">
+      <div className="block" id="companyList">
         <CompanyList />
       </div>
 
@@ -39,19 +39,19 @@ const Dashboard = () => {
         
         <div className="tile is-parent ">
         <article className="tile is-child notification is-primary ">
-        <p className="title is-5">
-          <Link to="/locations">Locations</Link>
+        <p className="title">
+          <div className="block">Total Locations</div>
+          <Link to="/locations"><TotalLocations /></Link>
         </p>
-         <RecentLocations />
         </article>
         </div>
         
-        
         <div className="tile is-parent">
         <article className="tile is-child notification is-primary">
-        <p className="title is-5">
-          <Link to="/services">Services</Link></p>
-        <p className="subtitle"></p>
+        <p className="title">
+          <div className="block">Total Services</div>
+          <Link to="/services">#</Link>
+        </p>
         </article>
         </div>
         
@@ -61,6 +61,7 @@ const Dashboard = () => {
         <p className="subtitle is-small">...</p>
         </article>
         </div>
+
         <div className="tile is-parent">
         <article className="tile is-child notification is-primary ">
         <p className="title is-5">Tickets</p>
@@ -68,6 +69,11 @@ const Dashboard = () => {
         </article>
         </div>
         </div>
+
+        <div className="notification is-info" id="quickLook">
+          //* Quick Look *//
+        </div>
+
       </div>
      
 
