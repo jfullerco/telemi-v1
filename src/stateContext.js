@@ -21,9 +21,11 @@ export const StateProvider = (props) => {
       currentTicket: "",
       currentOrder: "",
       currentAccount: "",     
-      dataLoading: false,
+      dataLoading: true,
 
     }
+    const [toggleDataLoading, setToggleDataLoading] = useState()
+
     const [userSession, dispatch] = useReducer(stateReducer, initialState)
 
       const setLoggedIn = (loginState) => {
