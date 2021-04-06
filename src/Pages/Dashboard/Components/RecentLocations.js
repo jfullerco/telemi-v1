@@ -9,7 +9,7 @@ const RecentLocations = () => {
 console.log(userContext)
   useEffect(() => {
     fetchRecentLocations()
-  }, [currentCompanyID])
+  }, [])
 
   const fetchRecentLocations = () => {
     const locationsRef = db.collection("Locations").where("CompanyID", "==", currentCompanyID).get()
