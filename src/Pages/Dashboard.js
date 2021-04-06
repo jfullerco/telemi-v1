@@ -39,7 +39,7 @@ const Dashboard = () => {
         
         <div className="tile is-parent ">
         <article className="tile is-child notification is-primary ">
-        <p className="title">
+        <p className="title is-5">
           <div className="block">Total Locations</div>
           <Link to="/locations"><TotalLocations /></Link>
         </p>
@@ -48,7 +48,7 @@ const Dashboard = () => {
         
         <div className="tile is-parent">
         <article className="tile is-child notification is-primary">
-        <p className="title">
+        <p className="title is-5">
           <div className="block">Total Services</div>
           <Link to="/services">#</Link>
         </p>
@@ -71,7 +71,18 @@ const Dashboard = () => {
         </div>
 
         <div className="notification is-info" id="quickLook">
-          //* Quick Look *//
+          
+          <nav className="panel card">
+            <p className="panel-heading">Quick Look</p>
+            <p className="panel-tabs">
+            <a>Locations</a>
+            <a>Services</a>
+            <a>Orders</a>
+            <a>Tickets</a>
+            </p>
+            <div className="panel-block"></div>
+          </nav>
+          
         </div>
 
       </div>
