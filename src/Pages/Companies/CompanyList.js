@@ -22,9 +22,7 @@ const CompanyList = () => {
   
   useEffect(() => {
     fetchCompanies()
-    
-    console.log()
-    userContext.setCurrentCompany()
+    userContext.setDataLoading(false)
   }, [])  
   
   const handleChange = (e) => {
@@ -45,7 +43,7 @@ const CompanyList = () => {
     const initialCompanyID = initialCompanyRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
     userContext.setCurrentCompanyID(initialCompanyID[0].id)
     userContext.setCurrentCompany(initialCompanyID[0].Name)
-
+    userContext.setDataLoading(false)
 
     const companies = companiesRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
     setUserCompanies(companies)

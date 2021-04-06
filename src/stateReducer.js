@@ -45,5 +45,10 @@ export default (state, action) => {
         ...state,
         currentAccount: action.payload
       };  
+    case "SET_DATA_LOADING":
+      return {
+        ...state,
+        dataLoading: action.payload
+      };  
   };
 }

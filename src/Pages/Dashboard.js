@@ -11,7 +11,7 @@ import RecentLocations from './Dashboard/Components/RecentLocations'
 const Dashboard = () => {
   
   const userContext = useContext(stateContext)
-  
+  const {dataLoading} = userContext.userSession
   const [toggleModal, setToggleModal] = useState(false)
   
   const toggleAssetModal = () => {
@@ -42,7 +42,7 @@ const Dashboard = () => {
         <p className="title is-5">
           <Link to="/locations">Locations</Link>
         </p>
-         <RecentLocations /> 
+         <RecentLocations />
         </article>
         </div>
         

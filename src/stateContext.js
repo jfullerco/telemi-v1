@@ -21,11 +21,10 @@ export const StateProvider = (props) => {
       currentTicket: "",
       currentOrder: "",
       currentAccount: "",     
-      dataLoading: false,
+      dataLoading: true,
 
     }
     
-
     const [userSession, dispatch] = useReducer(stateReducer, initialState)
 
       const setLoggedIn = (loginState) => {
@@ -95,6 +94,13 @@ export const StateProvider = (props) => {
       const setCurrentAccount = (id) => {
         dispatch({
           type: "SET_CURRENT_ACCOUNT",
+          payload: id
+        })
+      };
+
+      const setDataLoading = (id) => {
+        dispatch({
+          type: "SET_DATA_LOADING",
           payload: id
         })
       };

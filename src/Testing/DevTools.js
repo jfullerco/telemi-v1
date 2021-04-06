@@ -11,7 +11,8 @@ const DevTools = () => {
     currentService,
     currentTicket,
     currentOrder,
-    currentAccount
+    currentAccount,
+    dataLoading
   } = userContext.userSession
 
   return (
@@ -33,6 +34,10 @@ const DevTools = () => {
 
         <p className="sub-title">
           currentLocationName: <code>{currentLocationName}</code>
+        </p>
+
+        <p className="sub-title">
+          dataLoading: <code>{dataLoading.toString()}</code>
         </p>
         
       </div>
