@@ -15,6 +15,7 @@ const SiteList = () => {
 
   const [toggleModal, setToggleModal] = useState(false)
   const [toggleDetailModal, setToggleDetailModal] = useState(false)
+  const [detailPanelState, setDetailPanelState] = useState(false)
   
   const toggleAddLocationModal = () => {
     setToggleModal(!toggleModal)
@@ -24,6 +25,10 @@ const SiteList = () => {
     
     userContext.setCurrentLocationID(id)
     setToggleDetailModal(!toggleDetailModal)
+  }
+
+  const handleToggleDetailPanel = () => {
+    setDetailPanelState(!detailPanelState)
   }
 
   const [userLocations, setUserLocations] = useState("")
@@ -67,15 +72,21 @@ const SiteList = () => {
       
         {(userLocations != "") ? userLocations.map(location => (
         <div className="block" key={location.id}>
-          <span>
-            
-              <div className="button is-rounded" onClick={(id) => handleToggleDetailModal(location.id)} >
+          
+            <div className="field has-addons">
+              <div className="control is-expanded">
+              <div className="button is-rounded is-info is-outlined is-fullwidth" onClick={(id) => handleToggleDetailModal(location.id)} >
                 
                   <div value={location.id}> {location.Name} </div>
-      
+                  
               </div>
+              </div>
+              <div className="control">
+                <div className="button is-info is-rounded" onClick={handleToggleDetailPanel}>...</div>
+              </div>
+            </div>
             {toggleDetailModal != false ? <LocationDetail /> : ""}
-          </span>
+            
         </div>
         )
         ) : (
