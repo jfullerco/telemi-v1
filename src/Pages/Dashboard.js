@@ -25,8 +25,8 @@ const Dashboard = () => {
         <section className="hero is-info">
           <div className="hero-body">
             <p className="title">Dashboard</p>
-            <div className="subtitle"></div>
           </div>
+          
         </section>
       </div>
       
@@ -38,11 +38,14 @@ const Dashboard = () => {
         <div className="tile is-ancestor has-text-centered">
         
         <div className="tile is-parent ">
-        <article className="tile is-child notification is-primary ">
-        <p className="title is-5">
-          <div className="block">Total Locations</div>
-          <Link to="/locations"><TotalLocations /></Link>
+        <article className="tile box is-child notification has-background-info-light">
+        <p className="title is-7 has-text-weight-bold">
+          LOCATIONS
         </p>
+        <p className="button is-rounded is-large has-text-weight-bold">
+          <TotalLocations />
+        </p>
+        
         </article>
         </div>
         
@@ -72,16 +75,7 @@ const Dashboard = () => {
 
         <div className="notification is-info" id="quickLook">
           
-          <nav className="panel card">
-            <p className="panel-heading">Quick Look</p>
-            <p className="panel-tabs">
-            <a>Locations</a>
-            <a>Services</a>
-            <a>Orders</a>
-            <a>Tickets</a>
-            </p>
-            <div className="panel-block"></div>
-          </nav>
+          
           
         </div>
 
