@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { useHistory } from 'react-router-dom'
+
 
 import {useAuth} from '../../Contexts/AuthContext'
 
@@ -7,9 +7,10 @@ import {stateContext} from '../../stateContext'
 
 import { db } from '../../firebase'
 
+import AddCompany from './AddCompany'
+
 const CompanyList = () => {
 
-  const history = useHistory()
   const {currentUser} = useAuth()
   const userContext = useContext(stateContext)
   
@@ -19,6 +20,7 @@ const CompanyList = () => {
     id: "",
     Name: ""
   })
+  const [addCompanyModalState, setAddCompanyModalState] = useState(false)
   
   useEffect(() => {
     fetchCompanies()
@@ -51,12 +53,13 @@ const CompanyList = () => {
 
   }
 
-  const handleSubmit = () => {
-    history.push("/companyProfile")
+  const toggleAddCompany = () => {
+    setAddCompanyModalState(!addCompanyModalState)
   }
   
   return (
     <>
+    {addCompanyModalState != false ? <AddCompany /> : ""}
     <div className="field has-addons has-addons-centered">
     <div className="control is-expanded">
       <div className="select is-rounded is-fullwidth">
@@ -75,8 +78,8 @@ const CompanyList = () => {
         <div className="control">
         {
            
-          <button className="button is-rounded is-info" onClick={handleSubmit}>  
-            choose
+          <button className="button is-rounded is-info" onClick={toggleAddCompany}>  
+            Add Company
           </button> 
          }
         </div>
