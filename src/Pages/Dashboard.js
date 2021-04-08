@@ -7,6 +7,7 @@ import {useAuth} from '../Contexts/AuthContext'
 import LogoutButton from '../Components/LogoutButton'
 import CompanyList from './Companies/CompanyList'
 import TotalLocations from './Dashboard/Components/TotalLocations'
+import DataViewer from './Dashboard/Components/DataViewer'
 
 const Dashboard = () => {
   
@@ -37,7 +38,7 @@ const Dashboard = () => {
       <div className="block">
         <div className="tile is-ancestor has-text-centered">
         
-        <div className="tile is-parent ">
+        <div className="tile is-parent" onClick={}>
         <article className="tile box is-child notification has-background-info-lighter">
         <p className="title is-7 has-text-weight-bold">
           LOCATIONS
@@ -73,20 +74,7 @@ const Dashboard = () => {
         </div>
 
         <div className="notification is-info" id="quickLook">
-          <div className="tabs">
-          <Link to="/locations" className="button is-rounded">
-            Locations
-          </Link>
-          <Link to="/services" className="button is-rounded">
-            Services
-          </Link>
-          <Link to="/orders" className="button is-rounded">
-            Orders
-          </Link>
-          <Link to="/tickets" className="button is-rounded">
-            Tickets
-          </Link>
-          </div>
+          <DataViewer />
         </div>
 
       </div>
