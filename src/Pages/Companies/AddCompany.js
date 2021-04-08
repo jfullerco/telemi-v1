@@ -6,7 +6,7 @@ import {stateContext} from '../../stateContext'
 import {currentUser} from '../../Contexts/AuthContext'
 
 const AddCompany = () => {
-
+  const history = useHistory()
   const userContext = useContext(stateContext)
   
   const [modalState, setModalState] = useState(true)
@@ -30,7 +30,8 @@ const AddCompany = () => {
   }
 
   const autoClose = () => {
-    setTimeout(() => {setModalState(false)}, 1000)
+    setTimeout(() => {setModalState(false)}, 2000)
+    history.push("/")
   }
   
 
