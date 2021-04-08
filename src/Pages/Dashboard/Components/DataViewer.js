@@ -18,6 +18,7 @@ const DataViewer = (props) => {
 
   useEffect(() => {
     fetchLocations()
+    fetchServices()
   }, [currentCompany])
   
   const fetchLocations = async() => {
@@ -54,7 +55,9 @@ const DataViewer = (props) => {
   }
 
 return (
-  <div className="table-container">
+  <>
+  <div className="title">Locations</div>
+  <div className="table-container card">
   <nav className="level">
     <div className="table is-striped is-fullwidth">
       <thead>
@@ -79,6 +82,33 @@ return (
     </div>
     </nav>
   </div>
+  <div className="title">Services</div>
+  <div className="table-container card">
+  <nav className="level">
+    <div className="table is-striped is-fullwidth">
+      <thead>
+        <th className="px-6">Vendor</th>
+        <th className="px-6">Type</th>
+        <th className="px-6">Location</th>
+        <th className="px-6">Asset ID</th>
+      </thead>
+      <tbody>
+      {services != undefined ? services.map(service => (
+        <tr>
+          <td className="px-6">{service.Vendor}</td>
+          <td className="px-6">{service.Type} {location.Address2}</td>
+          <td className="px-6">{service.LocationName}</td>
+          <td className="px-6">{service.AssetID}</td>
+          <td>edit</td>
+        </tr>
+      )) : "No locations to display"}
+       
+
+      </tbody>    
+    </div>
+    </nav>
+  </div>
+  </>
 )
 }
 export default DataViewer
