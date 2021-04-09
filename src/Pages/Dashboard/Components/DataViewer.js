@@ -56,58 +56,61 @@ const DataViewer = (props) => {
 
 return (
   <>
-  <div className="title">Locations</div>
-  <div className="table-container card">
-  <nav className="level">
-    <div className="table is-striped is-fullwidth">
-      <thead>
-        <th className="px-6">Location Name</th>
-        <th className="px-6">Address</th>
-        <th className="px-6">City</th>
-        <th className="px-6">State</th>
-      </thead>
-      <tbody>
-      {locations != undefined ? locations.map(location => (
-        <tr>
-          <td className="px-6">{location.Name}</td>
-          <td className="px-6">{location.Address1} {location.Address2}</td>
-          <td className="px-6">{location.City}</td>
-          <td className="px-6">{location.State}</td>
-          <td>edit</td>
-        </tr>
-      )) : "No locations to display"}
-       
+  
+    <div className="title">Services</div>
+    <div className="table-container card">
+    <nav className="level">
+      <div className="table is-striped is-fullwidth">
+        <thead>
+          <th className="px-6">Vendor</th>
+          <th className="px-6">Type</th>
+          <th className="px-6">Location</th>
+          <th className="px-6">Asset ID</th>
+        </thead>
+        <tbody>
+        {services != undefined ? services.map(service => (
+          <tr>
+            <td className="px-6">{service.Vendor}</td>
+            <td className="px-6">{service.Type} {location.Address2}</td>
+            <td className="px-6">{service.LocationName}</td>
+            <td className="px-6">{service.AssetID}</td>
+            <td>edit</td>
+          </tr>
+        )) : "No locations to display"}
+        
 
-      </tbody>    
+        </tbody>    
+      </div>
+      </nav>
     </div>
-    </nav>
-  </div>
-  <div className="title">Services</div>
-  <div className="table-container card">
-  <nav className="level">
-    <div className="table is-striped is-fullwidth">
-      <thead>
-        <th className="px-6">Vendor</th>
-        <th className="px-6">Type</th>
-        <th className="px-6">Location</th>
-        <th className="px-6">Asset ID</th>
-      </thead>
-      <tbody>
-      {services != undefined ? services.map(service => (
-        <tr>
-          <td className="px-6">{service.Vendor}</td>
-          <td className="px-6">{service.Type} {location.Address2}</td>
-          <td className="px-6">{service.LocationName}</td>
-          <td className="px-6">{service.AssetID}</td>
-          <td>edit</td>
-        </tr>
-      )) : "No locations to display"}
-       
+  
+    <div className="title">Locations</div>
+    <div className="table-container card">
+    <nav className="level">
+      <div className="table is-striped is-fullwidth">
+        <thead>
+          <th className="px-6">Location Name</th>
+          <th className="px-6">Address</th>
+          <th className="px-6">City</th>
+          <th className="px-6">State</th>
+        </thead>
+        <tbody>
+        {locations != undefined ? locations.map(location => (
+          <tr>
+            <td className="px-6">{location.Name}</td>
+            <td className="px-6">{location.Address1} {location.Address2}</td>
+            <td className="px-6">{location.City}</td>
+            <td className="px-6">{location.State}</td>
+            <td>edit</td>
+          </tr>
+        )) : "No locations to display"}
+        
 
-      </tbody>    
+        </tbody>    
+      </div>
+      </nav>
     </div>
-    </nav>
-  </div>
+  
   </>
 )
 }
