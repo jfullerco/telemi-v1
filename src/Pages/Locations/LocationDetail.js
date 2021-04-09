@@ -66,7 +66,7 @@ const LocationDetail = () => {
           <form>
             <label className="label">Location Name</label>
             <input className="input" type="text" ref={locationName} defaultValue={activeLocation.Name} />
-            <label>Address 1</label>
+            <label className="label">Address 1</label>
             <input className="input" type="text" ref={locationAddress1} defaultValue={activeLocation.Address1} />
             <label>Address 2</label>
             <input className="input" type="text" ref={locationAddress2} defaultValue={activeLocation.Address2} />
