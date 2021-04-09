@@ -22,7 +22,7 @@ export default function Login() {
       setLoginError('')
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
-      history.push("/")
+      history.push("/dashboard")
     } catch {
       setLoginError('Failed to login')
     }
