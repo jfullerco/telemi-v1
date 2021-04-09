@@ -39,7 +39,7 @@ const LogoutButton = () => {
       >
 
       <div className="navbar-end">
-        {userContext.userSession ? (
+        {userContext.userSession.currentUser != undefined ? (
           <>
           <Link to={`/dashboard`} className="navbar-item">
             Dashboard
