@@ -1,19 +1,24 @@
 import React, {useState, useEffect, useContext, useRef} from 'react'
 import {Link, useHistory} from 'react-router-dom'
+
 import {stateContext} from '../../../stateContext'
 import {db} from '../../../firebase'
 
+import LocationDetail from '../../Locations/LocationDetail'
+
 const DataViewer = (props) => {
   const userContext = useContext(stateContext)
-
+  const currentCompany = userContext.userSession
   const [locations, setLocations] = useState()
   const [orders, setOrders] = useState()
   const [services, setServices] = useState()
 
-  const currentCompany = userContext.userSession
+  const [toggleLocationDetailModal, setToggleLocationDetailModal] = useState(false)
 
-  const fetchPageData = {
-
+  const handleToggleLocationDetailModal = (id) => {
+    
+    userContext.setCurrentLocationID(id)
+    setToggleLocationDetailModal(!toggleLocationDetailModal)
   }
 
   useEffect(() => {
