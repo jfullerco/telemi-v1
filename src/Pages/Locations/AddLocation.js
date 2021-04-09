@@ -54,7 +54,7 @@ const AddLocation = () => {
       <div className="modal-card-head">
         <p className="modal-card-title">Add Location</p>
       </div>
-        <div className="modal-card-body">
+        <section className="modal-card-body">
           <form>
             <label className="label">Location Name</label>
             <input className="input" type="text" ref={locationName} />
@@ -85,7 +85,7 @@ const AddLocation = () => {
         
         </div>
         <button className="modal-close is-large" aria-label="close" onClick={handleModalClose}></button>  
-        </div>
+        </section>
       </div>
     </div>
   )

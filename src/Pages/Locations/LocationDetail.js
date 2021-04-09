@@ -61,22 +61,22 @@ const LocationDetail = () => {
         <div className="modal-card-head">
           <p className="modal-card-title">{activeLocation.Name} Details</p>
         </div>
-        <div className="modal-card-body">
+        <section className="modal-card-body">
           
           <form>
             <label className="label">Location Name</label>
             <input className="input" type="text" ref={locationName} defaultValue={activeLocation.Name} />
             <label className="label">Address 1</label>
             <input className="input" type="text" ref={locationAddress1} defaultValue={activeLocation.Address1} />
-            <label>Address 2</label>
+            <label className="label">Address 2</label>
             <input className="input" type="text" ref={locationAddress2} defaultValue={activeLocation.Address2} />
-            <label>City</label>
+            <label className="label">City</label>
             <input className="input" type="text" ref={locationCity} defaulValue={activeLocation.City} />
-            <label>State</label>
+            <label className="label">State</label>
             <input className="input" type="text" ref={locationState} defaultValue={activeLocation.State} />
-            <label>Zip</label>
+            <label className="label">Zip</label>
             <input className="input" type="text" ref={locationZip} defaultValue={activeLocation.Zip}/>
-            <label>Phone</label>
+            <label className="label">Phone</label>
             <input className="input" type="text" ref={locationPhone} defaultValue={activeLocation.Phone} />
           </form>
 
@@ -88,14 +88,14 @@ const LocationDetail = () => {
         {/* Footer Buttons */}
         <div className="modal-card-foot">
           
-          <button className="button level-item"
+          <button className="button is-rounded"
           type="submit" onClick={handleSubmit}
           >
             Save Changes
           </button>
 
           {addServiceModalState != false ? <AddService /> : ""}
-          <button onClick={toggleAddServiceModal}>
+          <button className="button is-rounded" onClick={toggleAddServiceModal}>
             Add Service
           </button>
           
@@ -104,7 +104,7 @@ const LocationDetail = () => {
         {/* Close Modal */}
         <button className="modal-close is-large" aria-label="close" onClick={handleModalClose}></button>  
 
-        </div>
+        </section>
       </div>
     </div>
   )

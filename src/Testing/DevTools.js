@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import {stateContext} from '../stateContext'
 
-const DevTools = () => {
+const DevTools = (props) => {
   const userContext = useContext(stateContext)
   const {
     currentCompanyID,
@@ -14,8 +14,10 @@ const DevTools = () => {
     currentAccount,
     dataLoading
   } = userContext.userSession
-
+  const view = props.view
   return (
+    <>
+    {view === true ? (
     <div className="notification is-info">
       <p className="title is-4">conView</p>
       <div className="box">
@@ -43,6 +45,8 @@ const DevTools = () => {
       </div>
       
     </div>
+    ) : ""}
+    </>
   )
 }
 export default DevTools
