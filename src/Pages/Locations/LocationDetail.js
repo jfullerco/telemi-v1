@@ -64,7 +64,7 @@ const LocationDetail = () => {
         <div className="modal-card-body">
           
           <form>
-            <label>Location Name</label>
+            <label className="label">Location Name</label>
             <input className="input" type="text" ref={locationName} defaultValue={activeLocation.Name} />
             <label>Address 1</label>
             <input className="input" type="text" ref={locationAddress1} defaultValue={activeLocation.Address1} />

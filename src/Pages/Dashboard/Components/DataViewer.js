@@ -5,6 +5,7 @@ import {stateContext} from '../../../stateContext'
 import {db} from '../../../firebase'
 
 import LocationDetail from '../../Locations/LocationDetail'
+import AddLocation from '../../Locations/AddLocation'
 
 const DataViewer = (props) => {
   const userContext = useContext(stateContext)
@@ -15,10 +16,16 @@ const DataViewer = (props) => {
 
   const [toggleLocationDetailModal, setToggleLocationDetailModal] = useState(false)
 
+  const [toggleLocationAddModal, setToggleLocationAddModal] = useState(false)
+
   const handleToggleLocationDetailModal = (id) => {
     
     userContext.setCurrentLocationID(id)
     setToggleLocationDetailModal(!toggleLocationDetailModal)
+  }
+
+  const handleToggleLocationAddModal = () => {
+    setToggleLocationAddModal(!toggleLocationAddModal)
   }
 
   useEffect(() => {
@@ -90,7 +97,7 @@ return (
     </div>
 
     {toggleLocationDetailModal != false ? <LocationDetail /> : ""}
-
+    {toggleLocationAddModal != false ? <AddLocation /> : ""}
     <div className="title">Locations</div>
     <div className="table-container">
     <nav className="level">
@@ -100,6 +107,7 @@ return (
           <th className="px-6">Address</th>
           <th className="px-6">City</th>
           <th className="px-6">State</th>
+          <th><button className="button is-rounded is-small" onClick={handleToggleLocationAddModal}>add</button></th>
         </thead>
         <tbody>
         {locations != undefined ? locations.map(location => (
@@ -108,7 +116,7 @@ return (
             <td className="px-6">{location.Address1} {location.Address2}</td>
             <td className="px-6">{location.City}</td>
             <td className="px-6">{location.State}</td>
-            <td><button onClick={()=>handleToggleLocationDetailModal(location.id)}>edit</button></td>
+            <td><button className="button is-rounded is-small" onClick={()=>handleToggleLocationDetailModal(location.id)}>edit</button></td>
           </tr>
         )) : "No locations to display"}
         

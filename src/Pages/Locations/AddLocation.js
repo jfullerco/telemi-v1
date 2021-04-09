@@ -51,7 +51,9 @@ const AddLocation = () => {
     <div className={modalState === true ? "modal is-active" : "modal"}>
       <div className="modal-background"></div>
       <div className="modal-card">
-        <div className="modal-card-head">Add Location</div>
+      <div className="modal-card-head">
+        <p className="modal-card-title">Add Location</p>
+      </div>
         <div className="modal-card-body">
           <form>
             <label>Location Name</label>
