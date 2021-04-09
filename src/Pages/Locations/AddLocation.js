@@ -56,19 +56,19 @@ const AddLocation = () => {
       </div>
         <div className="modal-card-body">
           <form>
-            <label>Location Name</label>
+            <label className="label">Location Name</label>
             <input className="input" type="text" ref={locationName} />
-            <label>Address 1</label>
+            <label className="label">Address 1</label>
             <input className="input" type="text" ref={locationAddress1} />
-            <label>Address 2</label>
+            <label className="label">Address 2</label>
             <input className="input" type="text" ref={locationAddress2} />
-            <label>City</label>
+            <label className="label">City</label>
             <input className="input" type="text" ref={locationCity} />
-            <label>State</label>
+            <label className="label">State</label>
             <input className="input" type="text" ref={locationState} />
-            <label>Zip</label>
+            <label className="label">Zip</label>
             <input className="input" type="text" ref={locationZip} />
-            <label>Phone</label>
+            <label className="label">Phone</label>
             <input className="input" type="text" ref={locationPhone} />
           </form>
         <div className="block">
