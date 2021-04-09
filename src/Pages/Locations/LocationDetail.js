@@ -55,11 +55,11 @@ const LocationDetail = () => {
   }
 
   return (
-    <div className={modalState === true ? "modal is-active" : "modal is-hidden"}>
+    <div className={modalState === true ? "modal is-active is-info" : "modal is-hidden"}>
       <div className="modal-background"></div>
       <div className="modal-card">
         <div className="modal-card-head">
-          <p className="title">{activeLocation.Name} Details</p>
+          <p className="modal-card-title">{activeLocation.Name} Details</p>
         </div>
         <div className="modal-card-body">
           

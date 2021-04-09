@@ -88,9 +88,11 @@ return (
       </div>
       </nav>
     </div>
-  
+
+    {toggleLocationDetailModal != false ? <LocationDetail /> : ""}
+
     <div className="title">Locations</div>
-    <div className="table-container card">
+    <div className="table-container">
     <nav className="level">
       <div className="table is-striped is-fullwidth">
         <thead>
@@ -106,7 +108,7 @@ return (
             <td className="px-6">{location.Address1} {location.Address2}</td>
             <td className="px-6">{location.City}</td>
             <td className="px-6">{location.State}</td>
-            <td>edit</td>
+            <td><button onClick={()=>handleToggleLocationDetailModal(location.id)}>edit</button></td>
           </tr>
         )) : "No locations to display"}
         
