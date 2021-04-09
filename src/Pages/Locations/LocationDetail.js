@@ -65,19 +65,19 @@ const LocationDetail = () => {
           
           <form>
             <label>Location Name</label>
-            <input className="input" type="text" ref={locationName} value={activeLocation.Name} />
+            <input className="input" type="text" ref={locationName} defaultValue={activeLocation.Name} />
             <label>Address 1</label>
-            <input className="input" type="text" ref={locationAddress1} value={activeLocation.Address1} />
+            <input className="input" type="text" ref={locationAddress1} defaultValue={activeLocation.Address1} />
             <label>Address 2</label>
-            <input className="input" type="text" ref={locationAddress2} value={activeLocation.Address2} />
+            <input className="input" type="text" ref={locationAddress2} defaultValue={activeLocation.Address2} />
             <label>City</label>
-            <input className="input" type="text" ref={locationCity} value={activeLocation.City} />
+            <input className="input" type="text" ref={locationCity} defaulValue={activeLocation.City} />
             <label>State</label>
-            <input className="input" type="text" ref={locationState} value={activeLocation.State} />
+            <input className="input" type="text" ref={locationState} defaultValue={activeLocation.State} />
             <label>Zip</label>
-            <input className="input" type="text" ref={locationZip} value={activeLocation.Zip}/>
+            <input className="input" type="text" ref={locationZip} defaultValue={activeLocation.Zip}/>
             <label>Phone</label>
-            <input className="input" type="text" ref={locationPhone} value={activeLocation.Phone} />
+            <input className="input" type="text" ref={locationPhone} defaultValue={activeLocation.Phone} />
           </form>
 
         {/* Error Status Block */}
