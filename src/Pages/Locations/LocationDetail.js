@@ -48,10 +48,25 @@ const LocationDetail = () => {
     
   }
 
-  const handleSubmit = () => {}
+  const handleSubmit = async(e) => {
+    const data = {
+      Name: locationName.current.value,
+      Address1: locationAddress1.current.value,
+      Address2: locationAddress2.current.value,
+      City: locationCity.current.value,
+      CompanyID: userContext.userSession.currentCompanyID,
+      CompanyName: userContext.userSession.currentCompany,
+      Phone: locationPhone.current.value,
+      State: locationState.current.value,
+      Zip: locationZip.current.value
+    }  
+    console.log(data)
+    const res = await db.collection("Locations").doc(userContext.userSession.currentLocationID).update(data)
+    autoClose()
+  }
 
   const handleModalClose = () => {
-    setModalState(false)
+    setModalState(!modalState)
   }
 
   return (

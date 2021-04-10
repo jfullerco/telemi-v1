@@ -25,6 +25,16 @@ const DataViewer = (props) => {
 
   const [toggleLocationAddModal, setToggleLocationAddModal] = useState(false)
 
+  const handleToggleServicesAddModal = () => {
+    setToggleServicesAddModal(!toggleServicesAddModal)
+  }
+
+  const handleToggleServicesDetailModal = (id) => {
+    
+    userContext.setCurrentServiceID(id)
+    setToggleServicesDetailModal(!toggleServicesDetailModal)
+  }
+  
   const handleToggleLocationDetailModal = (id) => {
     
     userContext.setCurrentLocationID(id)
@@ -86,15 +96,16 @@ return (
           <th className="px-6">Type</th>
           <th className="px-6">Location</th>
           <th className="px-6">Asset ID</th>
+          <th><button className="button is-rounded is-small" onClick={handleToggleServicesAddModal}>add</button></th>
         </thead>
         <tbody>
         {services != undefined ? services.map(service => (
-          <tr>
+          <tr key={service.id}>
             <td className="px-6">{service.Vendor}</td>
             <td className="px-6">{service.Type} {location.Address2}</td>
             <td className="px-6">{service.LocationName}</td>
             <td className="px-6">{service.AssetID}</td>
-            <td>edit</td>
+            <td><button className="button is-rounded is-small" onClick={()=>handleToggleServicesDetailModal(service.id)}>edit</button></td>
           </tr>
         )) : "No locations to display"}
         
@@ -119,7 +130,7 @@ return (
         </thead>
         <tbody>
         {locations != undefined ? locations.map(location => (
-          <tr>
+          <tr key={location.id}>
             <td className="px-6">{location.Name}</td>
             <td className="px-6">{location.Address1} {location.Address2}</td>
             <td className="px-6">{location.City}</td>

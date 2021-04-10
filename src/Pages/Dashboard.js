@@ -52,7 +52,7 @@ const Dashboard = () => {
         <div className="tile is-parent">
         <article className="tile is-child notification is-primary">
         <p className="title is-5">
-          <div className="block">Total Services</div>
+          <div className="block">Open Orders</div>
           <Link to="/services">#</Link>
         </p>
         </article>
@@ -60,14 +60,14 @@ const Dashboard = () => {
         
         <div className="tile is-parent">
         <article className="tile is-child notification is-primary ">
-        <p className="title is-5">Orders</p>
+        <p className="title is-5">Open Tickets</p>
         <p className="subtitle is-small">...</p>
         </article>
         </div>
 
         <div className="tile is-parent">
         <article className="tile is-child notification is-primary ">
-        <p className="title is-5">Tickets</p>
+        <p className="title is-5">Monthly Spend</p>
         <p className="subtitle is-small">...</p>
         </article>
         </div>
