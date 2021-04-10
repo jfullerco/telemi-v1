@@ -4,15 +4,22 @@ import {Link, useHistory} from 'react-router-dom'
 import {stateContext} from '../../../stateContext'
 import {db} from '../../../firebase'
 
+import ServiceDetail from '../../Services/ServiceDetail'
+import AddService from '../../Services/AddService'
 import LocationDetail from '../../Locations/LocationDetail'
 import AddLocation from '../../Locations/AddLocation'
 
 const DataViewer = (props) => {
   const userContext = useContext(stateContext)
   const currentCompany = userContext.userSession
+
   const [locations, setLocations] = useState()
   const [orders, setOrders] = useState()
   const [services, setServices] = useState()
+
+  const [toggleServicesDetailModal, setToggleServicesDetailModal] = useState(false)
+
+  const [toggleServicesAddModal, setToggleServicesAddModal] = useState(false)
 
   const [toggleLocationDetailModal, setToggleLocationDetailModal] = useState(false)
 
@@ -68,7 +75,8 @@ const DataViewer = (props) => {
 
 return (
   <>
-  
+    {toggleServicesDetailModal != false ? <ServiceDetail /> : ""}
+    {toggleServicesAddModal != false ? <AddService /> : ""}
     <div className="title">Services</div>
     <div className="table-container card">
     <nav className="level">
