@@ -108,13 +108,14 @@ const LocationDetail = () => {
           >
             Save Changes
           </button>
-
+{/* Remove to activate Add Service Button 
           {addServiceModalState != false ? <AddService /> : ""}
           <button className="button is-rounded" onClick={toggleAddServiceModal}>
             Add Service
           </button>
-          
+*/}          
         </div>
+
 
         {/* Close Modal */}
         <button className="modal-close is-large" aria-label="close" onClick={handleModalClose}></button>  

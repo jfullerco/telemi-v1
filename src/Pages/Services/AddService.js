@@ -12,6 +12,8 @@ const AddService = () => {
   const [addServiceError, setAddServiceError] = useState("")
   const [success, setSuccess] = useState(false)
   const [triggerClose, setTriggerClose] = useState()
+
+  const [locations, setLocations] = useState()
   
   const serviceName = useRef("")
   const serviceVendor = useRef("")
@@ -35,13 +37,26 @@ const AddService = () => {
   const serviceAccountNum = useRef("")
   const serviceSubAccountNum = useRef("")
 
+  useEffect(() => {
+    fetchLocations()
+  },[])
+
+  const fetchLocations = async() => {
+   
+    const locationsRef = await db.collection("Locations").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
+
+    const locations = locationsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    setUserLocations(locations)
+
+  }
+  
   const handleSubmit = async(e) => {
     const data = {
       Name: serviceName.current.value,
       Vendor: serviceVendor.current.value,
       Type: serviceType.current.value,
-      LocationID: userContext.userSession.currentLocationID,
-      LocationName: userContext.userSession.currentLocationName,
+      LocationID: serviceLocationID.current.value,
+      LocationName: serviceLocationID.current.value,
       CompanyID: userContext.userSession.currentCompanyID,
       CompanyName: userContext.userSession.currentCompany,
       Details: {
@@ -71,6 +86,15 @@ const AddService = () => {
         <div className="modal-card-head">Add Service</div>
         <div className="modal-card-body">
           <form>
+          {/* Location Picker Goes Here! */}
+            <label>Service Location</label>
+            <select className="select" onChange={handleLocationChange}>
+            {locations != undefined ? locations.map(location => (
+              <option key={location.id} value={location.id} name={location.Name}>
+                {location.Name}
+              </option>
+            )) : "Add a location before adding a service"}
+            </select>
             <label>Service Name</label>
             <input className="input" type="text" ref={serviceName} />
             <label>Vendor</label>

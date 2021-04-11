@@ -33,8 +33,7 @@ export default function App() {
             <Route exact path="/locations" component={LocationList} />
             <Route exact path="/services" component={ServiceList} />
             <Route path="/companyProfile" component={CompanyProfile} />
-            
-
+          
           </Switch>
         
         </div>  
