@@ -83,13 +83,13 @@ const ServiceDetail = () => {
       <div className="modal-background"></div>
       <div className="modal-card">
         <div className="modal-card-head">
-          <p className="modal-card-title">{activeLocation.Name} Details</p>
+          <p className="modal-card-title">{activeService.Name} Details</p>
         </div>
         <section className="modal-card-body">
           
           <form>
-            <label className="label">Location Name</label>
-            <input className="input" type="text" ref={locationName} defaultValue={activeLocation.Name} />
+            <label className="label">Service Name</label>
+            <input className="input" type="text" ref={locationName} defaultValue={activeService.Name} />
             <label className="label">Address 1</label>
             <input className="input" type="text" ref={locationAddress1} defaultValue={activeLocation.Address1} />
             <label className="label">Address 2</label>

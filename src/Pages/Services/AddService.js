@@ -46,8 +46,13 @@ const AddService = () => {
     const locationsRef = await db.collection("Locations").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
 
     const locations = locationsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
-    setUserLocations(locations)
+    setLocations(locations)
 
+  }
+  
+  const handleLocationChange = (e) => {
+    serviceLocationID.current.value = e.target.value
+    serviceLocationName.current.value = e.target.name
   }
   
   const handleSubmit = async(e) => {
@@ -56,7 +61,7 @@ const AddService = () => {
       Vendor: serviceVendor.current.value,
       Type: serviceType.current.value,
       LocationID: serviceLocationID.current.value,
-      LocationName: serviceLocationID.current.value,
+      LocationName: serviceLocationID.current.name,
       CompanyID: userContext.userSession.currentCompanyID,
       CompanyName: userContext.userSession.currentCompany,
       Details: {
@@ -83,29 +88,36 @@ const AddService = () => {
     <div className={modalState === true ? "modal is-active" : "modal"}>
       <div className="modal-background"></div>
       <div className="modal-card">
-        <div className="modal-card-head">Add Service</div>
+        <div className="modal-card-head">
+        <div className="modal-card-title">
+          Add Service
+          </div>
+        </div>
         <div className="modal-card-body">
           <form>
-          {/* Location Picker Goes Here! */}
-            <label>Service Location</label>
-            <select className="select" onChange={handleLocationChange}>
+          
+            <label className="label">Service Location</label>
+            <div className="select is-fullwidth">
+            <select className="select"  >
             {locations != undefined ? locations.map(location => (
-              <option key={location.id} value={location.id} name={location.Name}>
+              <option key={location.id} value={location.id} name={location.Name} ref={serviceLocationID}>
                 {location.Name}
               </option>
             )) : "Add a location before adding a service"}
             </select>
-            <label>Service Name</label>
+            </div>
+{console.log(serviceLocationID.current.value)}
+            <label className="label">Service Name</label>
             <input className="input" type="text" ref={serviceName} />
-            <label>Vendor</label>
+            <label className="label">Vendor</label>
             <input className="input" type="text" ref={serviceVendor} />
-            <label>Type</label>
+            <label className="label">Type</label>
             <input className="input" type="text" ref={serviceType} />
-            <label>Asset ID</label>
+            <label className="label">Asset ID</label>
             <input className="input" type="text" ref={serviceAssetID} />
-            <label>Monthly Cost</label>
+            <label className="label">Monthly Cost</label>
             <input className="input" type="text" ref={serviceMRC} />
-            <label>Details</label>
+            <label className="label">Details</label>
             <input className="input" type="text" ref={serviceDetails.detailsBandwidth} />
             {console.log(serviceDetails)}
           </form>
