@@ -88,10 +88,17 @@ const ServiceDetail = () => {
         <section className="modal-card-body">
           
           <form>
-            <label className="label">Service Name</label>
+            
+            <label className="label">
+              Service Name
+            </label>
             <input className="input" type="text" ref={locationName} defaultValue={activeService.Name} />
-            <label className="label">Address 1</label>
+
+            <label className="label">
+              Address 1
+            </label>
             <input className="input" type="text" ref={locationAddress1} defaultValue={activeLocation.Address1} />
+            
             <label className="label">Address 2</label>
             <input className="input" type="text" ref={locationAddress2} defaultValue={activeLocation.Address2} />
             <label className="label">City</label>

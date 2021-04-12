@@ -24,13 +24,7 @@ const AddService = () => {
   const serviceCompanyID = useRef("")
   const serviceCompanyName = useRef("")
   const serviceMRC = useRef("")
-  const serviceDetails = useRef({
-    detailsBandwidth: "",
-    detailsCallPaths: "",
-    detailsPublicIPRange: "",
-    detailsPrivateIPRange: "",
-    detailsNotes: "",
-  })
+  const serviceDetailsBandwidth = useRef("")
   const serviceOrderID = useRef("")
   const serviceOrderNum = useRef("")
   const serviceAccountID = useRef("")
@@ -61,11 +55,11 @@ const AddService = () => {
       Vendor: serviceVendor.current.value,
       Type: serviceType.current.value,
       LocationID: serviceLocationID.current.value,
-      LocationName: serviceLocationID.current.name,
+      LocationName: serviceLocationID.current[serviceLocationID.current.selectedIndex].text,
       CompanyID: userContext.userSession.currentCompanyID,
       CompanyName: userContext.userSession.currentCompany,
       Details: {
-        Bandwidth: serviceDetails.current.detailsBandwidth
+        Bandwidth: serviceDetailsBandwidth.current.value
       },
       MRC: serviceMRC.current.value,
       
@@ -82,7 +76,9 @@ const AddService = () => {
   const autoClose = () => {
     setTimeout(() => {setModalState(false)}, 1000)
   }
-  
+  const handleChange = () => {
+    console.log(serviceDetails.current)
+  }
 
   return (
     <div className={modalState === true ? "modal is-active" : "modal"}>
@@ -94,33 +90,40 @@ const AddService = () => {
           </div>
         </div>
         <div className="modal-card-body">
+
           <form>
           
             <label className="label">Service Location</label>
             <div className="select is-fullwidth">
-            <select className="select"  >
-            {locations != undefined ? locations.map(location => (
-              <option key={location.id} value={location.id} name={location.Name} ref={serviceLocationID}>
-                {location.Name}
-              </option>
-            )) : "Add a location before adding a service"}
-            </select>
+              <select className="select" onChange={handleChange} ref={serviceLocationID}>
+              {locations != undefined ? locations.map(location => (
+                <option key={location.id} value={location.id} name={location.Name} >
+                  {location.Name}
+                </option>
+              )) : "Add a location before adding a service"}
+              </select>
             </div>
-{console.log(serviceLocationID.current.value)}
+
             <label className="label">Service Name</label>
             <input className="input" type="text" ref={serviceName} />
+
             <label className="label">Vendor</label>
             <input className="input" type="text" ref={serviceVendor} />
+
             <label className="label">Type</label>
             <input className="input" type="text" ref={serviceType} />
+
             <label className="label">Asset ID</label>
             <input className="input" type="text" ref={serviceAssetID} />
+
             <label className="label">Monthly Cost</label>
             <input className="input" type="text" ref={serviceMRC} />
-            <label className="label">Details</label>
-            <input className="input" type="text" ref={serviceDetails.detailsBandwidth} />
-            {console.log(serviceDetails)}
+            
+            <label className="label">Bandwidth</label>
+            <input className="input" type="text" ref={serviceDetailsBandwidth} />
+            
           </form>
+
         <div className="block">
           <div className="notification is-danger is-hidden">{addServiceError}</div>
          {success === true ?  <div className="notification is-success">Service Added</div> : ""}
@@ -134,7 +137,9 @@ const AddService = () => {
           </button>
         
         </div>
-        <button className="modal-close is-large" aria-label="close" onClick={handleModalClose}></button>  
+
+        <button className="modal-close is-large" aria-label="close" onClick={handleModalClose}></button>
+          
         </div>
       </div>
     </div>
