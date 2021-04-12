@@ -144,6 +144,44 @@ return (
       </div>
       </nav>
     </div>
+
+    <div className="title">Orders</div>
+    <div className="table-container">
+    <nav className="level">
+      <div className="table is-striped is-fullwidth">
+        <thead>
+          <th className="px-6">Vendor</th>
+          <th className="px-6">Order Num</th>
+          <th className="px-6">Date</th>
+          <th className="px-6">Location</th>
+          <th><button className="button is-rounded is-small" onClick={handleToggleLocationAddModal}>add</button></th>
+        </thead>
+        <tbody>
+        {locations != undefined ? locations.map(location => (
+          <tr key={location.id}>
+            <td className="px-6">
+              {location.Name}
+            </td>
+            <td className="px-6">
+              {location.Address1} {location.Address2}
+            </td>
+            <td className="px-6">
+              {location.City}
+            </td>
+            <td className="px-6">
+              {location.State}
+            </td>
+            <td>
+              <button className="button is-rounded is-small" onClick={()=>handleToggleLocationDetailModal(location.id)}>edit</button>
+            </td>
+          </tr>
+        )) : "No locations to display"}
+        
+
+        </tbody>    
+      </div>
+      </nav>
+    </div>
   
   </>
 )
