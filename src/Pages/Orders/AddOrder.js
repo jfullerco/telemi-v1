@@ -12,6 +12,8 @@ const AddOrder = () => {
   const [addOrderError, setAddOrderError] = useState("")
   const [success, setSuccess] = useState(false)
   const [triggerClose, setTriggerClose] = useState()
+
+  const [locations, setLocations] = useState()
   
   const orderNum = useRef("")
   const companyID = useRef("")
@@ -25,8 +27,8 @@ const AddOrder = () => {
   const orderNotes = useRef("")
   const orderMilestones = useRef("")
   const orderVendor = useRef("")
-  const locationID = useRef("")
-  const locationName = useRef("")
+  const orderLocationID = useRef("")
+  const orderLocationName = useRef("")
 
   const handleSubmit = async(e) => {
     const data = {
@@ -39,14 +41,33 @@ const AddOrder = () => {
       OrderServiceType: orderServiceType.current.value,
       OrderVendor: orderVendor.current.value,
       OrderMRC: orderMRC.current.value,
-      LocationID: locationID.current.value,
-      LocationName: locationName.current.value
+      LocationID: orderLocationID.current.value,
+      LocationName: orderLocationID.current[orderLocationID.current.selectedIndex].text
     }  
     console.log(data)
     const res = await db.collection("Orders").doc().set(data)
     autoClose()
   }
 
+  useEffect(() => {
+
+    fetchLocations()
+
+  },[])
+
+  const fetchLocations = async() => {
+   
+    const locationsRef = await db.collection("Locations").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
+
+    const locations = locationsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    setLocations(locations)
+
+  }
+  
+  const handleLocationChange = (e) => {
+    orderLocationID.current.value = e.target.value
+    orderLocationName.current.value = e.target.name
+  }
   const handleModalClose = () => {
     setModalState(false)
   }
@@ -65,13 +86,25 @@ const AddOrder = () => {
       </div>
         <section className="modal-card-body">
           <form>
+
+            <label className="label">Service Location</label>
+            <div className="select is-fullwidth">
+              <select className="select" ref={orderLocationID}>
+              {locations != undefined ? locations.map(location => (
+                <option key={location.id} value={location.id} name={location.Name} >
+                  {location.Name}
+                </option>
+              )) : "Add a location before adding a service"}
+              </select>
+            </div>
+
             <label className="label">Vendor</label>
             <input className="input" type="text" ref={orderVendor} />
             <label className="label">Order Number</label>
             <input className="input" type="text" ref={orderNum} />
             <label className="label">Date Ordered</label>
             <input className="input" type="text" ref={orderDate} />
-            <label className="label">Type of Order<hint>New/Upgrade/Change</hint></label>
+            <label className="label">Type of Order</label>
             <input className="input" type="text" ref={orderType} />
             <label className="label">Status</label>
             <input className="input" type="text" ref={orderStatus} />

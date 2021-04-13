@@ -9,6 +9,8 @@ import AddService from '../../Services/AddService'
 import LocationDetail from '../../Locations/LocationDetail'
 import AddLocation from '../../Locations/AddLocation'
 
+import AddOrder from '../../Orders/AddOrder'
+
 const DataViewer = (props) => {
   const userContext = useContext(stateContext)
   const currentCompany = userContext.userSession
@@ -24,6 +26,8 @@ const DataViewer = (props) => {
   const [toggleLocationDetailModal, setToggleLocationDetailModal] = useState(false)
 
   const [toggleLocationAddModal, setToggleLocationAddModal] = useState(false)
+
+  const [toggleOrderAddModal, setToggleOrderAddModal] = useState(false)
 
   const handleToggleServicesAddModal = () => {
     setToggleServicesAddModal(!toggleServicesAddModal)
@@ -43,6 +47,10 @@ const DataViewer = (props) => {
 
   const handleToggleLocationAddModal = () => {
     setToggleLocationAddModal(!toggleLocationAddModal)
+  }
+
+  const handleToggleOrderAddModal = () => {
+    setToggleOrderAddModal(!toggleOrderAddModal)
   }
 
   useEffect(() => {
@@ -107,7 +115,7 @@ return (
             <td className="px-6">{service.AssetID}</td>
             <td><button className="button is-rounded is-small" onClick={()=>handleToggleServicesDetailModal(service.id)}>edit</button></td>
           </tr>
-        )) : "No locations to display"}
+        )) : "No services added"}
         
 
         </tbody>    
@@ -145,6 +153,8 @@ return (
       </nav>
     </div>
 
+    {toggleLocationDetailModal != false ? <LocationDetail /> : ""}
+    {toggleOrderAddModal != false ? <AddOrder /> : ""}
     <div className="title">Orders</div>
     <div className="table-container">
     <nav className="level">
@@ -154,28 +164,28 @@ return (
           <th className="px-6">Order Num</th>
           <th className="px-6">Date</th>
           <th className="px-6">Location</th>
-          <th><button className="button is-rounded is-small" onClick={handleToggleLocationAddModal}>add</button></th>
+          <th><button className="button is-rounded is-small" onClick={handleToggleOrderAddModal}>add</button></th>
         </thead>
         <tbody>
-        {locations != undefined ? locations.map(location => (
-          <tr key={location.id}>
+        {orders != undefined ? orders.map(order => (
+          <tr key={order.id}>
             <td className="px-6">
-              {location.Name}
+              {order.OrderVendor}
             </td>
             <td className="px-6">
-              {location.Address1} {location.Address2}
+              {order.OrderNum}
             </td>
             <td className="px-6">
-              {location.City}
+              {order.OrderDate}
             </td>
             <td className="px-6">
-              {location.State}
+              {order.LocationName}
             </td>
             <td>
               <button className="button is-rounded is-small" onClick={()=>handleToggleLocationDetailModal(location.id)}>edit</button>
             </td>
           </tr>
-        )) : "No locations to display"}
+        )) : "No orders added"}
         
 
         </tbody>    
