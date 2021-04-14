@@ -56,6 +56,7 @@ const DataViewer = (props) => {
   useEffect(() => {
     fetchLocations()
     fetchServices()
+    fetchOrders()
   }, [currentCompany])
   
   const fetchLocations = async() => {
@@ -153,7 +154,7 @@ return (
       </nav>
     </div>
 
-    {toggleLocationDetailModal != false ? <LocationDetail /> : ""}
+    {toggleLocationDetailModal != false ? <OrderDetail /> : ""}
     {toggleOrderAddModal != false ? <AddOrder /> : ""}
     <div className="title">Orders</div>
     <div className="table-container">

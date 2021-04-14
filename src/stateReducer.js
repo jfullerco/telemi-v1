@@ -25,10 +25,15 @@ export default (state, action) => {
         ...state,
         currentLocationName: action.payload
       }; 
-    case "SET_CURRENT_SERVICE":
+    case "SET_CURRENT_SERVICEID":
       return {
         ...state,
-        currentService: action.payload
+        currentServiceID: action.payload
+      };
+    case "SET_CURRENT_SERVICE_NAME":
+      return {
+        ...state,
+        currentServiceName: action.payload
       };
     case "SET_CURRENT_TICKET": 
       return {

@@ -37,7 +37,7 @@ export default function App() {
           </Switch>
         
         </div>  
-        <DevTools view="false" />
+        <DevTools view="true" />
       <div className="footer">
       <div className="content has-text-right is-size-7">
         Telemi by J Fuller Co| Terms | Settings

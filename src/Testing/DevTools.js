@@ -8,7 +8,8 @@ const DevTools = (props) => {
     currentCompany,
     currentLocationID,
     currentLocationName,
-    currentService,
+    currentServiceID,
+    currentServiceName,
     currentTicket,
     currentOrder,
     currentAccount,
@@ -17,7 +18,7 @@ const DevTools = (props) => {
   const view = props.view
   return (
     <>
-    {view === true ? (
+    {view === "true" ? (
     <div className="notification is-info">
       <p className="title is-4">conView</p>
       <div className="box">
@@ -36,6 +37,14 @@ const DevTools = (props) => {
 
         <p className="sub-title">
           currentLocationName: <code>{currentLocationName}</code>
+        </p>
+
+        <p className="sub-title">
+          currentServiceID: <code>{currentServiceID}</code>
+        </p>
+
+        <p className="sub-title">
+          currentServiceName: <code>{currentServiceName}</code>
         </p>
 
         <p className="sub-title">

@@ -12,6 +12,8 @@ const ServiceDetail = () => {
   
   const [success, setSuccess] = useState(false)
 
+  const [locations, setLocations] = useState()
+
   const serviceName = useRef("")
   const serviceVendor = useRef("")
   const serviceType = useRef("")
@@ -21,13 +23,7 @@ const ServiceDetail = () => {
   const serviceCompanyID = useRef("")
   const serviceCompanyName = useRef("")
   const serviceMRC = useRef("")
-  const serviceDetails = useRef({
-    detailsBandwidth: "",
-    detailsCallPaths: "",
-    detailsPublicIPRange: "",
-    detailsPrivateIPRange: "",
-    detailsNotes: "",
-  })
+  const serviceDetailsBandwidth = useRef("")
   const serviceOrderID = useRef("")
   const serviceOrderNum = useRef("")
   const serviceAccountID = useRef("")
@@ -59,13 +55,11 @@ const ServiceDetail = () => {
       Name: serviceName.current.value,
       Vendor: serviceVendor.current.value,
       Type: serviceType.current.value,
-      LocationID: userContext.userSession.currentLocationID,
-      LocationName: userContext.userSession.currentLocationName,
+      LocationID: serviceLocationID.current.value,
+      LocationName: serviceLocationID.current[serviceLocationID.current.selectedIndex].text,
       CompanyID: userContext.userSession.currentCompanyID,
       CompanyName: userContext.userSession.currentCompany,
-      Details: {
-        Bandwidth: serviceDetails.current.detailsBandwidth
-      },
+      
       MRC: serviceMRC.current.value,
       
     }  
@@ -74,8 +68,30 @@ const ServiceDetail = () => {
     autoClose()
   }
 
+  useEffect(() => {
+    fetchLocations()
+  },[])
+
+  const fetchLocations = async() => {
+   
+    const locationsRef = await db.collection("Locations").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
+
+    const locations = locationsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    setLocations(locations)
+
+  }
+  
+  const handleLocationChange = (e) => {
+    serviceLocationID.current.value = e.target.value
+    serviceLocationName.current.value = e.target.name
+  }
+
   const handleModalClose = () => {
     setModalState(!modalState)
+  }
+
+  const autoClose = () => {
+    setTimeout(() => {setModalState(false)}, 1000)
   }
 
   return (
@@ -85,30 +101,47 @@ const ServiceDetail = () => {
         <div className="modal-card-head">
           <p className="modal-card-title">{activeService.Name} Details</p>
         </div>
-        <section className="modal-card-body">
-          
+        <section className="modal-card-body"> 
           <form>
             
             <label className="label">
               Service Name
             </label>
-            <input className="input" type="text" ref={locationName} defaultValue={activeService.Name} />
+            <input className="input" type="text" ref={serviceName} defaultValue={activeService.Name} />
 
             <label className="label">
-              Address 1
+              Service Location
             </label>
-            <input className="input" type="text" ref={locationAddress1} defaultValue={activeLocation.Address1} />
-            
-            <label className="label">Address 2</label>
-            <input className="input" type="text" ref={locationAddress2} defaultValue={activeLocation.Address2} />
-            <label className="label">City</label>
-            <input className="input" type="text" ref={locationCity} defaulValue={activeLocation.City} />
-            <label className="label">State</label>
-            <input className="input" type="text" ref={locationState} defaultValue={activeLocation.State} />
-            <label className="label">Zip</label>
-            <input className="input" type="text" ref={locationZip} defaultValue={activeLocation.Zip}/>
-            <label className="label">Phone</label>
-            <input className="input" type="text" ref={locationPhone} defaultValue={activeLocation.Phone} />
+            <div className="select is-fullwidth">
+              <select className="select" ref={serviceLocationID} defaultValue={activeService.id}>
+              {locations != undefined ? locations.map(location => (
+                <option key={location.id} value={location.id} name={location.Name} >
+                  {location.Name}
+                </option>
+              )) : "All your locations are belong to us..."}
+              </select>
+            </div>
+
+            <label className="label">
+              Vendor
+            </label>
+            <input className="input" type="text" ref={serviceVendor} defaultValue={activeService.Vendor} />
+
+            <label className="label">
+              Type
+            </label>
+            <input className="input" type="text" ref={serviceType} defaulValue={activeService.Type} />
+
+            <label className="label">
+              Asset ID
+            </label>
+            <input className="input" type="text" ref={serviceAssetID} defaultValue={activeService.AssetID} />
+
+            <label className="label">
+              Monthly Cost
+            </label>
+            <input className="input" type="text" ref={serviceMRC} defaultValue={activeService.MRC}/>
+
           </form>
 
         {/* Error Status Block */}
@@ -125,10 +158,6 @@ const ServiceDetail = () => {
             Save Changes
           </button>
 
-          {addServiceModalState != false ? <AddService /> : ""}
-          <button className="button is-rounded" onClick={toggleAddServiceModal}>
-            Add Service
-          </button>
           
         </div>
 

@@ -69,6 +69,10 @@ const LocationDetail = () => {
     setModalState(!modalState)
   }
 
+  const autoClose = () => {
+    setTimeout(() => {setModalState(false)}, 1000)
+  }
+
   return (
     <div className={modalState === true ? "modal is-active is-info" : "modal is-hidden"}>
       <div className="modal-background"></div>
