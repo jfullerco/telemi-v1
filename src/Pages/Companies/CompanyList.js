@@ -13,6 +13,7 @@ const CompanyList = () => {
 
   const {currentUser} = useAuth()
   const userContext = useContext(stateContext)
+  const {dataLoading} = userContext.userSession
   
   const [loading, setLoading] = useState(true)
   const [userCompanies, setUserCompanies] = useState([])
@@ -65,7 +66,7 @@ const CompanyList = () => {
     <div className="control is-expanded">
       <div className="select is-rounded is-fullwidth">
         <select onChange={handleChange}>
-          {(userCompanies != "" && loading != true) ? userCompanies.map(company => (
+          {(userCompanies != "" && dataLoading != true) ? userCompanies.map(company => (
             <option key={company.id} value={company.id} name={company.Name}>
               {company.Name}
               {console.log(company)}

@@ -30,9 +30,14 @@ const AddCompany = () => {
   }
 
   const autoClose = () => {
-    userContext.setDataLoading(false)
-    setTimeout(() => {setModalState(false)}, 2000)
-    history.push("/")
+    
+    setTimeout(() => {
+      
+      userContext.setDataLoading(false)
+      setModalState(false)
+
+    }, 2000)
+    
   }
   
 
