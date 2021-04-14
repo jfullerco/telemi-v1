@@ -38,7 +38,7 @@ const Dashboard = () => {
       <div className="block">
         <div className="tile is-ancestor has-text-centered">
         
-        <div className="tile is-parent" onClick={}>
+        <div className="tile is-parent" >
         <article className="tile box is-child notification has-background-info-lighter">
         <p className="title is-7 has-text-weight-bold">
           LOCATIONS

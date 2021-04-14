@@ -54,6 +54,7 @@ const CompanyList = () => {
   }
 
   const toggleAddCompany = () => {
+    userContext.setDataLoading(true)
     setAddCompanyModalState(!addCompanyModalState)
   }
   
