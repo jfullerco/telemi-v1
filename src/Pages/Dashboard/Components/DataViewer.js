@@ -8,8 +8,10 @@ import ServiceDetail from '../../Services/ServiceDetail'
 import AddService from '../../Services/AddService'
 import LocationDetail from '../../Locations/LocationDetail'
 import AddLocation from '../../Locations/AddLocation'
-
+import OrderDetail from '../../Orders/OrderDetail'
 import AddOrder from '../../Orders/AddOrder'
+import TicketDetail from '../../Tickets/TicketDetail'
+import AddTicket from '../../Tickets/AddTicket'
 
 const DataViewer = (props) => {
   const userContext = useContext(stateContext)
@@ -140,7 +142,10 @@ return (
 
     {toggleLocationDetailModal != false ? <LocationDetail /> : ""}
     {toggleLocationAddModal != false ? <AddLocation /> : ""}
-    <div className="title">Locations</div>
+    <div className="title">
+      Locations 
+      <span className="is-size-6"> [{locations != undefined ? locations.length : ""}]</span>
+    </div>
     <div className="table-container">
     <nav className="level">
       <div className="table is-striped is-fullwidth">
@@ -208,8 +213,8 @@ return (
       </nav>
     </div>
 
-    {toggleLocationDetailModal != false ? <OrderDetail /> : ""}
-    {toggleOrderAddModal != false ? <AddOrder /> : ""}
+    {toggleLocationDetailModal != false ? <TicketDetail /> : ""}
+    {toggleOrderAddModal != false ? <AddTicket /> : ""}
     <div className="title">Tickets</div>
     <div className="table-container">
     <nav className="level">

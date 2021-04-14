@@ -44,7 +44,7 @@ const Dashboard = () => {
           LOCATIONS
         </p>
         <p className="button is-rounded is-large has-text-weight-bold">
-          <TotalLocations />
+          
         </p>
         </article>
         </div>
