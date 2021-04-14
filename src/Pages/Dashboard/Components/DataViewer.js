@@ -18,6 +18,8 @@ const DataViewer = (props) => {
   const [locations, setLocations] = useState()
   const [orders, setOrders] = useState()
   const [services, setServices] = useState()
+  const [tickets, setTickets] = useState()
+  const [users, setUsers] = useState()
 
   const [toggleServicesDetailModal, setToggleServicesDetailModal] = useState(false)
 
@@ -91,6 +93,18 @@ const DataViewer = (props) => {
     setServices(services)
 
   }
+
+  const fetchTickets = async() => {
+
+    const ticketsRef = await db.collection("Tickets").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
+
+    const tickets = ticketsRef.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()}))
+    setTickets(tickets)
+
+  }
+
 
 return (
   <>
@@ -187,6 +201,74 @@ return (
             </td>
           </tr>
         )) : "No orders added"}
+        
+
+        </tbody>    
+      </div>
+      </nav>
+    </div>
+
+    {toggleLocationDetailModal != false ? <OrderDetail /> : ""}
+    {toggleOrderAddModal != false ? <AddOrder /> : ""}
+    <div className="title">Tickets</div>
+    <div className="table-container">
+    <nav className="level">
+      <div className="table is-striped is-fullwidth">
+        <thead>
+          <th className="px-6">Vendor</th>
+          <th className="px-6">Ticket Number</th>
+          <th className="px-6">Date</th>
+          <th className="px-6">Location</th>
+          <th><button className="button is-rounded is-small" onClick={handleToggleOrderAddModal}>add</button></th>
+        </thead>
+        <tbody>
+        {tickets != undefined ? orders.map(order => (
+          <tr key={order.id}>
+            <td className="px-6">
+              {order.OrderVendor}
+            </td>
+            <td className="px-6">
+              {order.OrderNum}
+            </td>
+            <td className="px-6">
+              {order.OrderDate}
+            </td>
+            <td className="px-6">
+              {order.LocationName}
+            </td>
+            <td>
+              <button className="button is-rounded is-small" onClick={()=>handleToggleLocationDetailModal(location.id)}>edit</button>
+            </td>
+          </tr>
+        )) : "No tickets added"}
+        
+
+        </tbody>    
+      </div>
+      </nav>
+    </div>
+
+    {toggleLocationDetailModal != false ? <OrderDetail /> : ""}
+    {toggleOrderAddModal != false ? <AddOrder /> : ""}
+    <div className="title">Users</div>
+    <div className="table-container">
+    <nav className="level">
+      <div className="table is-striped is-fullwidth">
+        <thead>
+          <th className="px-6">Email</th>
+          <th><button className="button is-rounded is-small" onClick={handleToggleOrderAddModal}>add</button></th>
+        </thead>
+        <tbody>
+        {users != undefined ? orders.map(order => (
+          <tr key={order.id}>
+            <td className="px-6">
+              {order.OrderVendor}
+            </td>
+            <td>
+              <button className="button is-rounded is-small" onClick={()=>handleToggleLocationDetailModal(location.id)}>edit</button>
+            </td>
+          </tr>
+        )) : "No Users added"}
         
 
         </tbody>    
