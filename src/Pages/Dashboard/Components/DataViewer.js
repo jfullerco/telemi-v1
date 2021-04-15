@@ -87,6 +87,18 @@ const DataViewer = (props) => {
     setToggleOrderView(!toggleOrderView)
   }
 
+  const handleToggleTicketDetailModal = () => {
+    setToggleTicketDetailModal(!toggleTicketDetailModal)
+  }
+
+  const handleToggleTicketAddModal = () => {
+    setToggleTicketAddModal(!toggleTicketAddModal)
+  }
+
+  const handleToggleTicketView = () => {
+    setToggleTicketView(!toggleTicketView)
+  }
+
   useEffect(() => {
     fetchLocations()
     fetchServices()
@@ -186,7 +198,7 @@ return (
       <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleLocationView}>
       Locations 
       <span className="is-size-6">
-        [{locations != undefined ? locations.length : ""}]
+        {locations != undefined ? `[${locations.length}]` : ""}
       </span>
       </button>
     </div>
@@ -227,7 +239,7 @@ return (
       <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleOrderView}>
         Orders 
       <span className="is-size-6">
-      [{orders != undefined ? orders.length : ""}]
+      {orders != undefined ? `[${orders.length}]` : ""}
       </span>
       </button>
       
@@ -272,9 +284,19 @@ return (
       </nav>
     </div> : ""}
 
-    {toggleLocationDetailModal != false ? <TicketDetail /> : ""}
-    {toggleOrderAddModal != false ? <AddTicket /> : ""}
-    <div className="title">Tickets</div>
+    {toggleTicketDetailModal != false ? <TicketDetail /> : ""}
+    {toggleTicketAddModal != false ? <AddTicket /> : ""}
+    <div className="title">
+      <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleTicketView}>
+      Tickets
+      <span className="is-size-6">
+      {tickets != undefined ? `"[" ${tickets.length} "]"` : ""}
+      </span>
+      </button>
+      
+    </div>
+    
+    {toggleTicketView != false ? 
     <div className="table-container">
     <nav className="level">
       <div className="table is-striped is-fullwidth">
@@ -310,7 +332,7 @@ return (
         </tbody>    
       </div>
       </nav>
-    </div>
+    </div> : ""}
 
     {toggleLocationDetailModal != false ? <OrderDetail /> : ""}
     {toggleOrderAddModal != false ? <AddOrder /> : ""}
