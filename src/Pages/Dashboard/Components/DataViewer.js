@@ -47,6 +47,10 @@ const DataViewer = (props) => {
   
   const [toggleTicketView, setToggleTicketView] = useState(false)
 
+  const [toggleUsersAddModal, setToggleUsersAddModal] = useState(false)
+
+  const [toggleUsersView, setToggleUsersView] = useState(false)
+
   const handleToggleServicesAddModal = () => {
     setToggleServicesAddModal(!toggleServicesAddModal)
   }
@@ -97,6 +101,14 @@ const DataViewer = (props) => {
 
   const handleToggleTicketView = () => {
     setToggleTicketView(!toggleTicketView)
+  }
+
+  const handleToggleUsersAddModal = () => {
+    setToggleUsersAddModal(!toggleUsersAddModal)
+  }
+
+  const handleToggleUsersView = () => {
+    setToggleUsersView(!toggleUsersView)
   }
 
   useEffect(() => {
@@ -334,9 +346,19 @@ return (
       </nav>
     </div> : ""}
 
-    {toggleLocationDetailModal != false ? <OrderDetail /> : ""}
-    {toggleOrderAddModal != false ? <AddOrder /> : ""}
-    <div className="title">Users</div>
+    
+    {toggleUsersAddModal != false ? "" : ""}
+    <div className="title">
+      <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleUsersView}>
+      Users
+      <span className="is-size-6">
+      {users != undefined ? `"[" ${users.length} "]"` : ""}
+      </span>
+      </button>
+      
+    </div>
+
+    {toggleUsersView != false ? 
     <div className="table-container">
     <nav className="level">
       <div className="table is-striped is-fullwidth">
@@ -360,7 +382,7 @@ return (
         </tbody>    
       </div>
       </nav>
-    </div>
+    </div> : ""}
   
   </>
 )

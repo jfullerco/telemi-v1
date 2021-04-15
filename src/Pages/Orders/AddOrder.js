@@ -24,11 +24,11 @@ const AddOrder = () => {
   const orderServiceType = useRef("")
   const orderMRC = useRef("")
   const orderDetails = useRef("")
-  const orderNotes = useRef("")
   const orderMilestones = useRef("")
   const orderVendor = useRef("")
   const orderLocationID = useRef("")
   const orderLocationName = useRef("")
+  const orderNotes = useRef("")
 
   const handleSubmit = async(e) => {
     const data = {
@@ -42,7 +42,8 @@ const AddOrder = () => {
       OrderVendor: orderVendor.current.value,
       OrderMRC: orderMRC.current.value,
       LocationID: orderLocationID.current.value,
-      LocationName: orderLocationID.current[orderLocationID.current.selectedIndex].text
+      LocationName: orderLocationID.current[orderLocationID.current.selectedIndex].text,
+      OrderNotes: orderNotes.current.value
     }  
     console.log(data)
     const res = await db.collection("Orders").doc().set(data)
@@ -112,6 +113,8 @@ const AddOrder = () => {
             <input className="input" type="text" ref={orderServiceType} />
             <label className="label">Monthly Cost</label>
             <input className="input" type="text" ref={orderMRC} />
+            <label className="label">Notes</label>
+            <textarea className="textarea" type="textarea" ref={orderNotes} />
           </form>
         <div className="block">
           <div className="notification is-danger is-hidden">{addOrderError}</div>
