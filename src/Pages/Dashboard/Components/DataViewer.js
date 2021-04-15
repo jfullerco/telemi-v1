@@ -41,6 +41,12 @@ const DataViewer = (props) => {
   
   const [toggleOrderView, setToggleOrderView] = useState(false)
 
+  const [toggleTicketAddModal, setToggleTicketAddModal] = useState(false)
+
+  const [toggleTicketDetailModal, setToggleTicketDetailModal] = useState(false)
+  
+  const [toggleTicketView, setToggleTicketView] = useState(false)
+
   const handleToggleServicesAddModal = () => {
     setToggleServicesAddModal(!toggleServicesAddModal)
   }
@@ -164,7 +170,7 @@ return (
               <td className="px-6">{service.AssetID}</td>
               <td><button className="button is-rounded is-small" onClick={()=>handleToggleServicesDetailModal(service.id)}>edit</button></td>
             </tr>
-          )) : <>No services added</>}
+          )) : "No services added"}
           
 
           </tbody>    
@@ -206,7 +212,7 @@ return (
             <td className="px-6">{location.State}</td>
             <td><button className="button is-rounded is-small" onClick={()=>handleToggleLocationDetailModal(location.id)}>edit</button></td>
           </tr>
-        )) : <>No locations to display</>}
+        )) : "No locations to display"}
         
 
         </tbody>    
@@ -224,6 +230,7 @@ return (
       [{orders != undefined ? orders.length : ""}]
       </span>
       </button>
+      
     </div>
     {toggleOrderView != false ? 
     <div className="table-container">
