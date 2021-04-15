@@ -16,6 +16,7 @@ const CompanyList = () => {
   const {dataLoading} = userContext.userSession
   
   const [loading, setLoading] = useState(true)
+  const [render, setRender] = useState(dataLoading)
   const [userCompanies, setUserCompanies] = useState([])
   const [selectedCompany, setSelectedCompany] = useState({
     id: "",
@@ -23,11 +24,20 @@ const CompanyList = () => {
   })
   const [addCompanyModalState, setAddCompanyModalState] = useState(false)
   
-  useEffect(() => {
-    fetchCompanies()
-    userContext.setDataLoading(false)
-  }, [])  
   
+
+  useEffect(() => {
+
+    fetchCompanies()
+    
+  }, [])   
+
+  useEffect(() => {
+
+    fetchCompanies()
+
+  },[userContext.userSession.dataLoading])
+
   const handleChange = (e) => {
     const id = e.target.value
     const name = e.target.options[e.target.selectedIndex].text
@@ -90,4 +100,5 @@ const CompanyList = () => {
     </>
   )
 }
+
 export default CompanyList

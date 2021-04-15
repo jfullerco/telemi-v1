@@ -5,6 +5,7 @@ import {db} from '../../firebase'
 import {stateContext} from '../../stateContext'
 import {currentUser} from '../../Contexts/AuthContext'
 
+
 const AddCompany = () => {
   const history = useHistory()
   const userContext = useContext(stateContext)
@@ -22,7 +23,7 @@ const AddCompany = () => {
       Users: ["jonathan@jfuller.co"]
     }  
     const res = await db.collection("Companies").doc().set(data)
-    autoClose()
+    userContext.setDataLoading(false)
   }
 
   const handleModalClose = () => {

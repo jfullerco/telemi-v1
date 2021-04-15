@@ -22,7 +22,7 @@ export const StateProvider = (props) => {
       currentTicket: "",
       currentOrder: "",
       currentAccount: "",     
-      dataLoading: true,
+      dataLoading: false,
 
     }
     

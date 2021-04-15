@@ -81,4 +81,6 @@ const ClientList = () => {
     </>
   )
 }
+export const setClientChanged = ClientList.setClientChanged()
 export default ClientList
+
