@@ -169,7 +169,7 @@ return (
     
     
     <div className="title">
-      <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleServicesView}>
+      <button className="button is-large is-info is-rounded is-fullwidth has-text-weight-semibold" onClick={handleToggleServicesView}>
         Services
       </button>
     </div>
@@ -177,7 +177,7 @@ return (
     {toggleServicesView != false ? 
       <div className="table-container">
       <nav className="level">
-        <div className="table is-striped is-fullwidth">
+        <div className="table is-striped is-hoverable is-fullwidth">
           <thead>
             <th className="px-6">Vendor</th>
             <th className="px-6">Type</th>
