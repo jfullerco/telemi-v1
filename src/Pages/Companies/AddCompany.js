@@ -23,7 +23,8 @@ const AddCompany = () => {
       Users: ["jonathan@jfuller.co"]
     }  
     const res = await db.collection("Companies").doc().set(data)
-    userContext.setDataLoading(false)
+    userContext.setDataLoading(true)
+    autoClose()
   }
 
   const handleModalClose = () => {
@@ -34,7 +35,6 @@ const AddCompany = () => {
     
     setTimeout(() => {
       
-      userContext.setDataLoading(false)
       setModalState(false)
 
     }, 2000)

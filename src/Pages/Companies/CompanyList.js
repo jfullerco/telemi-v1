@@ -15,28 +15,31 @@ const CompanyList = () => {
   const userContext = useContext(stateContext)
   const {dataLoading} = userContext.userSession
   
-  const [loading, setLoading] = useState(true)
-  const [render, setRender] = useState(dataLoading)
+  const [loading, setLoading] = useState()
+  
   const [userCompanies, setUserCompanies] = useState([])
   const [selectedCompany, setSelectedCompany] = useState({
     id: "",
     Name: ""
   })
   const [addCompanyModalState, setAddCompanyModalState] = useState(false)
-  
-  
 
   useEffect(() => {
 
     fetchCompanies()
-    
-  }, [])   
+    setLoading(false)
+
+  }, []) 
 
   useEffect(() => {
+    reRender()
+    userContext.setDataLoading(false)
+  }, [dataLoading])
 
-    fetchCompanies()
+  const reRender = () => {
+    dataLoading != false ? fetchCompanies() : ""
+  }
 
-  },[userContext.userSession.dataLoading])
 
   const handleChange = (e) => {
     const id = e.target.value
@@ -46,7 +49,7 @@ const CompanyList = () => {
     userContext.setCurrentCompany(name)
 
   }
-
+console.log({userCompanies})
   const fetchCompanies = async() => {
    
     const companiesRef = await db.collection("Companies").where("Users", "array-contains", "jonathan@jfuller.co").get()
@@ -65,7 +68,7 @@ const CompanyList = () => {
   }
 
   const toggleAddCompany = () => {
-    userContext.setDataLoading(true)
+    
     setAddCompanyModalState(!addCompanyModalState)
   }
   
@@ -79,7 +82,7 @@ const CompanyList = () => {
           {(userCompanies != "" && dataLoading != true) ? userCompanies.map(company => (
             <option key={company.id} value={company.id} name={company.Name}>
               {company.Name}
-              {console.log(company)}
+              
             </option>
           )) : (
             <option>Loading data...</option>

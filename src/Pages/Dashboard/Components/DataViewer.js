@@ -27,11 +27,19 @@ const DataViewer = (props) => {
 
   const [toggleServicesAddModal, setToggleServicesAddModal] = useState(false)
 
+  const [toggleServicesView, setToggleServicesView] = useState(false)
+
   const [toggleLocationDetailModal, setToggleLocationDetailModal] = useState(false)
 
   const [toggleLocationAddModal, setToggleLocationAddModal] = useState(false)
 
+  const [toggleLocationView, setToggleLocationView] = useState(false)
+
+  const [toggleOrderDetailModal, setToggleOrderDetailModal] = useState(false)
+
   const [toggleOrderAddModal, setToggleOrderAddModal] = useState(false)
+  
+  const [toggleOrderView, setToggleOrderView] = useState(false)
 
   const handleToggleServicesAddModal = () => {
     setToggleServicesAddModal(!toggleServicesAddModal)
@@ -41,6 +49,10 @@ const DataViewer = (props) => {
     
     userContext.setCurrentServiceID(id)
     setToggleServicesDetailModal(!toggleServicesDetailModal)
+  }
+
+  const handleToggleServicesView = () => {
+    setToggleServicesView(!toggleServicesView)
   }
   
   const handleToggleLocationDetailModal = (id) => {
@@ -53,8 +65,20 @@ const DataViewer = (props) => {
     setToggleLocationAddModal(!toggleLocationAddModal)
   }
 
+  const handleToggleLocationView = () => {
+    setToggleLocationView(!toggleLocationView)
+  }
+
+  const handleToggleOrderDetailModal = () => {
+    setToggleOrderDetailModal(!toggleOrderDetailModal)
+  }
+
   const handleToggleOrderAddModal = () => {
     setToggleOrderAddModal(!toggleOrderAddModal)
+  }
+
+  const handleToggleOrderView = () => {
+    setToggleOrderView(!toggleOrderView)
   }
 
   useEffect(() => {
@@ -112,49 +136,66 @@ return (
   <>
     {toggleServicesDetailModal != false ? <ServiceDetail /> : ""}
     {toggleServicesAddModal != false ? <AddService /> : ""}
-    <div className="title">Services</div>
-    <div className="table-container card">
-    <nav className="level">
-      <div className="table is-striped is-fullwidth">
-        <thead>
-          <th className="px-6">Vendor</th>
-          <th className="px-6">Type</th>
-          <th className="px-6">Location</th>
-          <th className="px-6">Asset ID</th>
-          <th><button className="button is-rounded is-small" onClick={handleToggleServicesAddModal}>add</button></th>
-        </thead>
-        <tbody>
-        {services != undefined ? services.map(service => (
-          <tr key={service.id}>
-            <td className="px-6">{service.Vendor}</td>
-            <td className="px-6">{service.Type} {location.Address2}</td>
-            <td className="px-6">{service.LocationName}</td>
-            <td className="px-6">{service.AssetID}</td>
-            <td><button className="button is-rounded is-small" onClick={()=>handleToggleServicesDetailModal(service.id)}>edit</button></td>
-          </tr>
-        )) : "No services added"}
-        
-
-        </tbody>    
-      </div>
-      </nav>
+    
+    
+    <div className="title">
+      <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleServicesView}>
+        Services
+      </button>
     </div>
+
+    {toggleServicesView != false ? 
+      <div className="table-container">
+      <nav className="level">
+        <div className="table is-striped is-fullwidth">
+          <thead>
+            <th className="px-6">Vendor</th>
+            <th className="px-6">Type</th>
+            <th className="px-6">Location</th>
+            <th className="px-6">Asset ID</th>
+            <th><button className="button is-rounded is-small" onClick={handleToggleServicesAddModal}>add</button></th>
+          </thead>
+          <tbody>
+          {services != undefined ? services.map(service => (
+            <tr key={service.id}>
+              <td className="px-6">{service.Vendor}</td>
+              <td className="px-6">{service.Type} {location.Address2}</td>
+              <td className="px-6">{service.LocationName}</td>
+              <td className="px-6">{service.AssetID}</td>
+              <td><button className="button is-rounded is-small" onClick={()=>handleToggleServicesDetailModal(service.id)}>edit</button></td>
+            </tr>
+          )) : <>No services added</>}
+          
+
+          </tbody>    
+        </div>
+        </nav>
+      </div>
+    : ""}
 
     {toggleLocationDetailModal != false ? <LocationDetail /> : ""}
     {toggleLocationAddModal != false ? <AddLocation /> : ""}
+
     <div className="title">
+      <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleLocationView}>
       Locations 
-      <span className="is-size-6"> [{locations != undefined ? locations.length : ""}]</span>
+      <span className="is-size-6">
+        [{locations != undefined ? locations.length : ""}]
+      </span>
+      </button>
     </div>
+    {toggleLocationView != false ? 
     <div className="table-container">
     <nav className="level">
       <div className="table is-striped is-fullwidth">
         <thead>
-          <th className="px-6">Location Name</th>
-          <th className="px-6">Address</th>
-          <th className="px-6">City</th>
-          <th className="px-6">State</th>
-          <th><button className="button is-rounded is-small" onClick={handleToggleLocationAddModal}>add</button></th>
+          <tr>  
+            <th className="px-6">Location Name</th>
+            <th className="px-6">Address</th>
+            <th className="px-6">City</th>
+            <th className="px-6">State</th>
+            <th><button className="button is-rounded is-small" onClick={handleToggleLocationAddModal}>add</button></th>
+          </tr>
         </thead>
         <tbody>
         {locations != undefined ? locations.map(location => (
@@ -165,17 +206,25 @@ return (
             <td className="px-6">{location.State}</td>
             <td><button className="button is-rounded is-small" onClick={()=>handleToggleLocationDetailModal(location.id)}>edit</button></td>
           </tr>
-        )) : "No locations to display"}
+        )) : <>No locations to display</>}
         
 
         </tbody>    
       </div>
       </nav>
-    </div>
+    </div> : "" }
 
-    {toggleLocationDetailModal != false ? <OrderDetail /> : ""}
+    {toggleOrderDetailModal != false ? <OrderDetail /> : ""}
     {toggleOrderAddModal != false ? <AddOrder /> : ""}
-    <div className="title">Orders</div>
+    <div className="title">
+      <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleOrderView}>
+        Orders 
+      <span className="is-size-6">
+      [{orders != undefined ? orders.length : ""}]
+      </span>
+      </button>
+    </div>
+    {toggleOrderView != false ? 
     <div className="table-container">
     <nav className="level">
       <div className="table is-striped is-fullwidth">
@@ -211,7 +260,7 @@ return (
         </tbody>    
       </div>
       </nav>
-    </div>
+    </div> : ""}
 
     {toggleLocationDetailModal != false ? <TicketDetail /> : ""}
     {toggleOrderAddModal != false ? <AddTicket /> : ""}

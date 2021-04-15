@@ -15,6 +15,8 @@ const Dashboard = () => {
   const {dataLoading} = userContext.userSession
   const [toggleModal, setToggleModal] = useState(false)
   
+  
+
   const toggleAssetModal = () => {
     setToggleModal(!toggleModal)
   }
@@ -73,7 +75,7 @@ const Dashboard = () => {
         </div>
         </div>
 
-        <div className="notification is-info" id="quickLook">
+        <div>
           <DataViewer />
         </div>
 
