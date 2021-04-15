@@ -216,6 +216,7 @@ return (
 
     {toggleOrderDetailModal != false ? <OrderDetail /> : ""}
     {toggleOrderAddModal != false ? <AddOrder /> : ""}
+
     <div className="title">
       <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleOrderView}>
         Orders 
@@ -229,11 +230,13 @@ return (
     <nav className="level">
       <div className="table is-striped is-fullwidth">
         <thead>
+        <tr>
           <th className="px-6">Vendor</th>
           <th className="px-6">Order Num</th>
           <th className="px-6">Date</th>
           <th className="px-6">Location</th>
           <th><button className="button is-rounded is-small" onClick={handleToggleOrderAddModal}>add</button></th>
+        </tr>
         </thead>
         <tbody>
         {orders != undefined ? orders.map(order => (
@@ -251,7 +254,7 @@ return (
               {order.LocationName}
             </td>
             <td>
-              <button className="button is-rounded is-small" onClick={()=>handleToggleLocationDetailModal(location.id)}>edit</button>
+              <button className="button is-rounded is-small" onClick={()=>handleToggleOrderDetailModal(order.id)}>edit</button>
             </td>
           </tr>
         )) : "No orders added"}
