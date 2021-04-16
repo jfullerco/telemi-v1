@@ -1,24 +1,31 @@
 import React, {useState, useContext} from 'react'
 import {Link, Redirect, useHistory} from 'react-router-dom'
+
 import {stateContext} from '../stateContext'
+import {auth} from '../firebase'
 
 const LogoutButton = () => {
   const history = useHistory()
   const userContext = useContext(stateContext)
+  
   const [isActive, setIsActive] = useState(false)
   const logOut = () => {
+    
     userContext.setLoggedIn(false)
     history.push("/")
   }
 
   return (
-    <div className="navbar" role="navigation" aria-label="main navigation">
+    <div className="navbar is-dark" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
 
-      <div className="navbar-item"><Link to="/" className="has-text-black">TELEMI</Link></div>
+      <div className="navbar-item">
+        <Link to="/" className="has-text-white">
+          TELEMI
+        </Link>
+      </div>
     
-    <a
-          onClick={() => {
+    <a onClick={() => {
             setIsActive(!isActive)
           }}
           role='button'
@@ -27,10 +34,10 @@ const LogoutButton = () => {
           aria-expanded='false'
           data-target='tiemsNavbar'
         >
-          <span aria-hidden='true'></span>
-          <span aria-hidden='true'></span>
-          <span aria-hidden='true'></span>
-        </a>
+      <span aria-hidden='true'></span>
+      <span aria-hidden='true'></span>
+      <span aria-hidden='true'></span>
+    </a>
       </div>
       <div 
         className={`navbar-menu ${isActive ? 'is-active' : ''}`}
@@ -41,17 +48,25 @@ const LogoutButton = () => {
       <div className="navbar-end">
         {userContext.userSession.loggedIn != undefined ? (
           <>
+          <div className="navbar-item">
+          <div className="button is-small">
+            Create Account
+          </div>
+          </div>
           <Link to={`/dashboard`} className="navbar-item">
             Dashboard
           </Link>
-          <div onClick={logOut} className="navbar-item">
+          <a onClick={logOut} className="navbar-item">
             Logout
-          </div>
+          </a>
           </>
         ) : (
+          <>
+          
           <Link to="/login" className="navbar-item" >
             Login
           </Link>
+          </>
         )}
 
       </div>

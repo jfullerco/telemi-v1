@@ -27,7 +27,7 @@ const Dashboard = () => {
        
       <> 
        <div className="block" id="dashboardHero"> 
-        <section className="hero is-info is-small">
+        <section className="hero is-small">
           <div className="hero-body">
             <p className="title">Dashboard</p>
           </div>

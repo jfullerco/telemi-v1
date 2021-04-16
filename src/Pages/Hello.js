@@ -13,12 +13,12 @@ const Hello = () => {
   return (
     <div>
     
-      <section className="hero is-info">
+      <section className="hero ">
           <div className="hero-body">
             <div className="columns">
                 <div className="column">
                   <div className="title has-text-weight-bold"> Telecom is hard... </div>
-                    <div className="subtitle">
+                    <div className="subtitle has-text-weight-light">
                       Managing it shouldn't be!
                     </div></div>
                     <div className="level">
@@ -36,9 +36,9 @@ const Hello = () => {
         {modalState === true ? <Register modalState={modalState} /> : ""}
         <div className="columns is-centered ">
           <div className="column">
-            <div className="tile is-parent is-7 is-vertical">
-              <p className="is-size-3-fullhd is-size-3-widescreen has-text-info">
-                <span className="has-text-weight-bold is-uppercase">Think of this as your telecom passport</span>
+            <div className="notification is-light is-parent is-vertical">
+              <p className="is-size-5-fullhd is-size-5-widescreen">
+                <span className="has-text-weight-semibold is-uppercase">Think of this as your telecom passport</span>
               
               
               <div className="content is-size-6-fullhd is-size-6-widescreen has-text-black">

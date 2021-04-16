@@ -93,7 +93,7 @@ console.log({userCompanies})
         <div className="control">
         {
            
-          <button className="button is-rounded is-info" onClick={toggleAddCompany}>  
+          <button className="button is-dark is-rounded" onClick={toggleAddCompany}>  
             Add Company
           </button> 
          }
