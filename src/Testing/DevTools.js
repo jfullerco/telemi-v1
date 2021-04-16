@@ -19,8 +19,9 @@ const DevTools = (props) => {
   return (
     <>
     {view === "true" ? (
-    <div className="notification is-info">
-      <p className="title is-4">conView</p>
+      
+    <div className="notification mt-5 is-dark">
+      <p className="title is-5">conView</p>
       <div className="box">
 
         <p className="sub-title">
@@ -54,6 +55,7 @@ const DevTools = (props) => {
       </div>
       
     </div>
+    
     ) : ""}
     </>
   )

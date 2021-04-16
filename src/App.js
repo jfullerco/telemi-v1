@@ -36,9 +36,9 @@ export default function App() {
             <Route path="/companyProfile" component={CompanyProfile} />
           
           </Switch>
-        
-        </div>  
         <DevTools view="true" />
+        </div>  
+        
       <div className="footer">
       <div className="content has-text-right is-size-7">
         Telemi by J Fuller Co| Terms | Settings

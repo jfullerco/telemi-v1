@@ -49,7 +49,7 @@ const LogoutButton = () => {
         {userContext.userSession.loggedIn != undefined ? (
           <>
           <div className="navbar-item">
-          <div className="button is-small">
+          <div className="button is-small is-rounded">
             Create Account
           </div>
           </div>
