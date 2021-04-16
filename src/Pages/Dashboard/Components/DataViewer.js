@@ -169,7 +169,7 @@ return (
     
     
     <div className="title">
-      <button className="button is-large is-info is-rounded is-fullwidth has-text-weight-semibold" onClick={handleToggleServicesView}>
+      <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleServicesView}>
         Services
       </button>
     </div>
@@ -209,9 +209,9 @@ return (
     <div className="title">
       <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleLocationView}>
       Locations 
-      <span className="is-size-6">
+      <div className="is-size-7 ml-3">
         {locations != undefined ? `[${locations.length}]` : ""}
-      </span>
+      </div>
       </button>
     </div>
     {toggleLocationView != false ? 
@@ -250,7 +250,7 @@ return (
     <div className="title">
       <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleOrderView}>
         Orders 
-      <span className="is-size-6">
+      <span className="is-size-7 ml-3">
       {orders != undefined ? `[${orders.length}]` : ""}
       </span>
       </button>
@@ -301,7 +301,7 @@ return (
     <div className="title">
       <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleTicketView}>
       Tickets
-      <span className="is-size-6">
+      <span className="is-size-7 ml-3">
       {tickets != undefined ? `"[" ${tickets.length} "]"` : ""}
       </span>
       </button>
@@ -351,7 +351,7 @@ return (
     <div className="title">
       <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleUsersView}>
       Users
-      <span className="is-size-6">
+      <span className="is-size-7 ml-3">
       {users != undefined ? `"[" ${users.length} "]"` : ""}
       </span>
       </button>
