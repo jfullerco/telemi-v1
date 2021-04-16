@@ -169,7 +169,7 @@ return (
     
     
     <div className="title">
-      <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleServicesView}>
+      <button className="button is-medium is-info is-fullwidth has-text-weight-bold" onClick={handleToggleServicesView}>
         Services
       </button>
     </div>
@@ -207,7 +207,7 @@ return (
     {toggleLocationAddModal != false ? <AddLocation /> : ""}
 
     <div className="title">
-      <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleLocationView}>
+      <button className="button is-medium is-info is-fullwidth has-text-weight-bold" onClick={handleToggleLocationView}>
       Locations 
       <div className="is-size-7 ml-3">
         {locations != undefined ? `[${locations.length}]` : ""}
@@ -248,7 +248,7 @@ return (
     {toggleOrderAddModal != false ? <AddOrder /> : ""}
 
     <div className="title">
-      <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleOrderView}>
+      <button className="button is-medium is-info  is-fullwidth has-text-weight-bold" onClick={handleToggleOrderView}>
         Orders 
       <span className="is-size-7 ml-3">
       {orders != undefined ? `[${orders.length}]` : ""}
@@ -299,7 +299,7 @@ return (
     {toggleTicketDetailModal != false ? <TicketDetail /> : ""}
     {toggleTicketAddModal != false ? <AddTicket /> : ""}
     <div className="title">
-      <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleTicketView}>
+      <button className="button is-medium is-info is-fullwidth has-text-weight-bold" onClick={handleToggleTicketView}>
       Tickets
       <span className="is-size-7 ml-3">
       {tickets != undefined ? `"[" ${tickets.length} "]"` : ""}
@@ -349,7 +349,7 @@ return (
     
     {toggleUsersAddModal != false ? "" : ""}
     <div className="title">
-      <button className="button is-large is-info is-rounded is-fullwidth" onClick={handleToggleUsersView}>
+      <button className="button is-medium is-info is-fullwidth has-text-weight-bold" onClick={handleToggleUsersView}>
       Users
       <span className="is-size-7 ml-3">
       {users != undefined ? `"[" ${users.length} "]"` : ""}

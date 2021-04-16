@@ -21,6 +21,7 @@ export default function App() {
     <StateProvider>
     <AuthProvider>
       <Router>
+      
       <div className="container is-max-desktop"> 
       <div className="column">
       <LogoutButton />
