@@ -14,8 +14,10 @@ const Dashboard = () => {
   const userContext = useContext(stateContext)
   const {dataLoading} = userContext.userSession
   const [toggleModal, setToggleModal] = useState(false)
-  
-  
+  const {currentUser} = useAuth()
+  useEffect(() => {
+    userContext.setLoggedIn(currentUser)
+  },[])
 
   const toggleAssetModal = () => {
     setToggleModal(!toggleModal)
