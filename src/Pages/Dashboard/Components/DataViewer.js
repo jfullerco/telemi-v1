@@ -169,7 +169,7 @@ return (
     
     
     <div className="title">
-      <button className="button is-medium is-info is-fullwidth has-text-weight-bold" onClick={handleToggleServicesView}>
+      <button className="button is-medium is-dark is-outlined is-rounded is-fullwidth has-text-weight-bold" onClick={handleToggleServicesView}>
         Services
       </button>
     </div>
@@ -207,7 +207,7 @@ return (
     {toggleLocationAddModal != false ? <AddLocation /> : ""}
 
     <div className="title">
-      <button className="button is-medium is-info is-fullwidth has-text-weight-bold" onClick={handleToggleLocationView}>
+      <button className="button is-medium is-dark is-outlined is-rounded is-fullwidth has-text-weight-bold" onClick={handleToggleLocationView}>
       Locations 
       <div className="is-size-7 ml-3">
         {locations != undefined ? `[${locations.length}]` : ""}
@@ -248,10 +248,10 @@ return (
     {toggleOrderAddModal != false ? <AddOrder /> : ""}
 
     <div className="title">
-      <button className="button is-medium is-info  is-fullwidth has-text-weight-bold" onClick={handleToggleOrderView}>
+      <button className="button is-medium is-dark is-rounded is-fullwidth has-text-weight-bold" onClick={handleToggleOrderView}>
         Orders 
       <span className="is-size-7 ml-3">
-      {orders != undefined ? `[${orders.length}]` : ""}
+      {orders != undefined ? <span className="tag is-light">{orders.length}</span> : ""}
       </span>
       </button>
       
@@ -299,10 +299,10 @@ return (
     {toggleTicketDetailModal != false ? <TicketDetail /> : ""}
     {toggleTicketAddModal != false ? <AddTicket /> : ""}
     <div className="title">
-      <button className="button is-medium is-info is-fullwidth has-text-weight-bold" onClick={handleToggleTicketView}>
+      <button className="button is-medium is-dark is-rounded is-fullwidth has-text-weight-bold" onClick={handleToggleTicketView}>
       Tickets
       <span className="is-size-7 ml-3">
-      {tickets != undefined ? `"[" ${tickets.length} "]"` : ""}
+      {tickets != undefined ? <span className="tag is-light">{tickets.length}</span> : ""}
       </span>
       </button>
       
@@ -349,7 +349,7 @@ return (
     
     {toggleUsersAddModal != false ? "" : ""}
     <div className="title">
-      <button className="button is-medium is-info is-fullwidth has-text-weight-bold" onClick={handleToggleUsersView}>
+      <button className="button is-medium is-dark is-outlined is-rounded is-fullwidth has-text-weight-bold" onClick={handleToggleUsersView}>
       Users
       <span className="is-size-7 ml-3">
       {users != undefined ? `"[" ${users.length} "]"` : ""}
@@ -360,11 +360,12 @@ return (
 
     {toggleUsersView != false ? 
     <div className="table-container">
-    <nav className="level">
-      <div className="table is-striped is-fullwidth">
-        <thead>
+    <nav className="level is-centered">
+      <div className="table is-striped is-fullwidth ">
+        <thead><tr>
           <th className="px-6">Email</th>
           <th><button className="button is-rounded is-small" onClick={handleToggleOrderAddModal}>add</button></th>
+          </tr>
         </thead>
         <tbody>
         {users != undefined ? orders.map(order => (
