@@ -161,6 +161,17 @@ const DataViewer = (props) => {
 
   }
 
+  const fetchUsers = async() => {
+
+    const usersRef = await db.collection("Users").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
+
+    const users = usersRef.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()}))
+    setUsers(users)
+
+  }
+
 
 return (
   <>
@@ -169,8 +180,14 @@ return (
     
     
     <div className="title">
-      <button className="button is-medium is-dark is-outlined is-rounded is-fullwidth has-text-weight-bold" onClick={handleToggleServicesView}>
-        Services
+      <button className="button is-medium is-dark is-rounded is-fullwidth has-text-weight-bold" onClick={handleToggleServicesView}>
+        Services 
+        <div className="is-size-7 ml-3">
+        {services != undefined ? 
+          <span className="tag is-light">
+            {services.length}
+          </span> : ""}
+      </div>
       </button>
     </div>
 
@@ -207,10 +224,13 @@ return (
     {toggleLocationAddModal != false ? <AddLocation /> : ""}
 
     <div className="title">
-      <button className="button is-medium is-dark is-outlined is-rounded is-fullwidth has-text-weight-bold" onClick={handleToggleLocationView}>
+      <button className="button is-medium is-dark is-rounded is-fullwidth has-text-weight-bold" onClick={handleToggleLocationView}>
       Locations 
       <div className="is-size-7 ml-3">
-        {locations != undefined ? `[${locations.length}]` : ""}
+        {locations != undefined ? 
+          <span className="tag is-light">
+            {locations.length}
+          </span> : ""}
       </div>
       </button>
     </div>
@@ -251,7 +271,10 @@ return (
       <button className="button is-medium is-dark is-rounded is-fullwidth has-text-weight-bold" onClick={handleToggleOrderView}>
         Orders 
       <span className="is-size-7 ml-3">
-      {orders != undefined ? <span className="tag is-light">{orders.length}</span> : ""}
+        {orders != undefined ? 
+          <span className="tag is-light">
+            {orders.length}
+          </span> : ""}
       </span>
       </button>
       
@@ -349,10 +372,10 @@ return (
     
     {toggleUsersAddModal != false ? "" : ""}
     <div className="title">
-      <button className="button is-medium is-dark is-outlined is-rounded is-fullwidth has-text-weight-bold" onClick={handleToggleUsersView}>
+      <button className="button is-medium is-dark is-rounded is-fullwidth has-text-weight-bold" onClick={handleToggleUsersView}>
       Users
       <span className="is-size-7 ml-3">
-      {users != undefined ? `"[" ${users.length} "]"` : ""}
+      {users != undefined ? <span className="tag is-light"> {users.length}</span> : ""}
       </span>
       </button>
       
@@ -364,17 +387,17 @@ return (
       <div className="table is-striped is-fullwidth ">
         <thead><tr>
           <th className="px-6">Email</th>
-          <th><button className="button is-rounded is-small" onClick={handleToggleOrderAddModal}>add</button></th>
+          <th><button className="button is-rounded is-small" onClick={handleToggleUsersAddModal}>add</button></th>
           </tr>
         </thead>
         <tbody>
-        {users != undefined ? orders.map(order => (
-          <tr key={order.id}>
+        {users != undefined ? users.map(user => (
+          <tr key={user.id}>
             <td className="px-6">
-              {order.OrderVendor}
+              {user.Email}
             </td>
             <td>
-              <button className="button is-rounded is-small" onClick={()=>handleToggleLocationDetailModal(location.id)}>edit</button>
+              {/** Insert Edit / Delete User */}
             </td>
           </tr>
         )) : "No Users added"}
