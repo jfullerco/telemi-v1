@@ -29,6 +29,8 @@ const AddService = () => {
   const serviceDetailsBandwidth = useRef("")
   const serviceDetailsIPRange = useRef("")
   const serviceDetailsLANEdgeIP = useRef("")
+  const serviceDetailsASN = useRef("")
+  const serviceDetailsNotes = useRef("")
   const serviceOrderID = useRef("")
   const serviceOrderNum = useRef("")
   const serviceAccountID = useRef("")
@@ -63,9 +65,11 @@ const AddService = () => {
       LocationName: serviceLocationID.current[serviceLocationID.current.selectedIndex].text,
       CompanyID: userContext.userSession.currentCompanyID,
       CompanyName: userContext.userSession.currentCompany,
-      Details: {
-        Bandwidth: serviceDetailsBandwidth.current.value
-      },
+      Bandwidth: serviceDetailsBandwidth.current.value,
+      PublicIP: serviceDetailsIPRange.current.value,
+      LANIP: serviceDetailsLANEdgeIP.current.value,
+      ASN: serviceDetailsASN.current.value,
+      Notes: serviceDetailsNotes.current.value,
       MRC: serviceMRC.current.value,
       
     }  
@@ -97,7 +101,8 @@ const AddService = () => {
         <div className="modal-card-body">
 
           <form>
-
+            {toggleQuestions === 1 ? 
+            <>
             <div className="field">
               <label className="label">Service Location</label>
               <div className="control">
@@ -113,16 +118,15 @@ const AddService = () => {
               </div>
             </div>
 
-            {toggleQuestions === 1 ? 
-            <>
-
+            
+{/** 
             <div className="field">
               <label className="label">Service Name</label>
               <div className="control">
                 <input className="input is-rounded" type="text" ref={serviceName} />
               </div>
             </div>
-
+*/}
             <div className="field">
               <div className="control">
               <label className="label">Vendor</label>
@@ -198,6 +202,23 @@ const AddService = () => {
               </div>
             </div>
 
+            <div className="field">
+              <div className="control">
+              <label className="label">ASN</label>
+                <input className="input is-rounded" type="text" ref={serviceDetailsASN} />
+              </div>
+            </div>
+
+            </> : toggleQuestions === 3 ?
+            <>
+
+            <div className="field">
+              <div className="control">
+              <label className="label">Notes</label>
+                <textarea className="textarea is-rounded" type="text" ref={serviceDetailsNotes} />
+              </div>
+            </div>
+
             </> : ""}
           </form>
 
@@ -207,11 +228,14 @@ const AddService = () => {
         </div>
         <div className="modal-card-foot">
 
+          
+          {toggleQuestions < 3 ? 
+          <button className="button level-item" onClick={() => setToggleQuestions(toggleQuestions + 1)}>Next</button> :
+          ""}
           {toggleQuestions > 1 ? 
           <button className="button level-item" onClick={() => setToggleQuestions(toggleQuestions - 1)}>Back</button> : ""}
-          <button className="button level-item" onClick={() => setToggleQuestions(toggleQuestions + 1)}>Next</button>
           <button className="button level-item" type="submit" onClick={handleSubmit}>
-            Add Service
+            Finish
           </button>
         
         </div>
