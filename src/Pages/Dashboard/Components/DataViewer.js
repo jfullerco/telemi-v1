@@ -237,7 +237,7 @@ return (
     {toggleLocationView != false ? 
     <div className="table-container">
     <nav className="level">
-      <div className="table is-striped is-fullwidth">
+      <div className="table is-hoverable is-fullwidth">
         <thead>
           <tr>  
             <th className="px-6">Location Name</th>

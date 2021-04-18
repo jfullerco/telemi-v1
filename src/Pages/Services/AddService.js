@@ -14,6 +14,8 @@ const AddService = () => {
   const [triggerClose, setTriggerClose] = useState()
 
   const [locations, setLocations] = useState()
+
+  const [toggleQuestions, setToggleQuestions] = useState(1)
   
   const serviceName = useRef("")
   const serviceVendor = useRef("")
@@ -94,7 +96,7 @@ const AddService = () => {
           <form>
           
             <label className="label">Service Location</label>
-            <div className="select is-fullwidth">
+            <div className="select is-rounded is-fullwidth">
               <select className="select" onChange={handleChange} ref={serviceLocationID}>
               {locations != undefined ? locations.map(location => (
                 <option key={location.id} value={location.id} name={location.Name} >
@@ -103,25 +105,44 @@ const AddService = () => {
               )) : "Add a location before adding a service"}
               </select>
             </div>
-
+            {toggleQuestions === 1 ? 
+            <>
             <label className="label">Service Name</label>
-            <input className="input" type="text" ref={serviceName} />
+            <input className="input is-rounded" type="text" ref={serviceName} />
 
             <label className="label">Vendor</label>
-            <input className="input" type="text" ref={serviceVendor} />
-
+            <input className="input is-rounded" type="text" ref={serviceVendor} />
+            
+            <div className="field">            
             <label className="label">Type</label>
-            <input className="input" type="text" ref={serviceType} />
+              <div className="control">
+                <div className="select is-rounded is-fullwidth">
+                <select type="select" ref={serviceType} >
+                  <option>Data Only</option>
+                  <option>Voice/Data</option>
+                  <option>Voice Only</option>
+                  <option>Security</option>
+                  <option>Hosting</option>
+                  <option>Mobility</option>
+                </select>
+                </div>
+              </div>
+            </div>
 
-            <label className="label">Asset ID</label>
-            <input className="input" type="text" ref={serviceAssetID} />
+            <div className="field">
+              <label className="label">Asset ID</label>
+              <div className="control">
+                <input className="input is-rounded" type="text" ref={serviceAssetID} />
+              </div>
+            </div>
 
             <label className="label">Monthly Cost</label>
-            <input className="input" type="text" ref={serviceMRC} />
-            
+            <input className="input is-rounded" type="text" ref={serviceMRC} />
+            </> : toggleQuestions === 2 ?
+            <>
             <label className="label">Bandwidth</label>
-            <input className="input" type="text" ref={serviceDetailsBandwidth} />
-            
+            <input className="input is-rounded" type="text" ref={serviceDetailsBandwidth} />
+            </> : ""}
           </form>
 
         <div className="block">
@@ -129,10 +150,11 @@ const AddService = () => {
          {success === true ?  <div className="notification is-success">Service Added</div> : ""}
         </div>
         <div className="modal-card-foot">
-          
-          <button className="button level-item"
-          type="submit" onClick={handleSubmit}
-          >
+
+          {toggleQuestions > 1 ? 
+          <button className="button level-item" onClick={() => setToggleQuestions(toggleQuestions - 1)}>Back</button> : ""}
+          <button className="button level-item" onClick={() => setToggleQuestions(toggleQuestions + 1)}>Next</button>
+          <button className="button level-item" type="submit" onClick={handleSubmit}>
             Add Service
           </button>
         
