@@ -5,6 +5,15 @@ import {db} from '../../firebase'
 
 const SiteCard = () => {
   const userContext = useContext(stateContext)
+
+  const [locations, setLocations] = useState()
+  const [services, setServices] = useState()
+  const [orders, setOrders] = useState()
+  const [accounts, setAccounts] = useState()
+  const [tickets, setTickets] = useState()
+
+  
+  
   return(
     <>
     <div className="card">

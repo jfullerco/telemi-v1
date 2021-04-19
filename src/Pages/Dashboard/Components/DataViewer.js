@@ -12,6 +12,8 @@ import OrderDetail from '../../Orders/OrderDetail'
 import AddOrder from '../../Orders/AddOrder'
 import TicketDetail from '../../Tickets/TicketDetail'
 import AddTicket from '../../Tickets/AddTicket'
+import AccountDetail from '../../Accounts/AccountDetail'
+import AddAccount from '../../Accounts/AddAccount'
 
 const DataViewer = (props) => {
   const userContext = useContext(stateContext)
@@ -20,6 +22,7 @@ const DataViewer = (props) => {
   const [locations, setLocations] = useState()
   const [orders, setOrders] = useState()
   const [services, setServices] = useState()
+  const [accounts, setAccounts] = useState()
   const [tickets, setTickets] = useState()
   const [users, setUsers] = useState()
 
@@ -28,6 +31,12 @@ const DataViewer = (props) => {
   const [toggleServicesAddModal, setToggleServicesAddModal] = useState(false)
 
   const [toggleServicesView, setToggleServicesView] = useState(false)
+
+  const [toggleAccountDetailModal, setToggleAccountDetailModal] = useState(false)
+
+  const [toggleAccountAddModal, setToggleAccountAddModal] = useState(false)
+
+  const [toggleAccountView, setToggleAccountView] = useState(false)
 
   const [toggleLocationDetailModal, setToggleLocationDetailModal] = useState(false)
 
@@ -63,6 +72,18 @@ const DataViewer = (props) => {
 
   const handleToggleServicesView = () => {
     setToggleServicesView(!toggleServicesView)
+  }
+
+  const handleToggleAccountAddModal = () => {
+    setToggleAccountAddModal(!toggleAccountAddModal)
+  }
+
+  const handleToggleAccountDetailModal = () => {
+    setToggleAccountDetailModal(!toggleAccountDetailModal)
+  }
+
+  const handleToggleAccountView = () => {
+    setToggleAccountView(!toggleAccountView)
   }
   
   const handleToggleLocationDetailModal = (id) => {
@@ -150,6 +171,17 @@ const DataViewer = (props) => {
 
   }
 
+  const fetchAccounts = async() => {
+
+    const accountsRef = await db.collection("Accounts").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
+
+    const accounts = accountsRef.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()}))
+    setAccounts(accounts)
+
+  }
+
   const fetchTickets = async() => {
 
     const ticketsRef = await db.collection("Tickets").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
@@ -212,6 +244,48 @@ return (
               <td><button className="button is-rounded is-small" onClick={()=>handleToggleServicesDetailModal(service.id)}>edit</button></td>
             </tr>
           )) : "No services added"}
+          
+
+          </tbody>    
+        </div>
+        </nav>
+      </div>
+    : ""}
+
+    {toggleAccountDetailModal != false ? <AccountDetail /> : ""}
+    {toggleAccountAddModal != false ? <AddAccount /> : ""}
+    
+    
+    <div className="title">
+      <button className="button is-medium is-dark is-rounded is-fullwidth has-text-weight-bold" onClick={handleToggleAccountView}>
+        Accounts 
+        <div className="is-size-7 ml-3">
+        {accounts != undefined ? 
+          <span className="tag is-light">
+            {accounts.length}
+          </span> : ""}
+      </div>
+      </button>
+    </div>
+
+    {toggleAccountView != false ? 
+      <div className="table-container">
+      <nav className="level">
+        <div className="table is-striped is-hoverable is-fullwidth">
+          <thead>
+            <th className="px-6">Vendor</th>
+            <th className="px-6">Account Number</th>
+            <th className="px-6">Service Type</th>
+            <th><button className="button is-rounded is-small" onClick={handleToggleServicesAddModal}>add</button></th>
+          </thead>
+          <tbody>
+          {accounts != undefined ? accounts.map(account => (
+            <tr key={account.id}>
+              <td className="px-6">{account.AccountNum}</td>
+              
+              <td><button className="button is-rounded is-small" onClick={()=>handleToggleAccountDetailModal(account.id)}>edit</button></td>
+            </tr>
+          )) : "No accounts added"}
           
 
           </tbody>    
