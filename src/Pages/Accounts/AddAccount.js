@@ -74,7 +74,7 @@ const AddAccount = () => {
       
     }  
     console.log(data)
-    const res = await db.collection("Services").doc().set(data)
+    const res = await db.collection("Accounts").doc().set(data)
     autoClose()
   }
 
