@@ -95,7 +95,7 @@ const AddAccount = () => {
       <div className="modal-card">
         <div className="modal-card-head">
         <div className="modal-card-title">
-          Add Service
+          Add Account
           </div>
         </div>
         <div className="modal-card-body">
@@ -112,7 +112,7 @@ const AddAccount = () => {
                     <option key={location.id} value={location.id} name={location.Name} >
                       {location.Name}
                     </option>
-                  )) : "Add a location before adding a service"}
+                  )) : "Add a location before adding an account"}
                   </select>
                 </div>
               </div>
