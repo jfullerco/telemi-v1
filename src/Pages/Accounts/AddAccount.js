@@ -17,14 +17,14 @@ const AddAccount = () => {
 
   const [toggleQuestions, setToggleQuestions] = useState(1)
   
-  const serviceName = useRef("")
+  const accountNum = useRef("")
   const serviceVendor = useRef("")
   const serviceType = useRef("")
   const serviceLocationID = useRef("")
   const serviceLocationName = useRef("")
   const serviceAssetID = useRef("")
-  const serviceCompanyID = useRef("")
-  const serviceCompanyName = useRef("")
+  const accountCompanyID = useRef("")
+  const accountCompanyName = useRef("")
   const serviceMRC = useRef("")
   const serviceDetailsBandwidth = useRef("")
   const serviceDetailsIPRange = useRef("")
