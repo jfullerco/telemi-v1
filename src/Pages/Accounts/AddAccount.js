@@ -1,5 +1,7 @@
 import React, {useEffect, useState, useRef, useContext} from 'react'
 import {useHistory} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
 
 import {db} from '../../firebase'
 import {stateContext} from '../../stateContext'
@@ -132,21 +134,19 @@ const AddAccount = () => {
             </div>
 */}
             <div className="field">
-              <p className="control has-icons-left">
+              <div className="control has-icons-left">
               <label className="label">Account Number</label>
                 <input className="input is-rounded" type="text" ref={accountNum} />
-                <span className="icon is-small is-left">
-                <i className="fas fa-dollar-sign"></i>
-                </span>
-              </p>
+              </div>
             </div>
 
             <div className="field">
-              <p className="control has-icons-left">
+              
               <label className="label">Pre-Tax Cost</label>
+              <p className="control has-icons-left">
                 <input className="input is-rounded" type="text" ref={accountPreTaxMRC} />
                 <span className="icon is-small is-left">
-                <i className="fas fa-dollar-sign"></i>
+                <FontAwesomeIcon icon={faDollarSign} />
                 </span>
               </p>
             </div>
