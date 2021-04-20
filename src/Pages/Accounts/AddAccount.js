@@ -9,45 +9,44 @@ const AddAccount = () => {
   const userContext = useContext(stateContext)
   
   const [modalState, setModalState] = useState(true)
-  const [addServiceError, setAddServiceError] = useState("")
+  const [addAccountError, setAddAccountError] = useState("")
   const [success, setSuccess] = useState(false)
   const [triggerClose, setTriggerClose] = useState()
 
-  const [locations, setLocations] = useState()
+  const [accounts, setAccounts] = useState()
 
   const [toggleQuestions, setToggleQuestions] = useState(1)
   
   const accountNum = useRef("")
-  const serviceVendor = useRef("")
-  const serviceType = useRef("")
-  const serviceLocationID = useRef("")
-  const serviceLocationName = useRef("")
-  const serviceAssetID = useRef("")
   const accountCompanyID = useRef("")
   const accountCompanyName = useRef("")
-  const serviceMRC = useRef("")
-  const serviceDetailsBandwidth = useRef("")
-  const serviceDetailsIPRange = useRef("")
-  const serviceDetailsLANEdgeIP = useRef("")
-  const serviceDetailsASN = useRef("")
-  const serviceDetailsNotes = useRef("")
-  const serviceOrderID = useRef("")
-  const serviceOrderNum = useRef("")
-  const serviceAccountID = useRef("")
-  const serviceAccountNum = useRef("")
-  const serviceSubAccountNum = useRef("")
+  const accountVendor = useRef("")
+  const accountPreTaxMRC = useRef("")
+  const accountPostTaxMRC = useRef("")
+  const accountIsSubAccount = useRef("")
+  const accountParentAccountID = useRef("")
+  const accountParentAccountNum = useRef("")
+  const accountVendorBillType = useRef("")
+  const accountGroupNum = useRef("")
+  const accountInternalBillingCode = useRef("")
+  const accountNotes = useRef("")
+  const accountContractSignedDate = useRef("")
+  const accountContractTerm = useRef("")
+  const accountContractExpiresDate = useRef("")
+  const accountContractBlob = useRef("")
+
   
 
   useEffect(() => {
-    fetchLocations()
+    fetchAccounts()
   },[])
 
-  const fetchLocations = async() => {
+  const fetchAccounts = async() => {
    
-    const locationsRef = await db.collection("Locations").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
+    const accountsRef = await db.collection("Accounts").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
 
-    const locations = locationsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
-    setLocations(locations)
+    const accounts = accountsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    setAccounts(accounts)
 
   }
   
@@ -58,19 +57,24 @@ const AddAccount = () => {
   
   const handleSubmit = async(e) => {
     const data = {
-      Name: serviceName.current.value,
-      Vendor: serviceVendor.current.value,
-      Type: serviceType.current.value,
-      LocationID: serviceLocationID.current.value,
-      LocationName: serviceLocationID.current[serviceLocationID.current.selectedIndex].text,
+      AccountNum: accountNum.current.value,
       CompanyID: userContext.userSession.currentCompanyID,
       CompanyName: userContext.userSession.currentCompany,
-      Bandwidth: serviceDetailsBandwidth.current.value,
-      PublicIP: serviceDetailsIPRange.current.value,
-      LANIP: serviceDetailsLANEdgeIP.current.value,
-      ASN: serviceDetailsASN.current.value,
-      Notes: serviceDetailsNotes.current.value,
-      MRC: serviceMRC.current.value,
+      Vendor: accountVendor.current.value,
+      PreTaxMRC: accountPreTaxMRC.current.value,
+      PostTaxMRC: accountPostTaxMRC.current.value,
+      IsSubAccount: accountIsSubAccount.current.value,
+      ParentAccountID: accountParentAccountID.current.value,
+      ParentAccountNum: accountParentAccountNum.current.value,
+      VendorBillType: accountVendorBillType.current.value,
+      GroupNum: accountGroupNum.current.value,
+      InternalBillingCode: accountInternalBillingCode.current.value,
+      Notes: accountNotes.current.value,
+      ContractSignedDate: accountContractSignedDate.current.value,
+      ContractTerm: accountContractTerm.current.value,
+      ContractExpiresDate: accountContractExpiresDate.current.value,
+      ContractBlob: accountContractBlob.current.value
+      
       
     }  
     console.log(data)
@@ -86,7 +90,7 @@ const AddAccount = () => {
     setTimeout(() => {setModalState(false)}, 1000)
   }
   const handleChange = () => {
-    console.log(serviceDetails.current)
+    console.log()
   }
 
   return (
@@ -104,15 +108,15 @@ const AddAccount = () => {
             {toggleQuestions === 1 ? 
             <>
             <div className="field">
-              <label className="label">Service Location</label>
+              <label className="label">Parent Account</label>
               <div className="control">
                 <div className="select is-rounded is-fullwidth">
-                  <select className="select" onChange={handleChange} ref={serviceLocationID}>
-                  {locations != undefined ? locations.map(location => (
-                    <option key={location.id} value={location.id} name={location.Name} >
-                      {location.Name}
+                  <select className="select" onChange={handleChange} ref={accountParentAccountID}>
+                  {accounts != undefined ? accounts.map(account => (
+                    <option key={account.id} value={account.id} name={account.AccountNum} >
+                      {account.AccountNum}
                     </option>
-                  )) : "Add a location before adding an account"}
+                  )) : "No other accounts added"}
                   </select>
                 </div>
               </div>
@@ -129,83 +133,62 @@ const AddAccount = () => {
 */}
             <div className="field">
               <div className="control">
-              <label className="label">Vendor</label>
-                <input className="input is-rounded" type="text" ref={serviceVendor} />
-              </div>
-            </div>
-            
-            <div className="field">            
-            <label className="label">Type</label>
-              <div className="control">
-                <div className="select is-rounded is-fullwidth">
-                <select type="select" ref={serviceType} >
-                  <option> </option>
-                  <option>Data Only</option>
-                  <option>Voice/Data</option>
-                  <option>Voice Only</option>
-                  <option>Security</option>
-                  <option>Hosting</option>
-                  <option>Mobility</option>
-                </select>
-                </div>
-              </div>
-            </div>
-
-            <div className="field">
-              <label className="label">Asset ID</label>
-              <div className="control">
-                <input className="input is-rounded" type="text" ref={serviceAssetID} />
+              <label className="label">Account Number</label>
+                <input className="input is-rounded" type="text" ref={accountNum} />
               </div>
             </div>
 
             <div className="field">
               <div className="control">
-              <label className="label">Monthly Cost</label>
-                <input className="input is-rounded" type="text" ref={serviceMRC} />
+              <label className="label">Pre-Tax Cost</label>
+                <input className="input is-rounded" type="text" ref={accountPreTaxMRC} />
+              </div>
+            </div>
+
+            <div className="field">
+              <div className="control">
+              <label className="label">Post-Tax Cost</label>
+                <input className="input is-rounded" type="text" ref={accountPostTaxMRC} />
               </div>
             </div>
 
             </> : toggleQuestions === 2 ?
             <>
+
+            {accountParentAccountID.current.value != "" ? 
+            <div className="field">
+              <label className="label">Bill Group Number</label>
+              <div className="control">
+                <input className="input is-rounded" type="text" ref={accountGroupNum} />
+              </div>
+            </div>
+          : ""}
+
             <div className="field">
               <div className="control">
-              <label className="label">Vendor Managed Router</label>
-                <div className="select is-rounded is-fullwidth">
-                  <select type="select" ref={serviceDetailsIPRange}>
-                    <option> </option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                </div>
+              <label className="label">Internal Billing Code</label>
+                <input className="input is-rounded" type="text" ref={accountInternalBillingCode} />
+              </div>
+            </div>
+ 
+            <div className="field">
+              <div className="control">
+              <label className="label">Contract Signed Date</label>
+                <input className="input is-rounded" type="text" ref={accountContractSignedDate} />
               </div>
             </div>
 
             <div className="field">
               <div className="control">
-              <label className="label">Bandwidth</label>
-                <input className="input is-rounded" type="text" ref={serviceDetailsBandwidth} />
-              </div>
-            </div>
-
-            {/** Add Tooltip indicating to use /subnet size when entering. Have function to destructure subnet to provide usable range and gateway address.*/}  
-            <div className="field">
-              <div className="control">
-              <label className="label">Public IP Range</label>
-                <input className="input is-rounded" type="text" ref={serviceDetailsIPRange} />
+              <label className="label">Contract Term</label>
+                <input className="input is-rounded" type="text" ref={accountContractTerm} />
               </div>
             </div>
 
             <div className="field">
               <div className="control">
-              <label className="label">LAN Edge IP</label>
-                <input className="input is-rounded" type="text" ref={serviceDetailsLANEdgeIP} />
-              </div>
-            </div>
-
-            <div className="field">
-              <div className="control">
-              <label className="label">ASN</label>
-                <input className="input is-rounded" type="text" ref={serviceDetailsASN} />
+              <label className="label">Contract Expires</label>
+                <input className="input is-rounded" type="text" ref={accountContractExpiresDate} />
               </div>
             </div>
 
@@ -215,7 +198,7 @@ const AddAccount = () => {
             <div className="field">
               <div className="control">
               <label className="label">Notes</label>
-                <textarea className="textarea is-rounded" type="text" ref={serviceDetailsNotes} />
+                <textarea className="textarea is-rounded" type="text" ref={accountNotes} />
               </div>
             </div>
 
@@ -223,8 +206,8 @@ const AddAccount = () => {
           </form>
 
         <div className="block">
-          <div className="notification is-danger is-hidden">{addServiceError}</div>
-         {success === true ?  <div className="notification is-success">Service Added</div> : ""}
+          <div className="notification is-danger is-hidden">{addAccountError}</div>
+         {success === true ?  <div className="notification is-success">Account Added</div> : ""}
         </div>
         <div className="modal-card-foot">
 
