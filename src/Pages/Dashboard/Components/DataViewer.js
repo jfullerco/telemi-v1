@@ -275,13 +275,15 @@ return (
           <thead>
             <th className="px-6">Vendor</th>
             <th className="px-6">Account Number</th>
-            <th className="px-6">Service Type</th>
-            <th><button className="button is-rounded is-small" onClick={handleToggleServicesAddModal}>add</button></th>
+            <th className="px-6">Monthly Cost</th>
+            <th><button className="button is-rounded is-small" onClick={handleToggleAccountAddModal}>add</button></th>
           </thead>
           <tbody>
           {accounts != undefined ? accounts.map(account => (
             <tr key={account.id}>
+              <td className="px-6">{account.Vendor}</td>
               <td className="px-6">{account.AccountNum}</td>
+              <td className="px-6">{account.PostTaxMRC}</td>
               
               <td><button className="button is-rounded is-small" onClick={()=>handleToggleAccountDetailModal(account.id)}>edit</button></td>
             </tr>
