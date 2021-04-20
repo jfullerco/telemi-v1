@@ -132,17 +132,23 @@ const AddAccount = () => {
             </div>
 */}
             <div className="field">
-              <div className="control">
+              <p className="control has-icons-left">
               <label className="label">Account Number</label>
                 <input className="input is-rounded" type="text" ref={accountNum} />
-              </div>
+                <span className="icon is-small is-left">
+                <i className="fas fa-dollar-sign"></i>
+                </span>
+              </p>
             </div>
 
             <div className="field">
-              <div className="control">
+              <p className="control has-icons-left">
               <label className="label">Pre-Tax Cost</label>
                 <input className="input is-rounded" type="text" ref={accountPreTaxMRC} />
-              </div>
+                <span className="icon is-small is-left">
+                <i className="fas fa-dollar-sign"></i>
+                </span>
+              </p>
             </div>
 
             <div className="field">
