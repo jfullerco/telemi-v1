@@ -19,15 +19,11 @@ const AddAccount = () => {
 
   const [toggleQuestions, setToggleQuestions] = useState(1)
   
-  const accountNum = useRef("")
-  const accountCompanyID = useRef("")
-  const accountCompanyName = useRef("")
+  const accountAccountNum = useRef("")
   const accountVendor = useRef("")
   const accountPreTaxMRC = useRef("")
   const accountPostTaxMRC = useRef("")
-  const accountIsSubAccount = useRef("")
   const accountParentAccountID = useRef("")
-  const accountParentAccountNum = useRef("")
   const accountVendorBillType = useRef("")
   const accountGroupNum = useRef("")
   const accountInternalBillingCode = useRef("")
@@ -52,22 +48,16 @@ const AddAccount = () => {
 
   }
   
-  const handleLocationChange = (e) => {
-    serviceLocationID.current.value = e.target.value
-    serviceLocationName.current.value = e.target.name
-  }
-  
   const handleSubmit = async(e) => {
     const data = {
-      AccountNum: accountNum.current.value,
+      AccountNum: accountAccountNum.current.value,
       CompanyID: userContext.userSession.currentCompanyID,
       CompanyName: userContext.userSession.currentCompany,
       Vendor: accountVendor.current.value,
       PreTaxMRC: accountPreTaxMRC.current.value,
       PostTaxMRC: accountPostTaxMRC.current.value,
-      IsSubAccount: accountIsSubAccount.current.value,
       ParentAccountID: accountParentAccountID.current.value,
-      ParentAccountNum: accountParentAccountNum.current.value,
+      ParentAccountNum: accountParentAccountID.current[accountParentAccountID.current.selectedIndex].text,
       VendorBillType: accountVendorBillType.current.value,
       GroupNum: accountGroupNum.current.value,
       InternalBillingCode: accountInternalBillingCode.current.value,
@@ -134,9 +124,16 @@ const AddAccount = () => {
             </div>
 */}
             <div className="field">
-              <div className="control has-icons-left">
               <label className="label">Account Number</label>
-                <input className="input is-rounded" type="text" ref={accountNum} />
+              <div className="control">
+                <input className="input is-rounded" type="text" ref={accountAccountNum} />
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Vendor</label>
+              <div className="control">
+                <input className="input is-rounded" type="text" ref={accountVendor} />
               </div>
             </div>
 
@@ -171,29 +168,29 @@ const AddAccount = () => {
             </div>
 
             <div className="field">
-              <div className="control">
               <label className="label">Internal Billing Code</label>
+              <div className="control"> 
                 <input className="input is-rounded" type="text" ref={accountInternalBillingCode} />
               </div>
             </div>
  
             <div className="field">
-              <div className="control">
               <label className="label">Contract Signed Date</label>
+              <div className="control">
                 <input className="input is-rounded" type="text" ref={accountContractSignedDate} />
               </div>
             </div>
 
             <div className="field">
+            <label className="label">Contract Term</label>
               <div className="control">
-              <label className="label">Contract Term</label>
                 <input className="input is-rounded" type="text" ref={accountContractTerm} />
               </div>
             </div>
 
             <div className="field">
+            <label className="label">Contract Expires</label>
               <div className="control">
-              <label className="label">Contract Expires</label>
                 <input className="input is-rounded" type="text" ref={accountContractExpiresDate} />
               </div>
             </div>
@@ -202,8 +199,8 @@ const AddAccount = () => {
             <>
 
             <div className="field">
+            <label className="label">Notes</label>
               <div className="control">
-              <label className="label">Notes</label>
                 <textarea className="textarea is-rounded" type="text" ref={accountNotes} />
               </div>
             </div>
