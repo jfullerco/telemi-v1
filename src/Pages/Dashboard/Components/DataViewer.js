@@ -18,6 +18,7 @@ import AddAccount from '../../Accounts/AddAccount'
 const DataViewer = (props) => {
   const userContext = useContext(stateContext)
   const currentCompany = userContext.userSession
+  const history = useHistory()
 
   const [locations, setLocations] = useState()
   const [orders, setOrders] = useState()
@@ -132,10 +133,16 @@ const DataViewer = (props) => {
     setToggleUsersView(!toggleUsersView)
   }
 
+  const handleAccountDetail = (id) => {
+    userContext.setCurrentAccountID(id)
+    history.push("/accountdetail")
+  }
+
   useEffect(() => {
     fetchLocations()
     fetchServices()
     fetchOrders()
+    fetchAccounts()
   }, [currentCompany])
   
   const fetchLocations = async() => {
@@ -280,13 +287,13 @@ return (
           </thead>
           <tbody>
           {accounts != undefined ? accounts.map(account => (
-            <tr key={account.id}>
+            <tr key={account.id} onClick={() => handleAccountDetail(account.id)}>
               <td className="px-6">{account.Vendor}</td>
               <td className="px-6">{account.AccountNum}</td>
-              <td className="px-6">{account.PostTaxMRC}</td>
-              
+              <td className="px-6">$ {account.PostTaxMRC}</td>
               <td><button className="button is-rounded is-small" onClick={()=>handleToggleAccountDetailModal(account.id)}>edit</button></td>
             </tr>
+            
           )) : "No accounts added"}
           
 

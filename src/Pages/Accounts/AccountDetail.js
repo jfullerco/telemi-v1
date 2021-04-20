@@ -11,20 +11,18 @@ const AccountDetail = () => {
   const userContext = useContext(stateContext)
   const history = useHistory()
   
-  const [modalState, setModalState] = useState(true)
   const [addAccountError, setAddAccountError] = useState("")
   const [success, setSuccess] = useState(false)
-  const [triggerClose, setTriggerClose] = useState()
 
+  const [activeAccount, setActiveAccount] = useState()
   const [accounts, setAccounts] = useState()
-
-  const toggleQuestions = useRef(1)
   
   const accountAccountNum = useRef("")
   const accountVendor = useRef("")
   const accountPreTaxMRC = useRef("")
   const accountPostTaxMRC = useRef("")
   const accountParentAccountID = useRef("")
+  const accountParentAccountName = useRef("")
   const accountVendorBillType = useRef("")
   const accountGroupNum = useRef("")
   const accountInternalBillingCode = useRef("")
@@ -32,16 +30,28 @@ const AccountDetail = () => {
   const accountContractSignedDate = useRef("")
   const accountContractTerm = useRef("")
   const accountContractExpiresDate = useRef("")
-  const accountContractBlob = useRef("")
+  const accountServiceLocationID = useRef("")
+  const accountServiceLocationName = useRef("")
 
 
   useEffect(() => {
+    fetchAccount()
     fetchAccounts()
   },[])
 
+  const fetchAccount = async() => {
+   
+    const accountRef = await db.collection("Accounts").doc(userContext.userSession.currentAccountID).get()
+
+    const data = await accountRef.data()
+    const id = await accountRef.id
+    setActiveAccount(data)
+
+  }
+
   const fetchAccounts = async() => {
    
-    const accountsRef = await db.collection("Accounts").doc(userContext.userSession.currentAccountID).get()
+    const accountsRef = await db.collection("Accounts").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
 
     const accounts = accountsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
     setAccounts(accounts)
@@ -49,7 +59,9 @@ const AccountDetail = () => {
   }
   
   const handleSubmit = async(e) => {
+
     const data = {
+
       AccountNum: accountAccountNum.current.value,
       CompanyID: userContext.userSession.currentCompanyID,
       CompanyName: userContext.userSession.currentCompany,
@@ -58,36 +70,24 @@ const AccountDetail = () => {
       PostTaxMRC: accountPostTaxMRC.current.value,
       ParentAccountID: accountParentAccountID.current.value,
       ParentAccountNum: accountParentAccountID.current[accountParentAccountID.current.selectedIndex].text,
-      VendorBillType: accountVendorBillType.current.value,
       GroupNum: accountGroupNum.current.value,
       InternalBillingCode: accountInternalBillingCode.current.value,
       Notes: accountNotes.current.value,
       ContractSignedDate: accountContractSignedDate.current.value,
       ContractTerm: accountContractTerm.current.value,
       ContractExpiresDate: accountContractExpiresDate.current.value,
-      ContractBlob: accountContractBlob.current.value
-      
       
     }  
+
     console.log(data)
-    const res = await db.collection("Accounts").doc().set(data)
-    history.push("/")
+    const res = await db.collection("Accounts").doc(userContext.userSession.currentAccountID).update(data)
+    history.push("/dashboard")
   }
-
-  const handleModalClose = () => {
-    setModalState(false)
-  }
-
-  const autoClose = () => {
-    setTimeout(() => {setModalState(false)}, 1000)
-  }
-  const handleToggle = (e) => {
-    toggleQuestions.current = toggleQuestions.current + e
-  }
-
+console.log()
   return (
     <div>
-      <div>Add Account</div>
+    {activeAccount != undefined ? ( <>
+      <div className="title">Add Account</div>
         <form>
             <>
             <div className="field">
@@ -95,6 +95,7 @@ const AccountDetail = () => {
               <div className="control">
                 <div className="select is-rounded is-fullwidth">
                   <select className="select" ref={accountParentAccountID}>
+                  <option value="Parent" name="Parent"></option>
                   {accounts != undefined ? accounts.map(account => (
                     <option key={account.id} value={account.id} name={account.AccountNum} >
                       {account.AccountNum}
@@ -108,21 +109,21 @@ const AccountDetail = () => {
             <div className="field">
               <label className="label">Account Number</label>
               <div className="control">
-                <input className="input is-rounded" type="text" name="Account Number" ref={accountAccountNum} />
+                <input className="input is-rounded" type="text" ref={accountAccountNum} defaultValue={activeAccount.AccountNum} />
               </div>
             </div>
 
             <div className="field">
               <label className="label">Vendor</label>
               <div className="control">
-                <input className="input is-rounded" type="text" ref={accountVendor} />
+                <input className="input is-rounded" type="text" ref={accountVendor} defaultValue={activeAccount.Vendor} />
               </div>
             </div>
 
             <div className="field">
               <label className="label">Pre-Tax Cost</label>
               <p className="control has-icons-left">
-                <input className="input is-rounded" type="text" ref={accountPreTaxMRC} />
+                <input className="input is-rounded" type="text" ref={accountPreTaxMRC} defaultValue={activeAccount.PreTaxMRC} />
                 <span className="icon is-small is-left">
                 <FontAwesomeIcon icon={faDollarSign} />
                 </span>
@@ -132,58 +133,52 @@ const AccountDetail = () => {
             <div className="field">
               <label className="label">Post-Tax Cost</label>
               <p className="control has-icons-left">
-                <input className="input is-rounded" type="text" ref={accountPostTaxMRC} />
+                <input className="input is-rounded" type="text" ref={accountPostTaxMRC} defaultValue={activeAccount.PostTaxMRC} />
                 <span className="icon is-small is-left">
                 <FontAwesomeIcon icon={faDollarSign} />
                 </span>
               </p>
             </div>
 
-            </> 
-            <>
-
             <div className="field">
               <label className="label">Bill Group Number</label>
               <div className="control">
-                <input className="input is-rounded" type="text" ref={accountGroupNum} />
+                <input className="input is-rounded" type="text" ref={accountGroupNum} defaultValue={activeAccount.GroupNum} />
               </div>
             </div>
 
             <div className="field">
               <label className="label">Internal Billing Code</label>
               <div className="control"> 
-                <input className="input is-rounded" type="text" name="Internal Billing Code" ref={accountInternalBillingCode} />
+                <input className="input is-rounded" type="text" name="Internal Billing Code" ref={accountInternalBillingCode} defaultValue={activeAccount.InternalBillingCode} />
               </div>
             </div>
  
             <div className="field">
               <label className="label">Contract Signed Date</label>
               <div className="control">
-                <input className="input is-rounded" type="text" ref={accountContractSignedDate} />
+                <input className="input is-rounded" type="text" ref={accountContractSignedDate} defaultValue={activeAccount.ContractSignedDate} />
               </div>
             </div>
 
             <div className="field">
             <label className="label">Contract Term</label>
               <div className="control">
-                <input className="input is-rounded" type="text" ref={accountContractTerm} />
+                <input className="input is-rounded" type="text" ref={accountContractTerm} defaultValue={activeAccount.ContractTerm} />
               </div>
             </div>
 
             <div className="field">
             <label className="label">Contract Expires</label>
               <div className="control">
-                <input className="input is-rounded" type="text" ref={accountContractExpiresDate} />
+                <input className="input is-rounded" type="text" ref={accountContractExpiresDate} defaultValue={activeAccount.ContractExpiresDate} />
               </div>
             </div>
-
-            </> 
-            <>
 
             <div className="field">
             <label className="label">Notes</label>
               <div className="control">
-                <textarea className="textarea is-rounded" type="text" ref={accountNotes} />
+                <textarea className="textarea is-rounded" type="text" ref={accountNotes} defaultValue={activeAccount.Notes} />
               </div>
             </div>
 
@@ -195,22 +190,16 @@ const AccountDetail = () => {
          {success === true ?  <div className="notification is-success">Account Added</div> : ""}
         </div>
         <div className="modal-card-foot">
-        {console.log(toggleQuestions)}
-          
-          {toggleQuestions.current < 3 ? 
-          <button className="button level-item" onClick={() => handleToggle(1)}>Next</button> :
-          ""}
-          {toggleQuestions.current > 1 ? 
-          <button className="button level-item" onClick={() => handleToggle(-1)}>Back</button> : ""}
+        
           <button className="button level-item" type="submit" onClick={handleSubmit}>
             Finish
           </button>
         
         </div>
 
-        <button className="modal-close is-large" aria-label="close" onClick={handleModalClose}></button>
-          
         
+          
+    </> ) : ""}
     </div>
   )
 }

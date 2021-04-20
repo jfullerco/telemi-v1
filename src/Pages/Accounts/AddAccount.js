@@ -24,15 +24,7 @@ const AddAccount = () => {
   const accountPreTaxMRC = useRef("")
   const accountPostTaxMRC = useRef("")
   const accountParentAccountID = useRef("")
-  const accountVendorBillType = useRef("")
-  const accountGroupNum = useRef("")
-  const accountInternalBillingCode = useRef("")
-  const accountNotes = useRef("")
-  const accountContractSignedDate = useRef("")
-  const accountContractTerm = useRef("")
-  const accountContractExpiresDate = useRef("")
-  const accountContractBlob = useRef("")
-
+  const accountServiceType = useRef("")
 
   useEffect(() => {
     fetchAccounts()
@@ -41,14 +33,18 @@ const AddAccount = () => {
   const fetchAccounts = async() => {
    
     const accountsRef = await db.collection("Accounts").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
+console.log(accountsRef)
+    const parentAccountsRef = await accountsRef.where("ParentAccountID", "==", "Parent").get()
+console.log(parentAccountsRef)
+    const accounts = parentAccountsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
 
-    const accounts = accountsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
     setAccounts(accounts)
 
   }
   
   const handleSubmit = async(e) => {
     const data = {
+
       AccountNum: accountAccountNum.current.value,
       CompanyID: userContext.userSession.currentCompanyID,
       CompanyName: userContext.userSession.currentCompany,
@@ -57,20 +53,14 @@ const AddAccount = () => {
       PostTaxMRC: accountPostTaxMRC.current.value,
       ParentAccountID: accountParentAccountID.current.value,
       ParentAccountNum: accountParentAccountID.current[accountParentAccountID.current.selectedIndex].text,
-      VendorBillType: accountVendorBillType.current.value,
-      GroupNum: accountGroupNum.current.value,
-      InternalBillingCode: accountInternalBillingCode.current.value,
-      Notes: accountNotes.current.value,
-      ContractSignedDate: accountContractSignedDate.current.value,
-      ContractTerm: accountContractTerm.current.value,
-      ContractExpiresDate: accountContractExpiresDate.current.value,
-      ContractBlob: accountContractBlob.current.value
-      
+      ServiceType: accountServiceType.current.value
       
     }  
+
     console.log(data)
     const res = await db.collection("Accounts").doc().set(data)
     autoClose()
+
   }
 
   const handleModalClose = () => {
@@ -96,13 +86,13 @@ const AddAccount = () => {
         <div className="modal-card-body">
 
           <form>
-            
-            <>
+
             <div className="field">
               <label className="label">Parent Account</label>
               <div className="control">
                 <div className="select is-rounded is-fullwidth">
                   <select className="select" ref={accountParentAccountID}>
+                  <option value="Parent" name="Parent"></option>
                   {accounts != undefined ? accounts.map(account => (
                     <option key={account.id} value={account.id} name={account.AccountNum} >
                       {account.AccountNum}
@@ -113,15 +103,6 @@ const AddAccount = () => {
               </div>
             </div>
 
-            
-{/** 
-            <div className="field">
-              <label className="label">Service Name</label>
-              <div className="control">
-                <input className="input is-rounded" type="text" ref={serviceName} />
-              </div>
-            </div>
-*/}
             <div className="field">
               <label className="label">Account Number</label>
               <div className="control">
@@ -134,6 +115,13 @@ const AddAccount = () => {
               <div className="control">
                 <input className="input is-rounded" type="text" ref={accountVendor} />
               </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Service Type</label>
+              <p className="control">
+                <input className="input is-rounded" type="text" ref={accountServiceType} />
+              </p>
             </div>
 
             <div className="field">
@@ -155,56 +143,7 @@ const AddAccount = () => {
                 </span>
               </p>
             </div>
-
-            </> 
-            <>
-
-            <div className="field">
-              <label className="label">Bill Group Number</label>
-              <div className="control">
-                <input className="input is-rounded" type="text" ref={accountGroupNum} />
-              </div>
-            </div>
-
-            <div className="field">
-              <label className="label">Internal Billing Code</label>
-              <div className="control"> 
-                <input className="input is-rounded" type="text" name="Internal Billing Code" ref={accountInternalBillingCode} />
-              </div>
-            </div>
- 
-            <div className="field">
-              <label className="label">Contract Signed Date</label>
-              <div className="control">
-                <input className="input is-rounded" type="text" ref={accountContractSignedDate} />
-              </div>
-            </div>
-
-            <div className="field">
-            <label className="label">Contract Term</label>
-              <div className="control">
-                <input className="input is-rounded" type="text" ref={accountContractTerm} />
-              </div>
-            </div>
-
-            <div className="field">
-            <label className="label">Contract Expires</label>
-              <div className="control">
-                <input className="input is-rounded" type="text" ref={accountContractExpiresDate} />
-              </div>
-            </div>
-
-            </> 
-            <>
-
-            <div className="field">
-            <label className="label">Notes</label>
-              <div className="control">
-                <textarea className="textarea is-rounded" type="text" ref={accountNotes} />
-              </div>
-            </div>
-
-            </> 
+           
           </form>
 
         <div className="block">
@@ -212,13 +151,7 @@ const AddAccount = () => {
          {success === true ?  <div className="notification is-success">Account Added</div> : ""}
         </div>
         <div className="modal-card-foot">
-        {console.log(toggleQuestions)}
-          
-          {toggleQuestions.current < 3 ? 
-          <button className="button level-item" onClick={() => handleToggle(1)}>Next</button> :
-          ""}
-          {toggleQuestions.current > 1 ? 
-          <button className="button level-item" onClick={() => handleToggle(-1)}>Back</button> : ""}
+        
           <button className="button level-item" type="submit" onClick={handleSubmit}>
             Finish
           </button>
