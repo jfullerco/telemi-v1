@@ -141,7 +141,6 @@ const AddAccount = () => {
             </div>
 
             <div className="field">
-              
               <label className="label">Pre-Tax Cost</label>
               <p className="control has-icons-left">
                 <input className="input is-rounded" type="text" ref={accountPreTaxMRC} />
@@ -152,23 +151,24 @@ const AddAccount = () => {
             </div>
 
             <div className="field">
-              <div className="control">
               <label className="label">Post-Tax Cost</label>
+              <p className="control has-icons-left">
                 <input className="input is-rounded" type="text" ref={accountPostTaxMRC} />
-              </div>
+                <span className="icon is-small is-left">
+                <FontAwesomeIcon icon={faDollarSign} />
+                </span>
+              </p>
             </div>
 
             </> : toggleQuestions === 2 ?
             <>
 
-            {accountParentAccountID.current.value != "" ? 
             <div className="field">
               <label className="label">Bill Group Number</label>
               <div className="control">
                 <input className="input is-rounded" type="text" ref={accountGroupNum} />
               </div>
             </div>
-          : ""}
 
             <div className="field">
               <div className="control">
@@ -216,7 +216,7 @@ const AddAccount = () => {
          {success === true ?  <div className="notification is-success">Account Added</div> : ""}
         </div>
         <div className="modal-card-foot">
-
+        {console.log(toggleQuestions)}
           
           {toggleQuestions < 3 ? 
           <button className="button level-item" onClick={() => setToggleQuestions(toggleQuestions + 1)}>Next</button> :
