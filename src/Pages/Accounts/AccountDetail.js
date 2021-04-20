@@ -1,171 +1,216 @@
-import React, {useState, useEffect, useContext, useRef} from 'react'
-import {Link, useHistory} from 'react-router-dom'
+import React, {useEffect, useState, useRef, useContext} from 'react'
+import {useHistory} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
+
+import {db} from '../../firebase'
 import {stateContext} from '../../stateContext'
 
-import { db } from '../../firebase'
-
 const AccountDetail = () => {
-  
+
   const userContext = useContext(stateContext)
-  const currentLocationID = userContext
   const history = useHistory()
   
-  const [success, setSuccess] = useState(false)
-
-  const [locations, setLocations] = useState()
-
-  const serviceName = useRef("")
-  const serviceVendor = useRef("")
-  const serviceType = useRef("")
-  const serviceLocationID = useRef("")
-  const serviceLocationName = useRef("")
-  const serviceAssetID = useRef("")
-  const serviceCompanyID = useRef("")
-  const serviceCompanyName = useRef("")
-  const serviceMRC = useRef("")
-  const serviceDetailsBandwidth = useRef("")
-  const serviceOrderID = useRef("")
-  const serviceOrderNum = useRef("")
-  const serviceAccountID = useRef("")
-  const serviceAccountNum = useRef("")
-  const serviceSubAccountNum = useRef("")
-
   const [modalState, setModalState] = useState(true)
+  const [addAccountError, setAddAccountError] = useState("")
+  const [success, setSuccess] = useState(false)
+  const [triggerClose, setTriggerClose] = useState()
 
-  const [activeService, setActiveService] = useState("")
+  const [accounts, setAccounts] = useState()
+
+  const toggleQuestions = useRef(1)
   
+  const accountAccountNum = useRef("")
+  const accountVendor = useRef("")
+  const accountPreTaxMRC = useRef("")
+  const accountPostTaxMRC = useRef("")
+  const accountParentAccountID = useRef("")
+  const accountVendorBillType = useRef("")
+  const accountGroupNum = useRef("")
+  const accountInternalBillingCode = useRef("")
+  const accountNotes = useRef("")
+  const accountContractSignedDate = useRef("")
+  const accountContractTerm = useRef("")
+  const accountContractExpiresDate = useRef("")
+  const accountContractBlob = useRef("")
+
+
   useEffect(() => {
-    
-    fetchService()
-  
-  }, [])
+    fetchAccounts()
+  },[])
 
-  const fetchService = async() => {
+  const fetchAccounts = async() => {
    
-    const serviceRef = await db.collection("Services").doc(userContext.userSession.currentServiceID).get()
-    
-    const data = await serviceRef.data()
-    const id = await serviceRef.id
-    setActiveService(data)
-    
-  }
+    const accountsRef = await db.collection("Accounts").doc(userContext.userSession.currentAccountID).get()
 
+    const accounts = accountsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    setAccounts(accounts)
+
+  }
+  
   const handleSubmit = async(e) => {
     const data = {
-      Name: serviceName.current.value,
-      Vendor: serviceVendor.current.value,
-      Type: serviceType.current.value,
-      LocationID: serviceLocationID.current.value,
-      LocationName: serviceLocationID.current[serviceLocationID.current.selectedIndex].text,
+      AccountNum: accountAccountNum.current.value,
       CompanyID: userContext.userSession.currentCompanyID,
       CompanyName: userContext.userSession.currentCompany,
+      Vendor: accountVendor.current.value,
+      PreTaxMRC: accountPreTaxMRC.current.value,
+      PostTaxMRC: accountPostTaxMRC.current.value,
+      ParentAccountID: accountParentAccountID.current.value,
+      ParentAccountNum: accountParentAccountID.current[accountParentAccountID.current.selectedIndex].text,
+      VendorBillType: accountVendorBillType.current.value,
+      GroupNum: accountGroupNum.current.value,
+      InternalBillingCode: accountInternalBillingCode.current.value,
+      Notes: accountNotes.current.value,
+      ContractSignedDate: accountContractSignedDate.current.value,
+      ContractTerm: accountContractTerm.current.value,
+      ContractExpiresDate: accountContractExpiresDate.current.value,
+      ContractBlob: accountContractBlob.current.value
       
-      MRC: serviceMRC.current.value,
       
     }  
     console.log(data)
-    const res = await db.collection("Services").doc(userContext.userSession.currentServiceID).set(data)
-    autoClose()
-  }
-
-  useEffect(() => {
-    fetchLocations()
-  },[])
-
-  const fetchLocations = async() => {
-   
-    const locationsRef = await db.collection("Locations").where("CompanyID", "==", userContext.userSession.currentCompanyID).get()
-
-    const locations = locationsRef.docs.map(doc => ({id: doc.id, ...doc.data()}))
-    setLocations(locations)
-
-  }
-  
-  const handleLocationChange = (e) => {
-    serviceLocationID.current.value = e.target.value
-    serviceLocationName.current.value = e.target.name
+    const res = await db.collection("Accounts").doc().set(data)
+    history.push("/")
   }
 
   const handleModalClose = () => {
-    setModalState(!modalState)
+    setModalState(false)
   }
 
   const autoClose = () => {
     setTimeout(() => {setModalState(false)}, 1000)
   }
+  const handleToggle = (e) => {
+    toggleQuestions.current = toggleQuestions.current + e
+  }
 
   return (
-    <div className={modalState === true ? "modal is-active is-info" : "modal is-hidden"}>
-      <div className="modal-background"></div>
-      <div className="modal-card">
-        <div className="modal-card-head">
-          <p className="modal-card-title">{activeService.Name} Details</p>
-        </div>
-        <section className="modal-card-body"> 
-          <form>
-            
-            <label className="label">
-              Service Name
-            </label>
-            <input className="input" type="text" ref={serviceName} defaultValue={activeService.Name} />
-
-            <label className="label">
-              Service Location
-            </label>
-            <div className="select is-fullwidth">
-              <select className="select" ref={serviceLocationID} defaultValue={activeService.id}>
-              {locations != undefined ? locations.map(location => (
-                <option key={location.id} value={location.id} name={location.Name} >
-                  {location.Name}
-                </option>
-              )) : "All your locations are belong to us..."}
-              </select>
+    <div>
+      <div>Add Account</div>
+        <form>
+            <>
+            <div className="field">
+              <label className="label">Parent Account</label>
+              <div className="control">
+                <div className="select is-rounded is-fullwidth">
+                  <select className="select" ref={accountParentAccountID}>
+                  {accounts != undefined ? accounts.map(account => (
+                    <option key={account.id} value={account.id} name={account.AccountNum} >
+                      {account.AccountNum}
+                    </option>
+                  )) : "No other accounts added"}
+                  </select>
+                </div>
+              </div>
             </div>
 
-            <label className="label">
-              Vendor
-            </label>
-            <input className="input" type="text" ref={serviceVendor} defaultValue={activeService.Vendor} />
+            <div className="field">
+              <label className="label">Account Number</label>
+              <div className="control">
+                <input className="input is-rounded" type="text" name="Account Number" ref={accountAccountNum} />
+              </div>
+            </div>
 
-            <label className="label">
-              Type
-            </label>
-            <input className="input" type="text" ref={serviceType} defaulValue={activeService.Type} />
+            <div className="field">
+              <label className="label">Vendor</label>
+              <div className="control">
+                <input className="input is-rounded" type="text" ref={accountVendor} />
+              </div>
+            </div>
 
-            <label className="label">
-              Asset ID
-            </label>
-            <input className="input" type="text" ref={serviceAssetID} defaultValue={activeService.AssetID} />
+            <div className="field">
+              <label className="label">Pre-Tax Cost</label>
+              <p className="control has-icons-left">
+                <input className="input is-rounded" type="text" ref={accountPreTaxMRC} />
+                <span className="icon is-small is-left">
+                <FontAwesomeIcon icon={faDollarSign} />
+                </span>
+              </p>
+            </div>
 
-            <label className="label">
-              Monthly Cost
-            </label>
-            <input className="input" type="text" ref={serviceMRC} defaultValue={activeService.MRC}/>
+            <div className="field">
+              <label className="label">Post-Tax Cost</label>
+              <p className="control has-icons-left">
+                <input className="input is-rounded" type="text" ref={accountPostTaxMRC} />
+                <span className="icon is-small is-left">
+                <FontAwesomeIcon icon={faDollarSign} />
+                </span>
+              </p>
+            </div>
 
+            </> 
+            <>
+
+            <div className="field">
+              <label className="label">Bill Group Number</label>
+              <div className="control">
+                <input className="input is-rounded" type="text" ref={accountGroupNum} />
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Internal Billing Code</label>
+              <div className="control"> 
+                <input className="input is-rounded" type="text" name="Internal Billing Code" ref={accountInternalBillingCode} />
+              </div>
+            </div>
+ 
+            <div className="field">
+              <label className="label">Contract Signed Date</label>
+              <div className="control">
+                <input className="input is-rounded" type="text" ref={accountContractSignedDate} />
+              </div>
+            </div>
+
+            <div className="field">
+            <label className="label">Contract Term</label>
+              <div className="control">
+                <input className="input is-rounded" type="text" ref={accountContractTerm} />
+              </div>
+            </div>
+
+            <div className="field">
+            <label className="label">Contract Expires</label>
+              <div className="control">
+                <input className="input is-rounded" type="text" ref={accountContractExpiresDate} />
+              </div>
+            </div>
+
+            </> 
+            <>
+
+            <div className="field">
+            <label className="label">Notes</label>
+              <div className="control">
+                <textarea className="textarea is-rounded" type="text" ref={accountNotes} />
+              </div>
+            </div>
+
+            </> 
           </form>
 
-        {/* Error Status Block */}
         <div className="block">
-          <div className="notification is-danger is-hidden"></div>
+          <div className="notification is-danger is-hidden">{addAccountError}</div>
+         {success === true ?  <div className="notification is-success">Account Added</div> : ""}
         </div>
-
-        {/* Footer Buttons */}
         <div className="modal-card-foot">
+        {console.log(toggleQuestions)}
           
-          <button className="button is-rounded"
-          type="submit" onClick={handleSubmit}
-          >
-            Save Changes
+          {toggleQuestions.current < 3 ? 
+          <button className="button level-item" onClick={() => handleToggle(1)}>Next</button> :
+          ""}
+          {toggleQuestions.current > 1 ? 
+          <button className="button level-item" onClick={() => handleToggle(-1)}>Back</button> : ""}
+          <button className="button level-item" type="submit" onClick={handleSubmit}>
+            Finish
           </button>
-
-          
+        
         </div>
 
-        {/* Close Modal */}
-        <button className="modal-close is-large" aria-label="close" onClick={handleModalClose}></button>  
-
-        </section>
-      </div>
+        <button className="modal-close is-large" aria-label="close" onClick={handleModalClose}></button>
+          
+        
     </div>
   )
 }

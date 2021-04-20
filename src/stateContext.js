@@ -19,9 +19,12 @@ export const StateProvider = (props) => {
       currentLocationName: "",
       currentServiceID: "",
       currentServiceName: "",
-      currentTicket: "",
-      currentOrder: "",
-      currentAccount: "",     
+      currentTicketID: "",
+      currentTicketNum: "",
+      currentOrderID: "",
+      currentOrderNum: "",
+      currentAccountID: "",
+      currentAccountNum: "",     
       dataLoading: false,
 
     }
@@ -85,24 +88,45 @@ export const StateProvider = (props) => {
         })
       };
 
-      const setCurrentTicket = (id) => {
+      const setCurrentTicketID = (id) => {
         dispatch({
-          type: "SET_CURRENT_TICKET",
+          type: "SET_CURRENT_TICKETID",
           payload: id
         })
       };
 
-      const setCurrentOrder = (id) => {
+      const setCurrentTicketNum = (num) => {
         dispatch({
-          type: "SET_CURRENT_ORDER",
+          type: "SET_CURRENT_TICKET_NUM",
+          payload: num
+        })
+      };
+
+      const setCurrentOrderID = (id) => {
+        dispatch({
+          type: "SET_CURRENT_ORDERID",
           payload: id
         })
       };
 
-      const setCurrentAccount = (id) => {
+      const setCurrentOrderNum = (num) => {
         dispatch({
-          type: "SET_CURRENT_ACCOUNT",
+          type: "SET_CURRENT_ORDER_NUM",
+          payload: num
+        })
+      };
+
+      const setCurrentAccountID = (id) => {
+        dispatch({
+          type: "SET_CURRENT_ACCOUNTID",
           payload: id
+        })
+      };
+
+      const setCurrentAccountNum = (num) => {
+        dispatch({
+          type: "SET_CURRENT_ACCOUNT_NUM",
+          payload: num
         })
       };
 
@@ -124,9 +148,12 @@ export const StateProvider = (props) => {
           setCurrentLocationName,
           setCurrentServiceID,
           setCurrentServiceName,
-          setCurrentTicket,
-          setCurrentOrder,
-          setCurrentAccount,
+          setCurrentTicketID,
+          setCurrentTicketNum,
+          setCurrentOrderID,
+          setCurrentOrderNum,
+          setCurrentAccountID,
+          setCurrentAccountNum,
           userSession
       }}>
         {props.children}

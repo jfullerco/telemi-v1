@@ -17,7 +17,7 @@ const AddAccount = () => {
 
   const [accounts, setAccounts] = useState()
 
-  const [toggleQuestions, setToggleQuestions] = useState(1)
+  const toggleQuestions = useRef(1)
   
   const accountAccountNum = useRef("")
   const accountVendor = useRef("")
@@ -33,7 +33,6 @@ const AddAccount = () => {
   const accountContractExpiresDate = useRef("")
   const accountContractBlob = useRef("")
 
-  
 
   useEffect(() => {
     fetchAccounts()
@@ -81,8 +80,8 @@ const AddAccount = () => {
   const autoClose = () => {
     setTimeout(() => {setModalState(false)}, 1000)
   }
-  const handleChange = () => {
-    console.log()
+  const handleToggle = (e) => {
+    toggleQuestions.current = toggleQuestions.current + e
   }
 
   return (
@@ -97,13 +96,13 @@ const AddAccount = () => {
         <div className="modal-card-body">
 
           <form>
-            {toggleQuestions === 1 ? 
+            
             <>
             <div className="field">
               <label className="label">Parent Account</label>
               <div className="control">
                 <div className="select is-rounded is-fullwidth">
-                  <select className="select" onChange={handleChange} ref={accountParentAccountID}>
+                  <select className="select" ref={accountParentAccountID}>
                   {accounts != undefined ? accounts.map(account => (
                     <option key={account.id} value={account.id} name={account.AccountNum} >
                       {account.AccountNum}
@@ -126,7 +125,7 @@ const AddAccount = () => {
             <div className="field">
               <label className="label">Account Number</label>
               <div className="control">
-                <input className="input is-rounded" type="text" ref={accountAccountNum} />
+                <input className="input is-rounded" type="text" name="Account Number" ref={accountAccountNum} />
               </div>
             </div>
 
@@ -157,7 +156,7 @@ const AddAccount = () => {
               </p>
             </div>
 
-            </> : toggleQuestions === 2 ?
+            </> 
             <>
 
             <div className="field">
@@ -170,7 +169,7 @@ const AddAccount = () => {
             <div className="field">
               <label className="label">Internal Billing Code</label>
               <div className="control"> 
-                <input className="input is-rounded" type="text" ref={accountInternalBillingCode} />
+                <input className="input is-rounded" type="text" name="Internal Billing Code" ref={accountInternalBillingCode} />
               </div>
             </div>
  
@@ -195,7 +194,7 @@ const AddAccount = () => {
               </div>
             </div>
 
-            </> : toggleQuestions === 3 ?
+            </> 
             <>
 
             <div className="field">
@@ -205,7 +204,7 @@ const AddAccount = () => {
               </div>
             </div>
 
-            </> : ""}
+            </> 
           </form>
 
         <div className="block">
@@ -215,11 +214,11 @@ const AddAccount = () => {
         <div className="modal-card-foot">
         {console.log(toggleQuestions)}
           
-          {toggleQuestions < 3 ? 
-          <button className="button level-item" onClick={() => setToggleQuestions(toggleQuestions + 1)}>Next</button> :
+          {toggleQuestions.current < 3 ? 
+          <button className="button level-item" onClick={() => handleToggle(1)}>Next</button> :
           ""}
-          {toggleQuestions > 1 ? 
-          <button className="button level-item" onClick={() => setToggleQuestions(toggleQuestions - 1)}>Back</button> : ""}
+          {toggleQuestions.current > 1 ? 
+          <button className="button level-item" onClick={() => handleToggle(-1)}>Back</button> : ""}
           <button className="button level-item" type="submit" onClick={handleSubmit}>
             Finish
           </button>

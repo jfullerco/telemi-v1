@@ -35,21 +35,36 @@ export default (state, action) => {
         ...state,
         currentServiceName: action.payload
       };
-    case "SET_CURRENT_TICKET": 
+    case "SET_CURRENT_TICKETID": 
       return {
         ...state,
-        currentTicket: action.payload
+        currentTicketID: action.payload
       };
-    case "SET_CURRENT_ORDER":
+    case "SET_CURRENT_TICKET_NUM": 
       return {
         ...state,
-        currentOrder: action.payload
-      };    
-    case "SET_CURRENT_ACCOUNT":
+        currentTicketNum: action.payload
+      };
+    case "SET_CURRENT_ORDERID":
       return {
         ...state,
-        currentAccount: action.payload
+        currentOrderID: action.payload
+      }; 
+    case "SET_CURRENT_ORDER_NUM": 
+      return {
+        ...state,
+        currentOrderNum: action.payload
+      };   
+    case "SET_CURRENT_ACCOUNTID":
+      return {
+        ...state,
+        currentAccountID: action.payload
       };  
+    case "SET_CURRENT_ACCOUNT_NUM": 
+      return {
+        ...state,
+        currentAccountNum: action.payload
+      };
     case "SET_DATA_LOADING":
       return {
         ...state,
