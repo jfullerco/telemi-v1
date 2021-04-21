@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom'
 import {db} from '../../firebase'
 import {stateContext} from '../../stateContext'
 
-const AddNote = () => {
+const AddNote = (props) => {
 
   const userContext = useContext(stateContext)
   
@@ -16,8 +16,6 @@ const AddNote = () => {
   const [toggleQuestions, setToggleQuestions] = useState(1)
   
   const adminOnly = useRef("")
-  const attachedID = useRef("")
-  const attachedTo = useRef("")
   const noteAttached = useRef("")
   const noteDate = useRef("")
   const stickyNote = useRef("")
@@ -33,9 +31,10 @@ const AddNote = () => {
 
       NoteDate: noteDate.current.value,
       Note: noteAttached.current.value,
-      AttachedTo: attachedTo.current.value,
-      AttachedID: attachedID.current.value,
-      Sticky: stickyNote.current.value,
+      AttachedTo: props.attachedTo,
+      AttachedID: props.attachedID,
+      Sticky: "false",
+      NoteOwner: "jonathan@jfuller.co",
       CompanyID: userContext.userSession.currentCompanyID,
       CompanyName: userContext.userSession.currentCompany,
   
@@ -68,125 +67,21 @@ const AddNote = () => {
         <div className="modal-card-body">
 
           <form>
-            {toggleQuestions === 1 ? 
-            <>
-            <div className="field">
-              <label className="label">Service Location</label>
-              <div className="control">
-                <div className="select is-rounded is-fullwidth">
-                  <select className="select" onChange={handleChange} ref={serviceLocationID}>
-                  {locations != undefined ? locations.map(location => (
-                    <option key={location.id} value={location.id} name={location.Name} >
-                      {location.Name}
-                    </option>
-                  )) : "Add a location before adding a service"}
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            
-{/** 
-            <div className="field">
-              <label className="label">Service Name</label>
-              <div className="control">
-                <input className="input is-rounded" type="text" ref={serviceName} />
-              </div>
-            </div>
-*/}
+        
             <div className="field">
               <div className="control">
-              <label className="label">Vendor</label>
-                <input className="input is-rounded" type="text" ref={serviceVendor} />
-              </div>
-            </div>
-            
-            <div className="field">            
-            <label className="label">Type</label>
-              <div className="control">
-                <div className="select is-rounded is-fullwidth">
-                <select type="select" ref={serviceType} >
-                  <option> </option>
-                  <option>Data Only</option>
-                  <option>Voice/Data</option>
-                  <option>Voice Only</option>
-                  <option>Security</option>
-                  <option>Hosting</option>
-                  <option>Mobility</option>
-                </select>
-                </div>
-              </div>
-            </div>
-
-            <div className="field">
-              <label className="label">Asset ID</label>
-              <div className="control">
-                <input className="input is-rounded" type="text" ref={serviceAssetID} />
+              <label className="label">Note Date</label>
+                <input className="input is-rounded" type="text" ref={noteDate} />
               </div>
             </div>
 
             <div className="field">
               <div className="control">
-              <label className="label">Monthly Cost</label>
-                <input className="input is-rounded" type="text" ref={serviceMRC} />
-              </div>
-            </div>
-
-            </> : toggleQuestions === 2 ?
-            <>
-            <div className="field">
-              <div className="control">
-              <label className="label">Vendor Managed Router</label>
-                <div className="select is-rounded is-fullwidth">
-                  <select type="select" ref={serviceDetailsIPRange}>
-                    <option> </option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div className="field">
-              <div className="control">
-              <label className="label">Bandwidth</label>
-                <input className="input is-rounded" type="text" ref={serviceDetailsBandwidth} />
-              </div>
-            </div>
-
-            {/** Add Tooltip indicating to use /subnet size when entering. Have function to destructure subnet to provide usable range and gateway address.*/}  
-            <div className="field">
-              <div className="control">
-              <label className="label">Public IP Range</label>
-                <input className="input is-rounded" type="text" ref={serviceDetailsIPRange} />
-              </div>
-            </div>
-
-            <div className="field">
-              <div className="control">
-              <label className="label">LAN Edge IP</label>
-                <input className="input is-rounded" type="text" ref={serviceDetailsLANEdgeIP} />
-              </div>
-            </div>
-
-            <div className="field">
-              <div className="control">
-              <label className="label">ASN</label>
-                <input className="input is-rounded" type="text" ref={serviceDetailsASN} />
-              </div>
-            </div>
-
-            </> : toggleQuestions === 3 ?
-            <>
-
-            <div className="field">
-              <div className="control">
-              <label className="label">Notes</label>
+              <label className="label">Note</label>
                 <textarea className="textarea is-rounded" type="text" ref={serviceDetailsNotes} />
               </div>
             </div>
 
-            </> : ""}
           </form>
 
         <div className="block">

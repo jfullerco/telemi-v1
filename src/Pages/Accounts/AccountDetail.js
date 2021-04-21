@@ -6,6 +6,8 @@ import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
 import {db} from '../../firebase'
 import {stateContext} from '../../stateContext'
 
+import AddNote from '../Dashboard/Components/AddNote'
+
 const AccountDetail = () => {
 
   const userContext = useContext(stateContext)
@@ -186,7 +188,7 @@ console.log()
 
             </> 
           </form>
-
+        <AddNote attachedTo="Accounts" attachedID={activeAccountID} />
         <div className="block">
           <div className="notification is-danger is-hidden">{addAccountError}</div>
          {success === true ?  <div className="notification is-success">Account Added</div> : ""}
