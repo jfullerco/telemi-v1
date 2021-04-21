@@ -1,7 +1,6 @@
 import React, {useState, createContext, useReducer} from 'react'
 import stateReducer from './stateReducer'
-import getClients from './Services/dataConnector'
-import getClient from './Services/clientService'
+
 
 export const stateContext = createContext({})
 
