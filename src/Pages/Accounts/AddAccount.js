@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef, useContext} from 'react'
 import {useHistory} from 'react-router-dom'
 
-import {db} from '../../firebase'
+import {db} from '../../../firebase'
 import {stateContext} from '../../stateContext'
 
 const AddAccount = () => {
