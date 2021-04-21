@@ -1,9 +1,10 @@
 import React, {useState, useRef, useContext, useEffect} from 'react'
-import {stateContext} from '../../Contexts/stateContext'
 
+import {stateContext} from '../../Contexts/stateContext'
 import { db } from '../../Contexts/firebase'
 
 const OrderDetail = () => {
+  const userContext = useContext(stateContext)
   const [modalState, setModalState] = useState(true)
   const [addOrderError, setAddOrderError] = useState("")
   const [success, setSuccess] = useState(false)
