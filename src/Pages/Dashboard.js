@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Route, Link, Switch, Redirect, useParams} from 'react-router-dom'
 
-import { stateContext } from '../stateContext'
+import { stateContext } from '../Contexts/stateContext'
 import {useAuth} from '../Contexts/AuthContext'
 
 import LogoutButton from '../Components/LogoutButton'

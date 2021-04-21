@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useContext} from 'react'
-import {db} from '../../firebase'
-import {stateContext} from '../../stateContext'
+import {db} from '../../Contexts/firebase'
+import {stateContext} from '../../Contexts/stateContext'
 
 const CompanyProfile = () => {
 

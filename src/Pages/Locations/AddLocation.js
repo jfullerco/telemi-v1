@@ -1,8 +1,8 @@
 import React, {useEffect, useState, useRef, useContext} from 'react'
 import {useHistory} from 'react-router-dom'
 
-import {db} from '../../firebase'
-import {stateContext} from '../../stateContext'
+import {db} from '../../Contexts/firebase'
+import {stateContext} from '../../Contexts/stateContext'
 
 const AddLocation = () => {
 

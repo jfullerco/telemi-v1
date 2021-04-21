@@ -1,8 +1,8 @@
 import React, {useState, useContext} from 'react'
 import {Link, Redirect, useHistory} from 'react-router-dom'
 
-import {stateContext} from '../stateContext'
-import {auth} from '../firebase'
+import {stateContext} from '../Contexts/stateContext'
+import {auth} from '../Contexts/firebase'
 
 const LogoutButton = () => {
   const history = useHistory()

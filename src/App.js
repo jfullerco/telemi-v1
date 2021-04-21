@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 
-import {StateProvider, stateContext} from './stateContext'
+import {StateProvider, stateContext} from './Contexts/stateContext'
 import {AuthProvider} from './Contexts/AuthContext'
 
 import Hello from './Pages/Hello'

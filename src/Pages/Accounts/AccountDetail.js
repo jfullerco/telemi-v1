@@ -3,8 +3,8 @@ import {useHistory} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
 
-import {db} from '../../firebase'
-import {stateContext} from '../../stateContext'
+import {db} from '../../Contexts/firebase'
+import {stateContext} from '../../Contexts/stateContext'
 
 import AddNote from '../Dashboard/Components/AddNote'
 

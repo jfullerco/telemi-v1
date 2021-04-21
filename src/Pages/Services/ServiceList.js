@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react'
-import {stateContext} from '../../stateContext'
-import {db} from '../../firebase'
+import {stateContext} from '../../Contexts/stateContext'
+import {db} from '../../Contexts/firebase'
 
 const ServiceList = () => {
   const userContext = useContext(stateContext)

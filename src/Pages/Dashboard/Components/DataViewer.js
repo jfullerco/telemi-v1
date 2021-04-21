@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useContext, useRef} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 
-import {stateContext} from '../../../stateContext'
-import {db} from '../../../firebase'
+import {stateContext} from '../../../Contexts/stateContext'
+import {db} from '../../../Contexts/firebase'
 
 import ServiceDetail from '../../Services/ServiceDetail'
 import AddService from '../../Services/AddService'

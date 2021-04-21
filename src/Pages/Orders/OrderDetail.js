@@ -1,7 +1,7 @@
 import React, {useState, useRef, useContext, useEffect} from 'react'
-import {stateContext} from '../../stateContext'
+import {stateContext} from '../../Contexts/stateContext'
 
-import { db } from '../../firebase'
+import { db } from '../../Contexts/firebase'
 
 const OrderDetail = () => {
   const [modalState, setModalState] = useState(true)

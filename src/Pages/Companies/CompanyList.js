@@ -3,9 +3,9 @@ import React, { useState, useEffect, useContext } from 'react'
 
 import {useAuth} from '../../Contexts/AuthContext'
 
-import {stateContext} from '../../stateContext'
+import {stateContext} from '../../Contexts/stateContext'
 
-import { db } from '../../firebase'
+import { db } from '../../Contexts/firebase'
 
 import AddCompany from './AddCompany'
 

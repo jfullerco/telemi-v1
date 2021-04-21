@@ -1,6 +1,6 @@
 import React, {useState, useContext, useRef, useEffect} from 'react'
 import {stateContext} from '../../stateContext'
-import {db} from '../../firebase'
+import {db} from '../../Contexts/firebase'
 
 const AddUsers = () => {
 
