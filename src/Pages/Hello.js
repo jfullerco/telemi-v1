@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import Register from './Register'
 import {useAuth} from '../Contexts/AuthContext'
-import FirebaseTest from '../Testing/FirebaseTest'
 
 const Hello = () => {
   const [modalState, setModalState] = useState(false)
