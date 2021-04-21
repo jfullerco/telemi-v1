@@ -1,7 +1,5 @@
 import React, {useEffect, useState, useRef, useContext} from 'react'
 import {useHistory} from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
 
 import {db} from '../../firebase'
 import {stateContext} from '../../stateContext'
@@ -128,9 +126,7 @@ console.log(parentAccountsRef)
               <label className="label">Pre-Tax Cost</label>
               <p className="control has-icons-left">
                 <input className="input is-rounded" type="text" ref={accountPreTaxMRC} />
-                <span className="icon is-small is-left">
-                <FontAwesomeIcon icon={faDollarSign} />
-                </span>
+                
               </p>
             </div>
 
@@ -138,9 +134,7 @@ console.log(parentAccountsRef)
               <label className="label">Post-Tax Cost</label>
               <p className="control has-icons-left">
                 <input className="input is-rounded" type="text" ref={accountPostTaxMRC} />
-                <span className="icon is-small is-left">
-                <FontAwesomeIcon icon={faDollarSign} />
-                </span>
+                
               </p>
             </div>
            
