@@ -32,7 +32,7 @@ const AccountDetail = () => {
   const accountContractExpiresDate = useRef("")
   const accountServiceLocationID = useRef("")
   const accountServiceLocationName = useRef("")
-
+console.log(accountAccountNum.current.className)
 
   useEffect(() => {
     fetchAccount()
@@ -83,11 +83,13 @@ const AccountDetail = () => {
     const res = await db.collection("Accounts").doc(userContext.userSession.currentAccountID).update(data)
     history.push("/dashboard")
   }
+
+  
 console.log()
   return (
     <div>
     {activeAccount != undefined ? ( <>
-      <div className="title">Add Account</div>
+      <div className="title">{activeAccount.AccountNum} Detail</div>
         <form>
             <>
             <div className="field">
@@ -107,7 +109,7 @@ console.log()
             </div>
 
             <div className="field">
-              <label className="label">Account Number</label>
+              <label className="label" >Account Number</label>
               <div className="control">
                 <input className="input is-rounded" type="text" ref={accountAccountNum} defaultValue={activeAccount.AccountNum} />
               </div>

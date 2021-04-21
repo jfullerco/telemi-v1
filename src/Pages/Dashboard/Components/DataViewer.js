@@ -233,7 +233,7 @@ return (
     {toggleServicesView != false ? 
       <div className="table-container">
       <nav className="level">
-        <div className="table is-striped is-hoverable is-fullwidth">
+        <table className="table is-striped is-hoverable is-fullwidth">
           <thead>
             <th className="px-6">Vendor</th>
             <th className="px-6">Type</th>
@@ -254,7 +254,7 @@ return (
           
 
           </tbody>    
-        </div>
+        </table>
         </nav>
       </div>
     : ""}
@@ -278,7 +278,7 @@ return (
     {toggleAccountView != false ? 
       <div className="table-container">
       <nav className="level">
-        <div className="table is-striped is-hoverable is-fullwidth">
+        <table className="table is-striped is-hoverable is-fullwidth">
           <thead>
             <th className="px-6">Vendor</th>
             <th className="px-6">Account Number</th>
@@ -302,7 +302,7 @@ return (
           
 
           </tbody>    
-        </div>
+        </table>
         </nav>
       </div>
     : ""}
@@ -324,7 +324,7 @@ return (
     {toggleLocationView != false ? 
     <div className="table-container">
     <nav className="level">
-      <div className="table is-hoverable is-fullwidth">
+      <table className="table is-hoverable is-fullwidth">
         <thead>
           <tr>  
             <th className="px-6">Location Name</th>
@@ -347,7 +347,7 @@ return (
         
 
         </tbody>    
-      </div>
+      </table>
       </nav>
     </div> : "" }
 
@@ -369,7 +369,7 @@ return (
     {toggleOrderView != false ? 
     <div className="table-container">
     <nav className="level">
-      <div className="table is-striped is-fullwidth">
+      <table className="table is-striped is-fullwidth">
         <thead>
         <tr>
           <th className="px-6">Vendor</th>
@@ -402,7 +402,7 @@ return (
         
 
         </tbody>    
-      </div>
+      </table>
       </nav>
     </div> : ""}
 
@@ -421,7 +421,7 @@ return (
     {toggleTicketView != false ? 
     <div className="table-container">
     <nav className="level">
-      <div className="table is-striped is-fullwidth">
+      <table className="table is-striped is-fullwidth">
         <thead>
           <th className="px-6">Vendor</th>
           <th className="px-6">Ticket Number</th>
@@ -452,7 +452,7 @@ return (
         
 
         </tbody>    
-      </div>
+      </table>
       </nav>
     </div> : ""}
 
@@ -471,7 +471,7 @@ return (
     {toggleUsersView != false ? 
     <div className="table-container">
     <nav className="level is-centered">
-      <div className="table is-striped is-fullwidth ">
+      <table className="table is-striped is-fullwidth ">
         <thead><tr>
           <th className="px-6">Email</th>
           <th><button className="button is-rounded is-small" onClick={handleToggleUsersAddModal}>add</button></th>
@@ -491,7 +491,7 @@ return (
         
 
         </tbody>    
-      </div>
+      </table>
       </nav>
     </div> : ""}
   
